@@ -161,7 +161,7 @@ namespace SSO_BusinessLogic
         }
         public string MensajesAD(int _code)
         {
-            string Observa = "";
+            string Observa;
             switch (_code)
             {
                 case 0:
@@ -193,10 +193,9 @@ namespace SSO_BusinessLogic
         }
         public UsuarioAD consultaAD(Login _login)
         {
-            UsuarioAD _usuarioAD = new UsuarioAD();
+            var _usuarioAD = new UsuarioAD();
             var _AD = new AD();
-            Boolean _result = false;
-
+            bool _result;
             if (!string.IsNullOrEmpty(_login.password))
             {
                 var r = _AD.auth(_login.user, _login.password);
@@ -211,22 +210,22 @@ namespace SSO_BusinessLogic
 
             if (_result)
             {
-                var _r = _AD.getUser(_login.user);
-                _result = _r.Result.ok;
-                _usuarioAD.usuario_code = _r.Result.code;
-                _usuarioAD.usuario_msg = MensajesAD(_r.Result.code);
+                var userInfo = _AD.getUser(_login.user);
+                _result = userInfo.Result.ok;
+                _usuarioAD.usuario_code = userInfo.Result.code;
+                _usuarioAD.usuario_msg = MensajesAD(userInfo.Result.code);
 
                 if (_result)
                 {
                     _usuarioAD.usuario_login = _login.user;
-                    _usuarioAD.usuario_nombre = _r.Result.AdUser.Name;
-                    _usuarioAD.usuario_apPaterno = _r.Result.AdUser.LastName;
+                    _usuarioAD.usuario_nombre = userInfo.Result.AdUser.Name;
+                    _usuarioAD.usuario_apPaterno = userInfo.Result.AdUser.LastName;
                     _usuarioAD.usuario_apMaterno = " ";
-                    _usuarioAD.Usuario_correoPersonal = _r.Result.AdUser.Email;
-                    _usuarioAD.usuario_correoUPC = _r.Result.AdUser.EmailUPC;
-                    _usuarioAD.usuario_telefono = _r.Result.AdUser.Phone;
-                    _usuarioAD.usuario_code = _r.Result.code;
-                    _usuarioAD.usuario_msg = MensajesAD(_r.Result.code);
+                    _usuarioAD.Usuario_correoPersonal = userInfo.Result.AdUser.Email;
+                    _usuarioAD.usuario_correoUPC = userInfo.Result.AdUser.EmailUPC;
+                    _usuarioAD.usuario_telefono = userInfo.Result.AdUser.Phone;
+                    _usuarioAD.usuario_code = userInfo.Result.code;
+                    _usuarioAD.usuario_msg = MensajesAD(userInfo.Result.code);
                 }
             }
             return _usuarioAD;
@@ -630,28 +629,32 @@ namespace SSO_BusinessLogic
         }
         public UsuarioAD Api_Datos_Usuario_A(Login login)
         {
-            UsuarioAD usuarioAD = new UsuarioAD();
+            var usuarioAD = new UsuarioAD();
             try
             {
                 int resultado = 0;
 
-                var ApiDominioAuthA = System.Configuration.ConfigurationManager.AppSettings["ApiDominioAuthA"].ToString();
-                var ApiCredencialAuth = System.Configuration.ConfigurationManager.AppSettings["ApiCredencialAuth"].ToString();
+                var ApiDominioAuthA = ConfigurationManager.AppSettings["ApiDominioAuthA"].ToString();
+                var ApiCredencialAuth = ConfigurationManager.AppSettings["ApiCredencialAuth"].ToString();
 
                 // Si el switch es 1 toma la contraseña desde la tabla de variables
-                string switchReadPwdFromTable = ConfigurationManager.AppSettings["switchReadPwdFromTable"];
+                var switchReadPwdFromTable = ConfigurationManager.AppSettings["switchReadPwdFromTable"];
                 if (switchReadPwdFromTable == "1")
                 {
-                    Respuesta res = _conexion.consulta_Variables_Id(5);
+                    var res = _conexion.consulta_Variables_Id(5);
                     ApiCredencialAuth = res.mensaje;
                 }
 
-                HttpClient clienteHTTP = new HttpClient();
-                clienteHTTP.BaseAddress = new Uri(ApiDominioAuthA);
+                var clienteHTTP = new HttpClient
+                {
+                    BaseAddress = new Uri(ApiDominioAuthA)
+                };
                 clienteHTTP.DefaultRequestHeaders.Add("Authorization", "Basic " + ApiCredencialAuth); //token generado en PostMan
 
-                AuthAlias credenAuth = new AuthAlias();
-                credenAuth.alias = login.user;
+                var credenAuth = new AuthAlias
+                {
+                    alias = login.user
+                };
                 var request = clienteHTTP.PostAsync("/apisso/Api/SSO/DatosUsuario", credenAuth, new JsonMediaTypeFormatter()).Result;
                 if (request.IsSuccessStatusCode)
                 {
@@ -692,10 +695,8 @@ namespace SSO_BusinessLogic
 
         public UsuarioAD Auth_OnPremises(Login login)
         {
-            UsuarioAD UsuarioAD = new UsuarioAD();
-            Respuesta Respuesta = new Respuesta();
-
-            Respuesta = Api_Auth_O(login);
+            var UsuarioAD = new UsuarioAD();
+            var Respuesta = Api_Auth_O(login);
             if (Respuesta.code == 0)
             {
                 UsuarioAD = Api_Datos_Usuario_O(login);
@@ -706,30 +707,33 @@ namespace SSO_BusinessLogic
                 UsuarioAD.usuario_msg = Respuesta.mensaje;
             }
             return UsuarioAD;
-
         }
         public Respuesta Api_Auth_O(Login login)
         {
-            Respuesta rpta = new Respuesta();
+            var rpta = new Respuesta();
             try
             {
-                var ApiDominioAuth = System.Configuration.ConfigurationManager.AppSettings["ApiDominioAuth"].ToString();
-                var ApiCredencialAuth = System.Configuration.ConfigurationManager.AppSettings["ApiCredencialAuth"].ToString();
+                var ApiDominioAuth = ConfigurationManager.AppSettings["ApiDominioAuth"].ToString();
+                var ApiCredencialAuth = ConfigurationManager.AppSettings["ApiCredencialAuth"].ToString();
 
                 // Si el switch es 1 toma la contraseña desde la tabla de variables
-                string switchReadPwdFromTable = ConfigurationManager.AppSettings["switchReadPwdFromTable"];
+                var switchReadPwdFromTable = ConfigurationManager.AppSettings["switchReadPwdFromTable"];
                 if (switchReadPwdFromTable == "1")
                 {
-                    Respuesta res = _conexion.consulta_Variables_Id(5);
+                    var res = _conexion.consulta_Variables_Id(5);
                     ApiCredencialAuth = res.mensaje;
                 }
 
-                Auth credenAuth = new Auth();
-                credenAuth.alias = login.user;
-                credenAuth.password = login.password;
+                var credenAuth = new Auth
+                {
+                    alias = login.user,
+                    password = login.password
+                };
 
-                HttpClient clienteHTTP = new HttpClient();
-                clienteHTTP.BaseAddress = new Uri(ApiDominioAuth);
+                var clienteHTTP = new HttpClient
+                {
+                    BaseAddress = new Uri(ApiDominioAuth)
+                };
                 clienteHTTP.DefaultRequestHeaders.Add("Authorization", "Basic " + ApiCredencialAuth); //token generado en PostMan
 
                 var _request = clienteHTTP.PostAsync("/v3.0/SSO/Autenticacion", credenAuth, new JsonMediaTypeFormatter()).Result;
@@ -737,8 +741,8 @@ namespace SSO_BusinessLogic
                 {
                     var resultString = _request.Content.ReadAsStringAsync().Result;
                     var rptaAuth = JsonConvert.DeserializeObject<objClaims>(resultString);
-                    rpta.code = Convert.ToInt16(rptaAuth.code);
-                    rpta.mensaje = MensajesAD(Convert.ToInt16(rptaAuth.code));
+                    rpta.code = Convert.ToInt32(rptaAuth.code);
+                    rpta.mensaje = MensajesAD(Convert.ToInt32(rptaAuth.code));
                 }
                 else
                 {
