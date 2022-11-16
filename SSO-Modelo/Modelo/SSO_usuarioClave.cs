@@ -10,13 +10,12 @@
 namespace SSO_Modelo.Modelo
 {
     using System;
-    using System.Collections.Generic;
 
     public partial class SSO_usuarioClave
     {
         public int usuarioClave_id { get; set; }
         public int usuarioClave_usuario_id { get; set; }
-        public System.DateTime usuarioClave_fecha { get; set; }
+        public DateTime usuarioClave_fecha { get; set; }
         public string usuarioClave_pwd { get; set; }
 
         public virtual SSO_usuario SSO_usuario { get; set; }

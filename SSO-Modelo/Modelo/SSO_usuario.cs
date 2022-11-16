@@ -36,7 +36,7 @@ namespace SSO_Modelo.Modelo
         public bool usuario_flagAsociarRedes { get; set; }
         public Nullable<bool> usuario_flagRecPas { get; set; }
         public string usuario_tipo { get; set; }
-        public Nullable<System.DateTime> usuario_ultActDatos { get; set; }
+        public Nullable<DateTime> usuario_ultActDatos { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SSO_code> SSO_code { get; set; }

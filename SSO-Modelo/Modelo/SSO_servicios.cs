@@ -9,9 +9,6 @@
 
 namespace SSO_Modelo.Modelo
 {
-    using System;
-    using System.Collections.Generic;
-
     public partial class SSO_servicios
     {
         public int servicio_id { get; set; }

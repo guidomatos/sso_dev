@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SSO_Model
+﻿namespace SSO_Model
 {
     public class DatosTokenModel
     {

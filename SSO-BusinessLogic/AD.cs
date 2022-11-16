@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Configuration;
-using System.DirectoryServices;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using SSO_SecurityServerF.Clases;
-using SSO_SecurityServerF.Mailer;
 
 namespace SSO_BusinessLogic
 {

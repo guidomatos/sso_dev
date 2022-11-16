@@ -10,7 +10,6 @@
 namespace SSO_Modelo.Modelo
 {
     using System;
-    using System.Collections.Generic;
 
     public partial class sysdiagrams
     {

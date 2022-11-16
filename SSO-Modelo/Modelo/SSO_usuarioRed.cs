@@ -10,7 +10,6 @@
 namespace SSO_Modelo.Modelo
 {
     using System;
-    using System.Collections.Generic;
 
     public partial class SSO_usuarioRed
     {
@@ -19,7 +18,7 @@ namespace SSO_Modelo.Modelo
         public string usuarioRed_correo_usuario { get; set; }
         public string usuarioRed_nombre_usuario { get; set; }
         public string usuarioRed_imagenUrl { get; set; }
-        public System.DateTime usuarioRed_fecha { get; set; }
+        public DateTime usuarioRed_fecha { get; set; }
 
         public virtual SSO_redSocial SSO_redSocial { get; set; }
         public virtual SSO_usuario SSO_usuario { get; set; }

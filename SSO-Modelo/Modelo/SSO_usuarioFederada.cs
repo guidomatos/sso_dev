@@ -10,13 +10,12 @@
 namespace SSO_Modelo.Modelo
 {
     using System;
-    using System.Collections.Generic;
 
     public partial class SSO_usuarioFederada
     {
         public int UF_usuario_id { get; set; }
         public int UF_federada_id { get; set; }
-        public System.DateTime UF_fecha { get; set; }
+        public DateTime UF_fecha { get; set; }
 
         public virtual SSO_federada SSO_federada { get; set; }
         public virtual SSO_usuario SSO_usuario { get; set; }

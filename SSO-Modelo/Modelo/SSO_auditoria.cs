@@ -10,14 +10,13 @@
 namespace SSO_Modelo.Modelo
 {
     using System;
-    using System.Collections.Generic;
 
     public partial class SSO_auditoria
     {
         public int auditoria_id { get; set; }
         public string auditoria_tablaNombre { get; set; }
         public string auditoria_operacion { get; set; }
-        public System.DateTime auditoria_fechaOperacion { get; set; }
+        public DateTime auditoria_fechaOperacion { get; set; }
         public string auditoria_usuario { get; set; }
     }
 }

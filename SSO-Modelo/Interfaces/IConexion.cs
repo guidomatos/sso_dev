@@ -1,5 +1,4 @@
 ﻿using System;
-using SSO_Modelo.Clases;
 using SSO_SecurityServerF;
 using SSO_SecurityServerF.Clases;
 
