@@ -21,7 +21,6 @@ namespace SSO_Modelo.Clases
 
         SSOEntities BD = new SSOEntities();
 
-        //Juan Carlos Rodríguez Donayre (25/10/2021)
         public Boolean registraUltActDatos(Login _login)
         {
             Boolean _result = false;
@@ -48,9 +47,7 @@ namespace SSO_Modelo.Clases
                            select u).ToList();
             return Listado;
         }
-        //Fin
 
-        //INICIO-(28-10-2020) REGISTRA FLAG CONTRASEÑA
         public Boolean registraFlag(Login _login)
         {
             Boolean _result = false;
@@ -65,7 +62,6 @@ namespace SSO_Modelo.Clases
             Boolean _flag = (Boolean)_reg.usuario_flagRecPas;
             return _flag;
         }
-        //FIN
         public Respuesta consulta_SSO_usuarioRed(Login _login)
         {
             Respuesta _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
@@ -173,13 +169,8 @@ namespace SSO_Modelo.Clases
                 _sso_usuario.usuario_telefono = string.IsNullOrEmpty(_usuarioAD.usuario_telefono) ? "" : _usuarioAD.usuario_telefono;
                 _sso_usuario.usuario_estado = true;
                 _sso_usuario.usuario_flagAsociarRedes = false;
-                //INICIO-(28-10-2020) PARA EXIJIR RECUPERAR CONTRASEÑA
                 _sso_usuario.usuario_flagRecPas = true;
-                //FIN
-
-                //Juan Carlos Rodríguez Donayre agregado el 25/10/2021
                 _sso_usuario.usuario_tipo = _usuarioAD.usuarioTipo;
-                //Fin
 
                 BD.SSO_usuario.Add(_sso_usuario);
                 _result = BD.SaveChanges() > 0;
@@ -227,9 +218,7 @@ namespace SSO_Modelo.Clases
             SSO_usuarioCnx _obj = new SSO_usuarioCnx();
             _obj.usuarioCnx_usuario_id = _reg.usuario_id;
             _obj.usuarioCnx_fecha = DateTime.Now;
-            //INICIO (12-11-2020)
             _obj.usuarioCnx_codFederada = codFederada;
-            //FIN
 
             BD.SSO_usuarioCnx.Add(_obj);
             _result = BD.SaveChanges() > 0;
@@ -299,9 +288,7 @@ namespace SSO_Modelo.Clases
                     code_usuario_id = _reg.usuario_id,
                     code_CodeValue = _login.code,
                     code_fechaRegistro = DateTime.Now,
-                    //INICIO (12-11-2020) SE GUARDA EL MEDIO DE ENVIO
                     code_medioEnvio = "MAIL"
-                    //FIN
                 };
                 _result = registraEn_SSO_code(_sso_code, _login);
                 if (_result == false) throw new ApplicationException("No registró en SSO_code");
@@ -330,9 +317,7 @@ namespace SSO_Modelo.Clases
                     code_usuario_id = _reg.usuario_id,
                     code_CodeValue = _login.code,
                     code_fechaRegistro = DateTime.Now,
-                    //INICIO (12-11-2020) SE GUARDA EL MEDIO DE ENVIO
                     code_medioEnvio = "SMS"
-                    //FIN
                 };
                 _result = registraEn_SSO_code(_sso_code, _login);
                 if (_result == false) throw new ApplicationException("No registró en SSO_code");
@@ -659,7 +644,6 @@ namespace SSO_Modelo.Clases
             return Observa;
         }
 
-        //JUAN CARLOS RODRIGUEZ DONAYRE 06-05-2021 (agregado)
         public Respuesta consulta_federada(string _codFederada)
         {
             Respuesta _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
@@ -686,8 +670,6 @@ namespace SSO_Modelo.Clases
             }
             return _respuesta;
         }
-        //FIN
-        //JUAN CARLOS RODRIGUEZ DONAYRE 06-06-2021 (agregado)
         public Respuesta consulta_federada_nom(string _nomFederada)
         {
             Respuesta _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
@@ -707,7 +689,6 @@ namespace SSO_Modelo.Clases
             }
             return _respuesta;
         }
-        //FIN
         public Boolean registraEn_usuarioClave(Login _Login)
         {
             Boolean _result = false;

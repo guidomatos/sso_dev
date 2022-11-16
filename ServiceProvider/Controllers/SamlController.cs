@@ -72,9 +72,7 @@ namespace ServiceProvider.Controllers
             {
                 // Logout locally.
 
-                //JC (Comentado)
                 //HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-                //fin
 
                 // Respond to the IdP-initiated SLO request indicating successful logout.
                 SAMLServiceProvider.SendSLO(Response, null);
@@ -82,12 +80,10 @@ namespace ServiceProvider.Controllers
             else
             {
                 // SP-initiated SLO has completed.
-                //JC (Comentado)
                 //if (!string.IsNullOrEmpty(relayState) && Url.IsLocalUrl(relayState))
                 //{
                 //    return Redirect(relayState);
                 //}
-                //fin
                 return RedirectToAction("Index", "Home");
             }
 

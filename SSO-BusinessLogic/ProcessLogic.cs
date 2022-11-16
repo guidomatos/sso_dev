@@ -10,14 +10,12 @@ using SSO_Modelo.Interfaces;
 using SSO_SecurityServerF;
 using SSO_SecurityServerF.Clases;
 using SSO_SecurityServerF.Mailer;
-
-using Newtonsoft.Json; //JUAN_CARLOS_RODRIGUEZ 18-03-2021
-using System.Net.Http; //JUAN_CARLOS_RODRIGUEZ 18-03-2021
-using System.Net.Http.Formatting;//JUAN_CARLOS_RODRIGUEZ 18-03-2021 
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Net.Http.Formatting;
 
 namespace SSO_BusinessLogic
 {
-    //JUAN CARLOS RODRIGUEZ 22/07/2021 (agregado)
     public class U_objClaims
     {
         public U_DTOHeader DTOHeader { get; set; }
@@ -85,15 +83,11 @@ namespace SSO_BusinessLogic
 
     }
 
-    //FIN
-
     public class sms
     {
         public int estado { get; set; }
         public string codigo { get; set; }
     }
-
-    //JUAN_CARLOS_RODRIGUEZ 18/03/2021 (agregado)
     public class Auth
     {
         public string alias { get; set; }
@@ -106,8 +100,6 @@ namespace SSO_BusinessLogic
         public string msg { get; set; }
         public string ok { get; set; }
     }
-    //FIN
-    //JUAN_CARLOS_RODRIGUEZ 22/03/2021 (agregado)
     public class AuthAlias
     {
         public string alias { get; set; }
@@ -136,16 +128,11 @@ namespace SSO_BusinessLogic
         public string NombreUsuario { get; set; }
 
     }
-    //FIN
-    //JUAN_CARLOS_RODRIGUEZ 23/03/2021 (agregado)
     public class AuthChangePass
     {
         public string usuario { get; set; }
         public string password { get; set; }
     }
-    //FIN
-
-    //JUAN_CARLOS_RODRIGUEZ 29/04/2021 (agregado)
     public class ERes
     {
         public bool ok;
@@ -167,7 +154,6 @@ namespace SSO_BusinessLogic
         //public string SamAcountName { get; set; }
 
     }
-    //FIN
     public class ProcessLogic : IProcessLogic
     {
         private readonly IConexion _conexion;
@@ -254,14 +240,12 @@ namespace SSO_BusinessLogic
             {
                 if (!string.IsNullOrEmpty(_login.user) && !string.IsNullOrEmpty(_login.password))
                 {
-                    //JUAN CARLOS RODRIGUEZ DONAYRE 03-05-2021 (comentado)
                     //var _AD = new AD();
                     //var _res = _AD.ChangePasswordAD(_login.user, _login.password);
                     //_respuesta.ok = _res.Item1;
                     //_respuesta.mensaje = _res.Item2;
-                    //FIN
 
-                    ////JUAN CARLOS RODRIGUEZ DONAYRE 03-05-2021 USO DE APIS Y LECTURA DE FEDERA DESDE BD (agregado)
+                    // USO DE APIS Y LECTURA DE FEDERA DESDE BD (agregado)
                     //Respuesta _rpta = new Respuesta();
                     //_rpta = _conexion.consulta_federada(_login.CodFederada);
                     //if (_rpta.federada_api == "A")
@@ -272,9 +256,7 @@ namespace SSO_BusinessLogic
                     //{
                     //    _respuesta = ChangePasswordAD_API(_login);
                     //}
-                    ////FIN
 
-                    ////JUAN CARLOS RODRIGUEZ DONAYRE 03-09-2021 (AGREGADO)
                     ////SI EL INTENTO DE CAMBIO DE PWD EN AZURE FALLÓ Y EL CODIGO DE FEDERADA SE ENCUENTRA EN CADENA
                     ////ENTONCES SE LOGUEA CON EL AD ONPREMISES
                     //Boolean found = false;
@@ -291,17 +273,15 @@ namespace SSO_BusinessLogic
                     //{
                     //    _respuesta = ChangePasswordAD_API(_login);
                     //}
-                    ////FIN
 
                     _respuesta = ChangePasswordAD_API(_login);
 
                 }
-                //INICIO-(28-10-2020) REGISTRA FLAG A FALSO PARA NO RECUPERAR CONTRASEÑA AL INICIO SIGUIENTE
+                //REGISTRA FLAG A FALSO PARA NO RECUPERAR CONTRASEÑA AL INICIO SIGUIENTE
                 if (_respuesta.ok == true)
                 {
                     var _result = _conexion.registraFlag(_login);
                 }
-                //FIN
             }
             catch (Exception ex)
             {
@@ -317,11 +297,8 @@ namespace SSO_BusinessLogic
             {
                 if (!string.IsNullOrEmpty(_login.user) && !string.IsNullOrEmpty(_login.password))
                 {
-                    //JUAN_CARLOS_RODRIGUEZ 29/04/2021 (comentado)
                     //UsuarioAD _UsuarioAD = consultaAD(_login);
-                    //FIN
-
-                    //JUAN_CARLOS_RODRIGUEZ 29/04/2021 USO DE APIS Y LECTURA DE FEDERA DESDE BD (agregado)
+                    //USO DE APIS Y LECTURA DE FEDERA DESDE BD
                     UsuarioAD UsuarioAD = new UsuarioAD();
                     Respuesta rpta = new Respuesta();
                     rpta = _conexion.consulta_federada(_login.CodFederada);
@@ -337,9 +314,7 @@ namespace SSO_BusinessLogic
                     {
                         UsuarioAD = ConsultaAD_Debug(_login);
                     }
-                    //FIN
 
-                    //JUAN CARLOS RODRIGUEZ DONAYRE 03-09-2021 (AGREGADO)
                     //SI EL INTENTO DE CONEXION AL AD DE AZURE FALLÓ Y EL CODIGO DE FEDERADA SE ENCUENTRA EN CADENA
                     //ENTONCES SE LOGUEA CON EL AD ONPREMISES
                     Boolean found = false;
@@ -356,7 +331,6 @@ namespace SSO_BusinessLogic
                     {
                         UsuarioAD = Auth_OnPremises(_login);
                     }
-                    //FIN
 
                     if (UsuarioAD.usuario_code != 0)
                     {
@@ -374,18 +348,17 @@ namespace SSO_BusinessLogic
 
                 if (Respuesta.ok == true)  //credenciales correctas, actualiza tablas involucradas en el login
                 {
-                    //INICIO (12-11-2020) ENVIO CODIGO DE FEDERADA
+                    //ENVIO CODIGO DE FEDERADA
                     Respuesta.CodFederada = _login.CodFederada;
-                    //FIN
+
                     Respuesta = _conexion.RegistrarValidaCredenciales(Respuesta);
                 }
 
-                //INICIO-(28-10-2020) CONSULTA FLAG RECUPERAR CONTRASEÑA
+                //CONSULTA FLAG RECUPERAR CONTRASEÑA
                 if (Respuesta.ok == true)
                 {
                     Respuesta.flagRecPas = _conexion.consultaFlag(_login);
                 }
-                //FIN
             }
             catch (Exception ex)
             {
@@ -402,13 +375,9 @@ namespace SSO_BusinessLogic
             {
                 if (!string.IsNullOrEmpty(_login.user))
                 {
-                    //JUAN_CARLOS_RODRIGUEZ 03/05/2021 (comentado)
                     //UsuarioAD UsuarioAD  = consultaAD(_login);
-                    //FIN
 
-                    //JUAN CARLOS RODRIGUEZ DONAYRE 13/09/2021 (AGREGADO)
                     UsuarioAD UsuarioAD = Api_Usuarios(_login);
-                    //FIN
 
                     if (UsuarioAD.usuario_code != 0)
                     {
@@ -425,9 +394,9 @@ namespace SSO_BusinessLogic
                 }
                 if (Respuesta.ok == true)  //credenciales correctas, actualiza tablas involucradas en el login
                 {
-                    //INICIO (12-11-2020) ENVIO CODIGO DE FEDERADA
+                    //ENVIO CODIGO DE FEDERADA
                     Respuesta.CodFederada = _login.CodFederada;
-                    //FIN
+
                     Respuesta = _conexion.RegistrarValidaCredenciales(Respuesta);
                 }
             }
@@ -448,20 +417,15 @@ namespace SSO_BusinessLogic
                 if (!string.IsNullOrEmpty(_login.user))
                 {
 
-                    //set code
-                    //JUAN CARLOS RODRIGUEZ DONAYRE 21-06-2021 (COMENTADO)
                     //code = Helpers.RandomString(4);
-                    //FIN
+
                     var dominio = ConfigurationManager.AppSettings["DHost"];
 
                     //send email
                     var ml = new mailer();
 
-                    //JUAN CARLOS RODRIGUEZ 28/05/2021 (COMENTADO)
                     //Boolean _result = ml.mail_tpl_reset_pass(_login.usuario_nombre, _login.Usuario_correoPersonal, _login.user, code, dominio);
-                    //FIN
 
-                    //Juan Carlos Rodríguez Donayre (20/10/2021)
                     string mail_Pwd = ConfigurationManager.AppSettings["pass"];
                     // Si el switch es 1 toma la contraseña desde la tabla de variables
                     string switchReadPwdFromTable = ConfigurationManager.AppSettings["switchReadPwdFromTable"];
@@ -470,9 +434,7 @@ namespace SSO_BusinessLogic
                         Respuesta res = _conexion.consulta_Variables_Id(3);
                         mail_Pwd = res.mensaje;
                     }
-                    //Fin
 
-                    //JUAN CARLOS RODRIGUEZ 28/05/2021 (AGREGADO)
                     Boolean _result = false;
                     if (_login.tipoMensaje == "1")
                     {
@@ -482,7 +444,6 @@ namespace SSO_BusinessLogic
                     {
                         _result = ml.mail_confirm(mail_Pwd, _login.usuario_nombre, _login.Usuario_correoPersonal, _login.code, dominio, DateTime.Today.Year.ToString());
                     }
-                    //FIN
 
                     if (_result == false)
                     {
@@ -515,21 +476,16 @@ namespace SSO_BusinessLogic
             {
                 if (!string.IsNullOrEmpty(_login.user))
                 {
-                    //set code
-                    //JUAN CARLOS RODRIGUEZ DONAYRE 21-06-2021 (COMENTADO)
                     //code = Helpers.RandomString(4);
-                    //FIN
 
-                    //Cambio de Proveedor SMS 12/10/2020 JCRodriguez-INI
+                    //Cambio de Proveedor SMS
                     var _API_ENVIO_SMS_NAME = ConfigurationManager.AppSettings["API_ENVIO_SMS_NAME"];
                     var _API_ENVIO_SMS_USR = ConfigurationManager.AppSettings["API_ENVIO_SMS_USR"];
                     var _API_ENVIO_SMS_PWD = ConfigurationManager.AppSettings["API_ENVIO_SMS_PWD"];
                     var _API_ENVIO_SENDER_ID = ConfigurationManager.AppSettings["API_ENVIO_SENDER_ID"];
-                    //JUAN CARLOS RODRIGUEZ DONAYRE 28/05/2021 (COMENATDO)
-                    //var _MENSAJE             = "HOLA " + _login.usuario_nombre.ToUpper() + ", TU CODIGO DE VERIFICACION DE MI CUENTA UPC ES: " + code;
-                    //FIN
 
-                    //Juan Carlos Rodríguez Donayre (20/10/2021)
+                    //var _MENSAJE = "HOLA " + _login.usuario_nombre.ToUpper() + ", TU CODIGO DE VERIFICACION DE MI CUENTA UPC ES: " + code;
+
                     // Si el switch es 1 toma la contraseña desde la tabla de variables
                     string switchReadPwdFromTable = ConfigurationManager.AppSettings["switchReadPwdFromTable"];
                     if (switchReadPwdFromTable == "1")
@@ -537,7 +493,6 @@ namespace SSO_BusinessLogic
                         Respuesta res = _conexion.consulta_Variables_Id(4);
                         _API_ENVIO_SMS_PWD = res.mensaje;
                     }
-                    //Fin
 
                     string _MENSAJE = "";
                     if (_login.tipoMensaje == "1")
@@ -612,7 +567,6 @@ namespace SSO_BusinessLogic
             return respuesta;
         }
 
-        //JUAN CARLOS RODRIGUEZ DONAYRE 13-09-2021 (AGREGADO)
         public UsuarioAD Auth_Azure(Login login)
         {
             UsuarioAD UsuarioAD = new UsuarioAD();
@@ -638,7 +592,6 @@ namespace SSO_BusinessLogic
                 var ApiDominioAuthA = System.Configuration.ConfigurationManager.AppSettings["ApiDominioAuthA"].ToString();
                 var ApiCredencialAuth = System.Configuration.ConfigurationManager.AppSettings["ApiCredencialAuth"].ToString();
 
-                //Juan Carlos Rodríguez Donayre (20/10/2021)
                 // Si el switch es 1 toma la contraseña desde la tabla de variables
                 string switchReadPwdFromTable = ConfigurationManager.AppSettings["switchReadPwdFromTable"];
                 if (switchReadPwdFromTable == "1")
@@ -646,7 +599,6 @@ namespace SSO_BusinessLogic
                     Respuesta res = _conexion.consulta_Variables_Id(5);
                     ApiCredencialAuth = res.mensaje;
                 }
-                //Fin
 
                 Auth credenAuth = new Auth();
                 credenAuth.alias = login.user;
@@ -688,7 +640,6 @@ namespace SSO_BusinessLogic
                 var ApiDominioAuthA = System.Configuration.ConfigurationManager.AppSettings["ApiDominioAuthA"].ToString();
                 var ApiCredencialAuth = System.Configuration.ConfigurationManager.AppSettings["ApiCredencialAuth"].ToString();
 
-                //Juan Carlos Rodríguez Donayre (20/10/2021)
                 // Si el switch es 1 toma la contraseña desde la tabla de variables
                 string switchReadPwdFromTable = ConfigurationManager.AppSettings["switchReadPwdFromTable"];
                 if (switchReadPwdFromTable == "1")
@@ -696,7 +647,6 @@ namespace SSO_BusinessLogic
                     Respuesta res = _conexion.consulta_Variables_Id(5);
                     ApiCredencialAuth = res.mensaje;
                 }
-                //Fin
 
                 HttpClient clienteHTTP = new HttpClient();
                 clienteHTTP.BaseAddress = new Uri(ApiDominioAuthA);
@@ -768,7 +718,6 @@ namespace SSO_BusinessLogic
                 var ApiDominioAuth = System.Configuration.ConfigurationManager.AppSettings["ApiDominioAuth"].ToString();
                 var ApiCredencialAuth = System.Configuration.ConfigurationManager.AppSettings["ApiCredencialAuth"].ToString();
 
-                //Juan Carlos Rodríguez Donayre (20/10/2021)
                 // Si el switch es 1 toma la contraseña desde la tabla de variables
                 string switchReadPwdFromTable = ConfigurationManager.AppSettings["switchReadPwdFromTable"];
                 if (switchReadPwdFromTable == "1")
@@ -776,7 +725,6 @@ namespace SSO_BusinessLogic
                     Respuesta res = _conexion.consulta_Variables_Id(5);
                     ApiCredencialAuth = res.mensaje;
                 }
-                //Fin
 
                 Auth credenAuth = new Auth();
                 credenAuth.alias = login.user;
@@ -818,7 +766,6 @@ namespace SSO_BusinessLogic
                 var ApiDominioAuth = System.Configuration.ConfigurationManager.AppSettings["ApiDominioAuth"].ToString();
                 var ApiCredencialAuth = System.Configuration.ConfigurationManager.AppSettings["ApiCredencialAuth"].ToString();
 
-                //Juan Carlos Rodríguez Donayre (20/10/2021)
                 // Si el switch es 1 toma la contraseña desde la tabla de variables
                 string switchReadPwdFromTable = ConfigurationManager.AppSettings["switchReadPwdFromTable"];
                 if (switchReadPwdFromTable == "1")
@@ -826,7 +773,6 @@ namespace SSO_BusinessLogic
                     Respuesta res = _conexion.consulta_Variables_Id(5);
                     ApiCredencialAuth = res.mensaje;
                 }
-                //Fin
 
                 AuthAlias credenAuth = new AuthAlias();
                 credenAuth.alias = login.user;
@@ -880,7 +826,6 @@ namespace SSO_BusinessLogic
                 var ApiDominioAuth = System.Configuration.ConfigurationManager.AppSettings["ApiDominioAuth"].ToString();
                 var ApiCredencialAuth = System.Configuration.ConfigurationManager.AppSettings["ApiCredencialAuth"].ToString();
 
-                //Juan Carlos Rodríguez Donayre (20/10/2021)
                 // Si el switch es 1 toma la contraseña desde la tabla de variables
                 string switchReadPwdFromTable = ConfigurationManager.AppSettings["switchReadPwdFromTable"];
                 if (switchReadPwdFromTable == "1")
@@ -888,7 +833,6 @@ namespace SSO_BusinessLogic
                     Respuesta res = _conexion.consulta_Variables_Id(5);
                     ApiCredencialAuth = res.mensaje;
                 }
-                //Fin
 
                 HttpClient clienteHTTP = new HttpClient();
                 clienteHTTP.BaseAddress = new Uri(ApiDominioAuth);
@@ -988,7 +932,6 @@ namespace SSO_BusinessLogic
                 var _ApiDominio = System.Configuration.ConfigurationManager.AppSettings["ApiDominioAuth"].ToString();
                 var _ApiCredencial = System.Configuration.ConfigurationManager.AppSettings["ApiCredencialAuth"].ToString();
 
-                //Juan Carlos Rodríguez Donayre (20/10/2021)
                 // Si el switch es 1 toma la contraseña desde la tabla de variables
                 string switchReadPwdFromTable = ConfigurationManager.AppSettings["switchReadPwdFromTable"];
                 if (switchReadPwdFromTable == "1")
@@ -996,7 +939,6 @@ namespace SSO_BusinessLogic
                     Respuesta res = _conexion.consulta_Variables_Id(5);
                     _ApiCredencial = res.mensaje;
                 }
-                //Fin
 
                 //API - Busca el código de persona
                 HttpClient clienteHTTP = new HttpClient();
@@ -1037,7 +979,6 @@ namespace SSO_BusinessLogic
                 var _ApiDominioAuth = System.Configuration.ConfigurationManager.AppSettings["ApiDominioAuth"].ToString();
                 var _ApiCredencialAuth = System.Configuration.ConfigurationManager.AppSettings["ApiCredencialAuth"].ToString();
 
-                //Juan Carlos Rodríguez Donayre (20/10/2021)
                 // Si el switch es 1 toma la contraseña desde la tabla de variables
                 string switchReadPwdFromTable = ConfigurationManager.AppSettings["switchReadPwdFromTable"];
                 if (switchReadPwdFromTable == "1")
@@ -1045,7 +986,6 @@ namespace SSO_BusinessLogic
                     Respuesta res = _conexion.consulta_Variables_Id(5);
                     _ApiCredencialAuth = res.mensaje;
                 }
-                //Fin
 
                 AuthChangePass _credenAuth = new AuthChangePass();
                 _credenAuth.usuario = _login.user;
@@ -1079,9 +1019,7 @@ namespace SSO_BusinessLogic
             }
             return _respuesta;
         }
-        //FIN
 
-        //JUAN_CARLOS_RODRIGUEZ 18-03-2021 (agregado)
         public UsuarioAD ConsultaAD_Debug(Login _login)
         {
             List<UsuarioAD> _Lista = new List<UsuarioAD>()
@@ -1105,7 +1043,6 @@ namespace SSO_BusinessLogic
                 var ApiDominioAuth = System.Configuration.ConfigurationManager.AppSettings["ApiDominioAuth"].ToString();
                 var ApiCredencialAuth = System.Configuration.ConfigurationManager.AppSettings["ApiCredencialAuth"].ToString();
 
-                //Juan Carlos Rodríguez Donayre (20/10/2021)
                 // Si el switch es 1 toma la contraseña desde la tabla de variables
                 string switchReadPwdFromTable = ConfigurationManager.AppSettings["switchReadPwdFromTable"];
                 if (switchReadPwdFromTable == "1")
@@ -1113,7 +1050,6 @@ namespace SSO_BusinessLogic
                     Respuesta res = _conexion.consulta_Variables_Id(5);
                     ApiCredencialAuth = res.mensaje;
                 }
-                //Fin
 
                 HttpClient clienteHTTP = new HttpClient();
                 clienteHTTP.BaseAddress = new Uri(ApiDominioAuth);

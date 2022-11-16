@@ -9,13 +9,10 @@ using SSO_Modelo.Interfaces;
 using SSO_SecurityServerF;
 using SSO_SecurityServerF.Clases;
 using SSO_SecurityServerF.Mailer;
-
-using Newtonsoft.Json; //PRY-SSO (05/12/2020)
-using System.Net.Http; //PRY-SSO (05/12/2020)
-using System.Collections.Generic; //PRY-SSO (05/12/2020)
-using System.Net.Http.Formatting;//PRY-SSO (05/12/2020)
-
-//clase comun
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Net.Http.Formatting;
 using SSO_UPCI.Clases;
 
 namespace SSO_UPCI.Controllers
@@ -106,23 +103,19 @@ namespace SSO_UPCI.Controllers
 
         public ActionResult VinculateAccounts()
         {
-            //Juan Carlos Rodriguez 26-11-2021 (agregado)
             HttpCookie cookie = Request.Cookies.Get("tokenSSO");
             if (cookie == null)
             {
                 return RedirectToAction("Login");
             }
-            //Fin
 
             return View("vinculate_accounts");
         }
 
         public ActionResult RecoverPass(string _f)
         {
-            //JUAN CARLOS RODRIGUEZ DONAYRE 25-05-2021 (AGREGADO) 
             //PARA MANEJAR EL LLAMADO DE ESTE MÉTODO DESDE UNA FEDERADA
             if (!string.IsNullOrEmpty(_f)) Session["federada"] = _f;
-            //FIN
             ViewBag.urlActData = System.Configuration.ConfigurationManager.AppSettings["urlActData"].ToString();
             return View("recover_pass");
         }
@@ -149,7 +142,6 @@ namespace SSO_UPCI.Controllers
 
         public ActionResult CreatePassword()
         {
-            //INICIO-(16-10-2020)-SE EVALUA EL USUARIO Y CODE
             string _usr = (string)Session["USER"];
             string _code = (string)Session["CODE"];
             if (string.IsNullOrEmpty(_usr) || string.IsNullOrEmpty(_code))
@@ -163,7 +155,6 @@ namespace SSO_UPCI.Controllers
             {
                 RedirectToAction("EndSession");
             }
-            //FIN
             return View("create_pass");
         }
 
@@ -374,7 +365,6 @@ namespace SSO_UPCI.Controllers
         //}
         //public JsonResult ChangePasswordAD(Login _login)
         //{
-        //    //JUAN CARLOS RODRIGUZ DONAYRE 25-05-2021 (AGREGADO)
         //    _login.CodFederada = string.IsNullOrEmpty((string)Session["federada"]) ? "Default" : (string)Session["federada"];
         //    //
         //    Respuesta _respuesta = new Respuesta();
@@ -450,36 +440,29 @@ namespace SSO_UPCI.Controllers
         //}
         //public ActionResult UpdateData(string _f)
         //{
-        //    //JUAN CARLOS RODRIGUEZ DONAYRE 03-06-2021 (AGREGADO) 
         //    //PARA MANEJAR EL LLAMADO DE ESTE MÉTODO DESDE UNA FEDERADA
         //    if (!string.IsNullOrEmpty(_f)) Session["federada"] = _f;
-        //    //FIN
 
-        //    //Juan Carlos Rodriguez 26-11-2021 (agregado)
         //    HttpCookie cookie = Request.Cookies.Get("tokenSSO");
         //    if (cookie == null)
         //    {
         //        return RedirectToAction("Login");
         //    }
-        //    //Fin
 
         //    return View();
         //}
         //public ActionResult updateDataConfirm()
         //{
-        //    //Juan Carlos Rodriguez 26-11-2021 (agregado)
         //    HttpCookie cookie = Request.Cookies.Get("tokenSSO");
         //    if (cookie == null)
         //    {
         //        return RedirectToAction("Login");
         //    }
-        //    //Fin
 
         //    return View();
         //}
         //public ActionResult updateDataEnd()
         //{
-        //    //JUAN CARLOS RODRIGUEZ DONAYRE 03-06-2021 (AGREGADO) 
         //    //Administra federadas
         //    var _f = (string)Session["federada"];
         //    string _federada = UrlFederada(_f);
@@ -496,7 +479,6 @@ namespace SSO_UPCI.Controllers
         //    }
 
         //    ViewBag.federada = _federada;
-        //    //FIN
 
         //    return View();
         //}
@@ -511,7 +493,6 @@ namespace SSO_UPCI.Controllers
         //        var _ApiDominio    = System.Configuration.ConfigurationManager.AppSettings["ApiDominioAuth"].ToString();
         //        var _ApiCredencial = System.Configuration.ConfigurationManager.AppSettings["ApiCredencialAuth"].ToString();
 
-        //        //Juan Carlos Rodríguez Donayre (20/10/2021)
         //        // Si el switch es 1 toma la contraseña desde la tabla de variables
         //        string switchReadPwdFromTable = System.Configuration.ConfigurationManager.AppSettings["switchReadPwdFromTable"];
         //        if (switchReadPwdFromTable == "1")
@@ -603,7 +584,6 @@ namespace SSO_UPCI.Controllers
         //        var _ApiDominio = System.Configuration.ConfigurationManager.AppSettings["ApiDominioAuth"].ToString();
         //        var _ApiCredencial = System.Configuration.ConfigurationManager.AppSettings["ApiCredencialAuth"].ToString();
 
-        //        //Juan Carlos Rodríguez Donayre (20/10/2021)
         //        // Si el switch es 1 toma la contraseña desde la tabla de variables
         //        string switchReadPwdFromTable = System.Configuration.ConfigurationManager.AppSettings["switchReadPwdFromTable"];
         //        if (switchReadPwdFromTable == "1")

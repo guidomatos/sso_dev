@@ -7,13 +7,9 @@ namespace SSO_Modelo.Interfaces
 {
     public interface IConexion
     {
-        //Juan Carlos Rodríguez Donayre (25/10/2021)
         Boolean registraUltActDatos(Login _login);
-        //Fin
-        //INICIO-(28-10-2020) REGISTRA FLAG CONTRASEÑA
         Boolean registraFlag(Login _login);
         Boolean consultaFlag(Login _login);
-        //FIN
         Boolean registraEn_SSO_usuario(UsuarioAD _usuarioAD);
         Boolean registraEn_SSO_usuarioCnx(UsuarioAD _usuarioAD, string codFederada);
         Boolean registraEn_SSO_auditoria(string _usuario, string _tabla, string _operacion);
@@ -31,12 +27,8 @@ namespace SSO_Modelo.Interfaces
         Respuesta CodeEval(Login _login);
         Respuesta BorraEn_SSO_usuarioRed(Login _login);
         Respuesta CodeSendSMS(Login _login);
-        //JUAN CARLOS RODRIGUEZ DONAYRE 06-05-2021 (agregado)
         Respuesta consulta_federada(string _codFederada);
-        //FIN
-        //JUAN CARLOS RODRIGUEZ DONAYRE 06-06-2021 (agregado)
         Respuesta consulta_federada_nom(string _nomFederada);
-        //FIN
         Boolean registraEn_usuarioClave(Login _Login);
     }
 

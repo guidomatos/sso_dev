@@ -214,7 +214,6 @@
             })
             ui.inputs.password.focus(uiActions.toggleListValidation);
             ui.inputs.passwordConfirm.focus(uiActions.toggleListValidation);
-            //Juan Carlos Rodriguez Donayre 15-09-2021 (comentado)
             //ui.inputs.password.blur(uiActions.toggleListValidation);
             //ui.inputs.passwordConfirm.blur(uiActions.toggleListValidation);
             //fin

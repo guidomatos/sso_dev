@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
-//Clases entidades
 using SSO_SecurityServerF;
 using SSO_SecurityServerF.Clases;
-//clase comun
 using SSO_UPCI.Clases;
 using SSO_SecurityServerF.Mailer;
-//interfaces
 using SSO_BusinessLogic.Interfaces;
 using SSO_IdentityServerF;
 using SSO_Modelo.Interfaces;

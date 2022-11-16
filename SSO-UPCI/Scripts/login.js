@@ -131,7 +131,6 @@
                 if (response) {
                     if (response.ok) {
                         localStorage.user = response.obj.usuario_login;
-                        //JCRODRIGUEZ 21-4-2022
                         //localStorage.username = response.obj.usuario_nombre;
                         //localStorage.email = response.obj.Usuario_correoPersonal;
                         //localStorage.cel = response.obj.usuario_telefono;

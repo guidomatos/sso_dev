@@ -47,7 +47,6 @@
                 services.processFacebookLogin(fbResponse, function (response){
                     if (response.ok) {
                         localStorage.user = response.obj.usuario_login;
-                        //20-04-2022 JCRodriguez
                         //localStorage.username    = response.obj.usuario_nombre;
                         //localStorage.email       = response.obj.Usuario_correoPersonal;
                         //localStorage.cel         = response.obj.usuario_telefono;
@@ -71,7 +70,6 @@
                 services.processGoogleLogin(googleResponse, function (response){
                     if (response.ok) {
                         localStorage.user = response.obj.usuario_login;
-                        //20-04-2022 JCRodriguez
                         //localStorage.username    = response.obj.usuario_nombre;
                         //localStorage.email       = response.obj.Usuario_correoPersonal;
                         //localStorage.cel         = response.obj.usuario_telefono;

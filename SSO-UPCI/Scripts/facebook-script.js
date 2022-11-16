@@ -2,13 +2,13 @@
 window.fbAsyncInit = function () {
     // FB JavaScript SDK configuration and setup
     FB.init({
-        //INICIO cuenta:"idm.ssoupc@gmail.com" (JCRodriguez 12-10-2020)
+        //INICIO cuenta:"idm.ssoupc@gmail.com"
         appId: '757153728614172',
           //appId: '2372062989753787', // FB App ID
         //FIN
         cookie: true,   // enable cookies to allow the server to access the session
         xfbml: true,    // parse social plugins on this page
-        //INICIO cuenta:"idm.ssoupc@gmail.com" (JCRodriguez 12-10-2020)
+        //INICIO cuenta:"idm.ssoupc@gmail.com"
           version: 'v14.0'
           //version: 'v7.0' // use graph api version 2.8
         //FIN

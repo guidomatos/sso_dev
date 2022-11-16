@@ -75,13 +75,11 @@ namespace SSO_UPCI.Areas.Proceso.Controllers
 
             Respuesta _respuesta = new Respuesta();
             _respuesta = _conexion.CodeEval(_login);
-            //INICIO-(16-10-2020)-SE GUARDA EN SESSION USUARIO Y CODE
             if (_respuesta.ok == true)
             {
                 Session["USER"] = _login.user;
                 Session["CODE"] = _login.code;
             }
-            //FIN
 
             return Json(_respuesta);
         }
@@ -91,7 +89,6 @@ namespace SSO_UPCI.Areas.Proceso.Controllers
             _login.user = _encriptador.DecodeBase64(_login.user);     //decodifica
             _login.password = _encriptador.DecodeBase64(_login.password); //decodifica
 
-            //JUAN CARLOS RODRIGUZ DONAYRE 25-05-2021 (AGREGADO)
             _login.CodFederada = string.IsNullOrEmpty((string)Session["federada"]) ? "Default" : (string)Session["federada"];
             //
             Respuesta _respuesta = new Respuesta();

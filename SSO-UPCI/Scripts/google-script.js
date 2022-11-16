@@ -2,7 +2,7 @@
 po.src = 'https://apis.google.com/js/client:platform.js?onload=handleClientLoad';
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 
-//INICIO cuenta:"idm.ssoupc@gmail.com" (JCRodriguez 12-10-2020)
+//INICIO cuenta:"idm.ssoupc@gmail.com"
   var clientId = '955171238109-sn4h8vpfvnu7549luu6hi2r2j98voqco.apps.googleusercontent.com';
   var apiKey   = 'AIzaSyBIpeIXoKHiyZVJgTWOnywxrzgaX7fgmc4';
   //var clientId = '266458480876-furp0ebl8d3okhf8l3cmc83v0nl8nuj1.apps.googleusercontent.com';

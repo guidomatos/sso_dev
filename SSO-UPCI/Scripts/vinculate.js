@@ -44,10 +44,8 @@
             toggleGoogle: false,
             toogleDontShow: false,
             continue: false,
-            //JuancarlosRodriguez 09-09-2020 ini
             continueFacebook: false,
             continueGoogle: false,
-            //JuancarlosRodriguez 09-09-2020 fin
         };
 
         const uiActions = {
@@ -256,7 +254,6 @@
                     services.unlinkFacebookAccount(callbacks.unlinkFacebookAccount);
                     fbLogout();
                 }
-                //JuancarlosRodriguez 09-09-2020 ini
                 uiFlags.continueFacebook = evt.target.checked;
                 if (uiFlags.continueFacebook) {
                     ui.buttons.continue.show();
@@ -267,7 +264,6 @@
                         ui.buttons.later.show();
                     }
                 }
-                //JuancarlosRodriguez 09-09-2020 fin
             });
             ui.toggles.google.click(function (evt) {
                 console.log(evt.target.checked);
@@ -276,7 +272,6 @@
                 } else {
                     services.unlinkGoogleAccount(callbacks.unlinkGoogleAccount);
                 }
-                //JuancarlosRodriguez 09-09-2020 ini
                 uiFlags.continueGoogle = evt.target.checked;
                 if (uiFlags.continueGoogle) {
                     ui.buttons.continue.show();
@@ -287,7 +282,6 @@
                         ui.buttons.later.show();
                     }
                 }
-                //JuancarlosRodriguez 09-09-2020 fin
             });
             ui.checks.dontShow.click(function (evt) {
                 const dontShow = ui.checks.dontShow.prop('checked');
