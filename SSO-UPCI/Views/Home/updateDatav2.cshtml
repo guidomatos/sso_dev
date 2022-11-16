@@ -1,6 +1,7 @@
-﻿
-@{
+﻿@{
+
     ViewBag.Title = "updateData";
+
     Layout = "~/Views/Shared/_LayoutSSO.cshtml";
 }
 
@@ -37,10 +38,10 @@
                                 <p class="font-14 toast-message"></p>
                             </div>
                         </div>
-                        
+
                         @*Texto informativo de Saludo*@
                         <div class="form-group">
-                            <p class="mb-md-4">Hola  &nbsp;<strong><span id="IdSpanUserName">Usuario</span></strong></p>
+                            <p class="mb-md-4">Hola &nbsp;<strong><span id="IdSpanUserName">Usuario</span></strong></p>
                         </div>
 
                         @*Texto informativo*@
@@ -62,7 +63,8 @@
                         <div class="form-group">
                             <div class="input-icon">
                                 <span class="icon-mail"></span>
-                                <input type="text" id="idemail" class="form-control" placeholder="Correo electrónico personal" />
+                                <input type="text" id="idemail" class="form-control"
+                                    placeholder="Correo electrónico personal" />
                             </div>
                         </div>
 
@@ -70,8 +72,11 @@
                         <div id="divTerminos" class="form-group mb-0">
                             <label class="font-regular font-14">
                                 <input type="checkbox" id="idterminos" />
-                                Al actualizar mis datos, acepto los <a href="https://www.upc.edu.pe/html/politica-y-terminos/0/terminos-condiciones.htm" target="_blank">Términos y Condiciones</a> y la
-                                <a href="https://www.upc.edu.pe/html/politica-y-terminos/0/politica-privacidad.htm" target="_blank">política de privacidad</a> de la UPC.
+                                Al actualizar mis datos, acepto los <a
+                                    href="https://www.upc.edu.pe/html/politica-y-terminos/0/terminos-condiciones.htm"
+                                    target="_blank">Términos y Condiciones</a> y la
+                                <a href="https://www.upc.edu.pe/html/politica-y-terminos/0/politica-privacidad.htm"
+                                    target="_blank">política de privacidad</a> de la UPC.
                             </label>
                         </div>
 
@@ -96,4 +101,3 @@
     <script src="~/Scripts/constants.js"></script>
     <script src="~/Scripts/updateData.js"></script>
 </body>
-

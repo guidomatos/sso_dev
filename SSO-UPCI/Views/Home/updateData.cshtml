@@ -1,6 +1,7 @@
-﻿
-@{
+﻿@{
+
     ViewBag.Title = "updateData";
+
     Layout = "~/Views/Shared/_LayoutSSO.cshtml";
 }
 
@@ -40,7 +41,7 @@
 
                         @*Texto informativo de Saludo*@
                         <div class="form-group">
-                            <p class="mb-md-4">Hola  &nbsp;<strong><span id="IdSpanUserName">Usuario</span></strong></p>
+                            <p class="mb-md-4">Hola &nbsp;<strong><span id="IdSpanUserName">Usuario</span></strong></p>
                         </div>
 
                         @*Texto informativo*@
@@ -54,7 +55,8 @@
                         <div class="form-group">
                             <div class="input-icon">
                                 <span class="icon-mail"></span>
-                                <input type="text" id="idemail" class="form-control" placeholder="Correo electrónico personal" />
+                                <input type="text" id="idemail" class="form-control"
+                                    placeholder="Correo electrónico personal" />
                             </div>
                         </div>
 
@@ -62,14 +64,16 @@
                         <div class="form-group">
                             <div class="input-icon">
                                 <span class="icon-sms"></span>
-                                <input type="text" id="idcelular" class="form-control" placeholder="Celular" onKeyDown="if (!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) && event.keyCode!=8) return false; else if( this.value.length>8 && event.keyCode!=8 ) return false;" />
+                                <input type="text" id="idcelular" class="form-control" placeholder="Celular"
+                                    onKeyDown="if (!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) && event.keyCode!=8) return false; else if( this.value.length>8 && event.keyCode!=8 ) return false;" />
                             </div>
                         </div>
 
                         @*Texto informativo*@
                         <div class="form-group">
                             <p class="textoNegro">
-                                <strong>*Un código de verificación será enviado al correo y celular que ingreses.</strong>
+                                <strong>*Un código de verificación será enviado al correo y celular que
+                                    ingreses.</strong>
                             </p>
                         </div>
 
@@ -77,8 +81,11 @@
                         <div id="divTerminos" class="form-group mb-0">
                             <label class="font-regular font-14">
                                 <input type="checkbox" id="idterminos" />
-                                Al actualizar mis datos, acepto los <a href="https://www.upc.edu.pe/html/politica-y-terminos/0/terminos-condiciones.htm" target="_blank">Términos y Condiciones</a> y la
-                                <a href="https://www.upc.edu.pe/html/politica-y-terminos/0/politica-privacidad.htm" target="_blank">política de privacidad</a> de la UPC.
+                                Al actualizar mis datos, acepto los <a
+                                    href="https://www.upc.edu.pe/html/politica-y-terminos/0/terminos-condiciones.htm"
+                                    target="_blank">Términos y Condiciones</a> y la
+                                <a href="https://www.upc.edu.pe/html/politica-y-terminos/0/politica-privacidad.htm"
+                                    target="_blank">política de privacidad</a> de la UPC.
                             </label>
                         </div>
 
@@ -108,4 +115,3 @@
     <script src="~/Scripts/constants.js"></script>
     <script src="~/Scripts/updateData.js"></script>
 </body>
-

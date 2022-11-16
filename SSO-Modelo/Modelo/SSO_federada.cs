@@ -11,7 +11,7 @@ namespace SSO_Modelo.Modelo
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class SSO_federada
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +19,7 @@ namespace SSO_Modelo.Modelo
         {
             this.SSO_usuarioFederada = new HashSet<SSO_usuarioFederada>();
         }
-    
+
         public int federada_id { get; set; }
         public string federada_nombre { get; set; }
         public string federada_url { get; set; }
@@ -27,7 +27,7 @@ namespace SSO_Modelo.Modelo
         public bool federada_estado { get; set; }
         public string federada_api { get; set; }
         public string federada_codigo { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SSO_usuarioFederada> SSO_usuarioFederada { get; set; }
     }

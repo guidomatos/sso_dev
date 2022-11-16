@@ -18,7 +18,7 @@ namespace SSO_UPCI.Controllers.Injector
         private StandardKernel Kernel;
         public NinjectControllerFactory()
         {
-            Kernel =  new StandardKernel();
+            Kernel = new StandardKernel();
             Kernel.Load(Assembly.GetExecutingAssembly());
         }
 

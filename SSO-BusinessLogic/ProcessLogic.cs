@@ -20,7 +20,7 @@ namespace SSO_BusinessLogic
     //JUAN CARLOS RODRIGUEZ 22/07/2021 (agregado)
     public class U_objClaims
     {
-        public U_DTOHeader              DTOHeader { get; set; }
+        public U_DTOHeader DTOHeader { get; set; }
         public List<U_ListaDTOUsuarios> ListaDTOUsuarios { get; set; }
     }
     public class U_DTOHeader
@@ -30,7 +30,7 @@ namespace SSO_BusinessLogic
     }
     public class U_ListaDTOUsuarios
     {
-        public U_DTOUsuarioCabecera      DTOUsuarioCabecera { get; set; }
+        public U_DTOUsuarioCabecera DTOUsuarioCabecera { get; set; }
         public List<U_DetalleDTOUsuario> DetalleDTOUsuario { get; set; }
 
     }
@@ -546,7 +546,7 @@ namespace SSO_BusinessLogic
                     }
                     if (_login.tipoMensaje == "2")
                     {
-                        _MENSAJE = "HOLA " + _login.usuario_nombre.ToUpper() + ", TU CODIGO DE VERIFICACION DE ACTUALIZACION DE DATOS UPC ES: " + _login.code; 
+                        _MENSAJE = "HOLA " + _login.usuario_nombre.ToUpper() + ", TU CODIGO DE VERIFICACION DE ACTUALIZACION DE DATOS UPC ES: " + _login.code;
                     }
 
                     var client = new RestClient(_API_ENVIO_SMS_NAME);
@@ -852,7 +852,7 @@ namespace SSO_BusinessLogic
                         usuarioAD.usuario_telefono = string.IsNullOrEmpty(_rptaAuth.DTOUsuario.Anexo) ? "" : _rptaAuth.DTOUsuario.Anexo;
                         usuarioAD.usuario_code = 0;
                         usuarioAD.usuario_msg = MensajesAD(0);
-                        usuarioAD.usuarioTipo = Api_Usuarios_Tipo(login.user); 
+                        usuarioAD.usuarioTipo = Api_Usuarios_Tipo(login.user);
                     }
                     else
                     {
@@ -903,16 +903,16 @@ namespace SSO_BusinessLogic
                     _objClaims = JsonConvert.DeserializeObject<U_objClaims>(resultString);
                     if (_objClaims.ListaDTOUsuarios.Count > 0)
                     {
-                        usuarioAD.usuario_login          = login.user;
-                        usuarioAD.usuario_nombre         = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].Nombres;
-                        usuarioAD.usuario_apPaterno      = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].ApellidoPaterno;
-                        usuarioAD.usuario_apMaterno      = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].ApellidoMaterno;
+                        usuarioAD.usuario_login = login.user;
+                        usuarioAD.usuario_nombre = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].Nombres;
+                        usuarioAD.usuario_apPaterno = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].ApellidoPaterno;
+                        usuarioAD.usuario_apMaterno = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].ApellidoMaterno;
                         usuarioAD.Usuario_correoPersonal = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].EmailAlterno ?? "";
-                        usuarioAD.usuario_correoUPC      = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].Email ?? login.user + "@upc.edu.pe";
-                        usuarioAD.usuario_telefono       = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].TelefonoMovil ?? "";
-                        usuarioAD.usuario_code           = 0;
-                        usuarioAD.usuario_msg            = MensajesAD(0);
-                        usuarioAD.CodPersona             = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].CodPersona;
+                        usuarioAD.usuario_correoUPC = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].Email ?? login.user + "@upc.edu.pe";
+                        usuarioAD.usuario_telefono = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].TelefonoMovil ?? "";
+                        usuarioAD.usuario_code = 0;
+                        usuarioAD.usuario_msg = MensajesAD(0);
+                        usuarioAD.CodPersona = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].CodPersona;
                     }
                     else
                     {
@@ -923,16 +923,16 @@ namespace SSO_BusinessLogic
                             _objClaims = JsonConvert.DeserializeObject<U_objClaims>(_resultString);
                             if (_objClaims.ListaDTOUsuarios.Count > 0)
                             {
-                                usuarioAD.usuario_login          = login.user;
-                                usuarioAD.usuario_nombre         = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].Nombres;
-                                usuarioAD.usuario_apPaterno      = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].ApellidoPaterno;
-                                usuarioAD.usuario_apMaterno      = "";
+                                usuarioAD.usuario_login = login.user;
+                                usuarioAD.usuario_nombre = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].Nombres;
+                                usuarioAD.usuario_apPaterno = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].ApellidoPaterno;
+                                usuarioAD.usuario_apMaterno = "";
                                 usuarioAD.Usuario_correoPersonal = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].EmailAlterno ?? "";
-                                usuarioAD.usuario_correoUPC      = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].Email ?? login.user + "@upc.edu.pe";
-                                usuarioAD.usuario_telefono       = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].TelefonoMovil ?? "";
-                                usuarioAD.usuario_code           = 0;
-                                usuarioAD.usuario_msg            = MensajesAD(0);
-                                usuarioAD.CodPersona             = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].CodPersona;
+                                usuarioAD.usuario_correoUPC = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].Email ?? login.user + "@upc.edu.pe";
+                                usuarioAD.usuario_telefono = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].TelefonoMovil ?? "";
+                                usuarioAD.usuario_code = 0;
+                                usuarioAD.usuario_msg = MensajesAD(0);
+                                usuarioAD.CodPersona = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].CodPersona;
                             }
                             else
                             {
@@ -951,7 +951,7 @@ namespace SSO_BusinessLogic
                         var res = DataCRM(usuarioAD.CodPersona);
                         if (res.ok)
                         {
-                            usuarioAD.usuario_telefono       = res.celular;
+                            usuarioAD.usuario_telefono = res.celular;
                             usuarioAD.Usuario_correoPersonal = res.correo;
 
                         }
@@ -978,12 +978,12 @@ namespace SSO_BusinessLogic
             public string TelefonoCelular { get; set; }
             public string CorreoPrincipal { get; set; }
         }
-        public Respuesta DataCRM (string CodPersona)
+        public Respuesta DataCRM(string CodPersona)
         {
 
-            Respuesta _respuesta = new Respuesta() {ok=false};
+            Respuesta _respuesta = new Respuesta() { ok = false };
 
-            try 
+            try
             {
                 var _ApiDominio = System.Configuration.ConfigurationManager.AppSettings["ApiDominioAuth"].ToString();
                 var _ApiCredencial = System.Configuration.ConfigurationManager.AppSettings["ApiCredencialAuth"].ToString();
@@ -1009,8 +1009,8 @@ namespace SSO_BusinessLogic
                     DataCRMget _DataCRM = JsonConvert.DeserializeObject<DataCRMget>(resultString);
 
                     _respuesta.celular = _DataCRM.TelefonoCelular ?? "";
-                    _respuesta.correo  = _DataCRM.CorreoPrincipal ?? "";
-                    _respuesta.ok      = true;
+                    _respuesta.correo = _DataCRM.CorreoPrincipal ?? "";
+                    _respuesta.ok = true;
 
                 }
                 else
@@ -1018,9 +1018,9 @@ namespace SSO_BusinessLogic
                     throw new ApplicationException("API /v3/crm/Contacto no devolvió información.");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                _respuesta.ok      = false;
+                _respuesta.ok = false;
                 _respuesta.mensaje = ex.Message;
             }
             return _respuesta;
@@ -1096,9 +1096,9 @@ namespace SSO_BusinessLogic
 
         public string Api_Usuarios_Tipo(string _user)
         {
-            string usuarioTipo    = "";
+            string usuarioTipo = "";
             string Administrativo = "";
-            string TipoPersona    = "";
+            string TipoPersona = "";
 
             try
             {
@@ -1129,7 +1129,7 @@ namespace SSO_BusinessLogic
                     if (_objClaims.ListaDTOUsuarios.Count > 0)
                     {
                         Administrativo = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].Administrativo;
-                        TipoPersona    = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].TipoPersona;
+                        TipoPersona = _objClaims.ListaDTOUsuarios[0].DetalleDTOUsuario[0].TipoPersona;
 
                         //Alumno pregrado_epe
                         if (Administrativo == "NO" && TipoPersona == "ALU") { usuarioTipo = "PREGRADO_EPE"; }

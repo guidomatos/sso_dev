@@ -11,7 +11,7 @@ namespace SSO_Modelo.Modelo
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class SSO_usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +23,7 @@ namespace SSO_Modelo.Modelo
             this.SSO_usuarioRed = new HashSet<SSO_usuarioRed>();
             this.SSO_usuarioClave = new HashSet<SSO_usuarioClave>();
         }
-    
+
         public int usuario_id { get; set; }
         public string usuario_login { get; set; }
         public string usuario_nombre { get; set; }
@@ -37,7 +37,7 @@ namespace SSO_Modelo.Modelo
         public Nullable<bool> usuario_flagRecPas { get; set; }
         public string usuario_tipo { get; set; }
         public Nullable<System.DateTime> usuario_ultActDatos { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SSO_code> SSO_code { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

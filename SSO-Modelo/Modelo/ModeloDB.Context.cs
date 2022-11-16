@@ -12,19 +12,19 @@ namespace SSO_Modelo.Modelo
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class SSOEntities : DbContext
     {
         public SSOEntities()
             : base("name=SSOEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<SSO_auditoria> SSO_auditoria { get; set; }
         public virtual DbSet<SSO_code> SSO_code { get; set; }
         public virtual DbSet<SSO_federada> SSO_federada { get; set; }

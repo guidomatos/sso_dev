@@ -77,7 +77,7 @@ namespace SSO_BusinessLogic
                         Phone = adUser.Result.AdUser.Phone,
                         OU = adUser.Result.AdUser.OU
                     };
-                    
+
                     result.ok = adUser.Result.ok;
                     result.AdUser = userAd;
                     result.code = adUser.Result.code;

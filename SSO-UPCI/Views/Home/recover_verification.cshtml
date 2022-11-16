@@ -1,6 +1,7 @@
-﻿
-@{
+﻿@{
+
     ViewBag.Title = "recover_verification";
+
     Layout = "~/Views/Shared/_LayoutSSO.cshtml";
 }
 
@@ -42,10 +43,14 @@
 
 
                         <div class="form-group-code">
-                            <input maxlength="1" type="text" id="input-code1" class="form-control form-control-min" onKeyDown="if (!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) && event.keyCode!=8) return false; else if( this.value.length>8 && event.keyCode!=8 ) return false;" />
-                            <input maxlength="1" type="text" id="input-code2" class="form-control form-control-min" onKeyDown="if (!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) && event.keyCode!=8) return false; else if( this.value.length>8 && event.keyCode!=8 ) return false;"/>
-                            <input maxlength="1" type="text" id="input-code3" class="form-control form-control-min" onKeyDown="if (!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) && event.keyCode!=8) return false; else if( this.value.length>8 && event.keyCode!=8 ) return false;"/>
-                            <input maxlength="1" type="text" id="input-code4" class="form-control form-control-min" onKeyDown="if (!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) && event.keyCode!=8) return false; else if( this.value.length>8 && event.keyCode!=8 ) return false;"/>
+                            <input maxlength="1" type="text" id="input-code1" class="form-control form-control-min"
+                                onKeyDown="if (!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) && event.keyCode!=8) return false; else if( this.value.length>8 && event.keyCode!=8 ) return false;" />
+                            <input maxlength="1" type="text" id="input-code2" class="form-control form-control-min"
+                                onKeyDown="if (!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) && event.keyCode!=8) return false; else if( this.value.length>8 && event.keyCode!=8 ) return false;" />
+                            <input maxlength="1" type="text" id="input-code3" class="form-control form-control-min"
+                                onKeyDown="if (!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) && event.keyCode!=8) return false; else if( this.value.length>8 && event.keyCode!=8 ) return false;" />
+                            <input maxlength="1" type="text" id="input-code4" class="form-control form-control-min"
+                                onKeyDown="if (!(event.keyCode >= 48 && event.keyCode <= 57) && !(event.keyCode >= 96 && event.keyCode <= 105) && event.keyCode!=8) return false; else if( this.value.length>8 && event.keyCode!=8 ) return false;" />
                         </div>
 
 
@@ -79,10 +84,9 @@
     @Scripts.Render("~/bundles/recover_verification")
 
     @*
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/constants.js"></script>
-    <script src="~/Scripts/recover-verification.js"></script>
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/constants.js"></script>
+        <script src="~/Scripts/recover-verification.js"></script>
     *@
 
 </body>
-

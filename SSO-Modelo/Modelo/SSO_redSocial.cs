@@ -11,7 +11,7 @@ namespace SSO_Modelo.Modelo
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class SSO_redSocial
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,12 +19,12 @@ namespace SSO_Modelo.Modelo
         {
             this.SSO_usuarioRed = new HashSet<SSO_usuarioRed>();
         }
-    
+
         public int redSocial_id { get; set; }
         public string redSocial_nombre { get; set; }
         public string redSocial_idApi { get; set; }
         public string redSocial_secretApi { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SSO_usuarioRed> SSO_usuarioRed { get; set; }
     }

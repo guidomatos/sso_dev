@@ -7,7 +7,7 @@ namespace SSO_SecurityServerF
         string EncodeBase64(string str);
 
         string DecodeBase64(string str);
-       
+
         UsuarioAD EncodeClaseBase64(UsuarioAD UsuarioAD);
 
         UsuarioAD DecodeClaseBase64(UsuarioAD UsuarioAD);

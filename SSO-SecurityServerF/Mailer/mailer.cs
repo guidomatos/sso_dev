@@ -7,7 +7,7 @@ namespace SSO_SecurityServerF.Mailer
 {
     public class mailer
     {
-        
+
 
         public string body;
 
@@ -54,14 +54,14 @@ namespace SSO_SecurityServerF.Mailer
 
             //try
             //{
-                SmtpClient client = new SmtpClient(ConfigurationManager.AppSettings["host"], Convert.ToInt32(587));
-                NetworkCredential credentials = new NetworkCredential(ConfigurationManager.AppSettings["user"], mail_Pwd, ConfigurationManager.AppSettings["domain"]);
+            SmtpClient client = new SmtpClient(ConfigurationManager.AppSettings["host"], Convert.ToInt32(587));
+            NetworkCredential credentials = new NetworkCredential(ConfigurationManager.AppSettings["user"], mail_Pwd, ConfigurationManager.AppSettings["domain"]);
 
-                client.Credentials = credentials;
-                client.EnableSsl = true;
+            client.Credentials = credentials;
+            client.EnableSsl = true;
 
-                client.Send(mail);
-                snd = true;
+            client.Send(mail);
+            snd = true;
             //}
             //catch (Exception ex)
             //{

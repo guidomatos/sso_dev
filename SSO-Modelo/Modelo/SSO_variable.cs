@@ -11,7 +11,7 @@ namespace SSO_Modelo.Modelo
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class SSO_variable
     {
         public int variable_id { get; set; }

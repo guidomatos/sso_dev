@@ -49,7 +49,7 @@ namespace ServiceProvider.Controllers
                 throw new ArgumentException("A SAML Name ID is expected to be returned by the identity provider.");
             }
 
-            return RedirectToAction("Index", "Home", new {_userName = userName});
+            return RedirectToAction("Index", "Home", new { _userName = userName });
         }
         public ActionResult SingleLogoutService()
         {
@@ -71,7 +71,7 @@ namespace ServiceProvider.Controllers
             if (isRequest)
             {
                 // Logout locally.
-                
+
                 //JC (Comentado)
                 //HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
                 //fin

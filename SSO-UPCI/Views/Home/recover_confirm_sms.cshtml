@@ -1,6 +1,11 @@
-﻿
-@{
+﻿@{
+
+
+
     ViewBag.Title = "recover_confirm_sms";
+
+
+
     Layout = "~/Views/Shared/_LayoutSSO.cshtml";
 }
 
@@ -8,7 +13,8 @@
     <!--Se agrega control de trafico adicional de Google Analytics (JCRodriguez 12-10-2020)-->
     <!-- Google Tag Manager (noscript) -->
     <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-594PBW" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-594PBW" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
 
@@ -36,7 +42,8 @@
                         <div class="toast p-8">
                             <div class="text-center text-danger error">
                                 <p class="font-14 mb-0">
-                                    <span class="icon-circle">!</span> <span class="toast-title">Usuario o contraseña incorrecta</span>
+                                    <span class="icon-circle">!</span> <span class="toast-title">Usuario o contraseña
+                                        incorrecta</span>
                                 </p>
                                 <p class="font-14 toast-message">
                                     Recuerde que luego de algunos intentos fallidos su cuenta se bloqueará.
@@ -52,7 +59,8 @@
                             <label for="input-confirm-sms" class="sr-only"></label>
                             <div class="input-icon">
                                 <span class="icon-sms"></span>
-                                <input type="text" id="input-confirm-sms" class="form-control input-icon-user" placeholder="Teléfono" />
+                                <input type="text" id="input-confirm-sms" class="form-control input-icon-user"
+                                    placeholder="Teléfono" />
                             </div>
                         </div>
 
@@ -60,7 +68,8 @@
 
                         <div class="form-group mt-64 mt-md-16">
                             <button class="btn btn-block btn-primary" name="button" id="btn-enviar">
-                                <span class="button-label">Continuar</span> &nbsp; <span class="glyphicon glyphicon-refresh spin hide"></span>
+                                <span class="button-label">Continuar</span> &nbsp; <span
+                                    class="glyphicon glyphicon-refresh spin hide"></span>
                             </button>
                         </div>
 
@@ -84,10 +93,9 @@
     @Scripts.Render("~/bundles/recover_confirm_sms")
 
     @*
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/constants.js"></script>
-    <script src="~/Scripts/recover-confirm.js"></script>
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/constants.js"></script>
+        <script src="~/Scripts/recover-confirm.js"></script>
     *@
 
 </body>
-

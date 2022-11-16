@@ -25,7 +25,7 @@ namespace SSO_UPCI.Areas.Proceso.Controllers
         private readonly ITokenGenerator _tokenGenerator;
         private readonly IProcessLogic _processLogic;
         private readonly IEncriptador _encriptador;
-     
+
         public HomeController(IVerifyToken verifyToken, IConexion conexion, ITokenGenerator tokenGenerator, IProcessLogic processLogic, IEncriptador encriptador)
         {
             _verifyToken = verifyToken;
@@ -42,8 +42,8 @@ namespace SSO_UPCI.Areas.Proceso.Controllers
         [OutputCache(Duration = 60, Location = System.Web.UI.OutputCacheLocation.Server)]
         public JsonResult CodeSend(Login _login)
         {
-            _login.user                   = _encriptador.DecodeBase64(_login.user);                   //decodifica
-            _login.usuario_nombre         = _encriptador.DecodeBase64(_login.usuario_nombre);         //decodifica
+            _login.user = _encriptador.DecodeBase64(_login.user);                   //decodifica
+            _login.usuario_nombre = _encriptador.DecodeBase64(_login.usuario_nombre);         //decodifica
             _login.Usuario_correoPersonal = _encriptador.DecodeBase64(_login.Usuario_correoPersonal); //decodifica
 
             if (string.IsNullOrEmpty(_login.tipoMensaje)) _login.tipoMensaje = "1";
@@ -57,15 +57,15 @@ namespace SSO_UPCI.Areas.Proceso.Controllers
         [OutputCache(Duration = 60, Location = System.Web.UI.OutputCacheLocation.Server)]
         public JsonResult CodeSendSMS(Login _login)
         {
-            _login.user             = _encriptador.DecodeBase64(_login.user);             //decodifica
-            _login.usuario_nombre   = _encriptador.DecodeBase64(_login.usuario_nombre);   //decodifica
+            _login.user = _encriptador.DecodeBase64(_login.user);             //decodifica
+            _login.usuario_nombre = _encriptador.DecodeBase64(_login.usuario_nombre);   //decodifica
             _login.usuario_telefono = _encriptador.DecodeBase64(_login.usuario_telefono); //decodifica
 
             if (string.IsNullOrEmpty(_login.tipoMensaje)) _login.tipoMensaje = "1";
             _login.code = Helpers.RandomString(4);
             Respuesta _respuesta = new Respuesta();
             _respuesta = _processLogic.CodeSendSMS(_login);
-            
+
             return Json(_respuesta);
         }
 
@@ -82,13 +82,13 @@ namespace SSO_UPCI.Areas.Proceso.Controllers
                 Session["CODE"] = _login.code;
             }
             //FIN
-            
+
             return Json(_respuesta);
         }
 
         public JsonResult ChangePasswordAD(Login _login)
         {
-            _login.user     = _encriptador.DecodeBase64(_login.user);     //decodifica
+            _login.user = _encriptador.DecodeBase64(_login.user);     //decodifica
             _login.password = _encriptador.DecodeBase64(_login.password); //decodifica
 
             //JUAN CARLOS RODRIGUZ DONAYRE 25-05-2021 (AGREGADO)
@@ -96,13 +96,14 @@ namespace SSO_UPCI.Areas.Proceso.Controllers
             //
             Respuesta _respuesta = new Respuesta();
 
-            Boolean rs =_conexion.registraEn_usuarioClave(_login);
+            Boolean rs = _conexion.registraEn_usuarioClave(_login);
             if (rs == false)
             {
                 _respuesta.ok = false;
                 _respuesta.mensaje = "Contraseña repetida";
             }
-            else { 
+            else
+            {
                 _respuesta = _processLogic.ChangePasswordAD(_login);
             }
             return Json(_respuesta);

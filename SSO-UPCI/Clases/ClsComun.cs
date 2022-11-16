@@ -7,7 +7,7 @@ namespace SSO_UPCI.Clases
 {
     public static class ClsComun
     {
-        
+
         public static string QuitaTilde(string _cadena)
         {
             string _valor = _cadena.Trim();

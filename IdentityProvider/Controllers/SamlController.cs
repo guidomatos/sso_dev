@@ -21,9 +21,9 @@ namespace IdentityProvider.Controllers
             // Otherwise have the user login before completing SSO.
             //if (User.Identity.IsAuthenticated)
             //{
-                CompleteSingleSignOn();
+            CompleteSingleSignOn();
 
-               return new EmptyResult();
+            return new EmptyResult();
             //}
             //else
             //{
@@ -61,7 +61,7 @@ namespace IdentityProvider.Controllers
             if (isRequest)
             {
                 // Logout locally.
-                
+
                 //JC (comentado)
                 //HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
                 //fin

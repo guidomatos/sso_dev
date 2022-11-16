@@ -44,7 +44,7 @@ public class AD
         int code = -1;
         try
         {
-        //TODO: Actualizar al nuevo servicio AD
+            //TODO: Actualizar al nuevo servicio AD
             using (var _entry = new DirectoryEntry())
             {
                 _entry.Username = user;

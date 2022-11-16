@@ -19,29 +19,29 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
 {
     public class HomeController : Controller
     {
-        public readonly IConexion        _conexion;
-        private readonly IVerifyToken    _verifyToken;
+        public readonly IConexion _conexion;
+        private readonly IVerifyToken _verifyToken;
         private readonly ITokenGenerator _tokenGenerator;
-        private readonly IProcessLogic   _processLogic;
-        private readonly IEncriptador    _encriptador;
+        private readonly IProcessLogic _processLogic;
+        private readonly IEncriptador _encriptador;
 
         public HomeController(IVerifyToken verifyToken, IConexion conexion, ITokenGenerator tokenGenerator, IProcessLogic processLogic, IEncriptador encriptador)
         {
-            _verifyToken    = verifyToken;
-            _conexion       = conexion;
+            _verifyToken = verifyToken;
+            _conexion = conexion;
             _tokenGenerator = tokenGenerator;
-            _processLogic   = processLogic;
-            _encriptador    = encriptador;
+            _processLogic = processLogic;
+            _encriptador = encriptador;
         }
         public ActionResult Index()
         {
             return View();
         }
-        
+
         [HttpPost]
         public ActionResult ValidaCredenciales(Login _login)
         {
-            _login.user     = _encriptador.DecodeBase64(_login.user);      //decodifica
+            _login.user = _encriptador.DecodeBase64(_login.user);      //decodifica
             _login.password = _encriptador.DecodeBase64(_login.password);  //decodifica
 
             Respuesta _respuesta = new Respuesta();
@@ -74,17 +74,17 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
                 _respuesta.federada = UrlFederada(_federada) + "?_tk=" + token;
 
                 //respuesta envia los atributos "_respuesta.federada", "_respuesta.flagRecPas" sin codificar
-                _respuesta.obj.usuario_login          = _encriptador.EncodeBase64(_respuesta.obj.usuario_login); //codifica
+                _respuesta.obj.usuario_login = _encriptador.EncodeBase64(_respuesta.obj.usuario_login); //codifica
                 //Blanquea data 
-                _respuesta.obj.usuario_nombre         = "";
-                _respuesta.obj.usuario_apPaterno      = "";
-                _respuesta.obj.usuario_apMaterno      = "";
+                _respuesta.obj.usuario_nombre = "";
+                _respuesta.obj.usuario_apPaterno = "";
+                _respuesta.obj.usuario_apMaterno = "";
                 _respuesta.obj.Usuario_correoPersonal = "";
-                _respuesta.obj.usuario_correoUPC      = "";
-                _respuesta.obj.usuario_telefono       = "";
-                _respuesta.obj.usuarioTipo            = "";
-                _respuesta.CodFederada                = "";
-                _respuesta.obj.CodPersona             = "";
+                _respuesta.obj.usuario_correoUPC = "";
+                _respuesta.obj.usuario_telefono = "";
+                _respuesta.obj.usuarioTipo = "";
+                _respuesta.CodFederada = "";
+                _respuesta.obj.CodPersona = "";
             }
 
             return Json(_respuesta);
@@ -101,12 +101,12 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
             if (_respuesta.ok)
             {
                 //codifica
-                _respuesta.obj.usuario_login          = _encriptador.EncodeBase64(_respuesta.obj.usuario_login);
-                _respuesta.obj.usuario_nombre         = _encriptador.EncodeBase64(_respuesta.obj.usuario_nombre);
+                _respuesta.obj.usuario_login = _encriptador.EncodeBase64(_respuesta.obj.usuario_login);
+                _respuesta.obj.usuario_nombre = _encriptador.EncodeBase64(_respuesta.obj.usuario_nombre);
                 _respuesta.obj.Usuario_correoPersonal = _encriptador.EncodeBase64(_respuesta.obj.Usuario_correoPersonal);
-                _respuesta.obj.usuario_telefono       = _encriptador.EncodeBase64(_respuesta.obj.usuario_telefono);
-                _respuesta.obj.usuario_apPaterno      = _encriptador.EncodeBase64(_respuesta.obj.usuario_apPaterno);
-                _respuesta.obj.usuario_apMaterno      = _encriptador.EncodeBase64(_respuesta.obj.usuario_apMaterno);
+                _respuesta.obj.usuario_telefono = _encriptador.EncodeBase64(_respuesta.obj.usuario_telefono);
+                _respuesta.obj.usuario_apPaterno = _encriptador.EncodeBase64(_respuesta.obj.usuario_apPaterno);
+                _respuesta.obj.usuario_apMaterno = _encriptador.EncodeBase64(_respuesta.obj.usuario_apMaterno);
                 //Blanquea
                 _respuesta.obj.usuario_correoUPC = "";
                 _respuesta.obj.CodPersona = "";
@@ -114,7 +114,7 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
 
             return Json(_respuesta);
         }
-        
+
         //Sección loguea con redes sociales
         public JsonResult evaluaJWT(Login _login)
         {
@@ -156,7 +156,7 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
         public JsonResult evaluaFace(Login _login)
         {
             _login.redSocial_email = _encriptador.DecodeBase64(_login.redSocial_email); //decodifica
-            
+
             Respuesta _respuesta = new Respuesta();
             _respuesta = _processLogic.evaluaFace(_login);
             if (_respuesta.ok)
@@ -192,14 +192,14 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
         public JsonResult consulta_NoMostrar(Login _login)     //al validarse con una red social consulta el check NoMostar para ver si muestra la vista de vincular red social 
         {
             _login.user = _encriptador.DecodeBase64(_login.user); //decodifica
-            
+
             Respuesta _respuesta = new Respuesta();
             _respuesta = _conexion.consulta_NoMostrar(_login);
 
             //No codifica respuesta porque responde con el flag de NoMostrar y "_respuesta.ok"
             return Json(_respuesta);
         }
-       
+
         //Sección Vincula redes sociales
         public JsonResult consulta_SSO_usuarioRed(Login _login) //recupera la data de la red social vinculada
         {
@@ -210,25 +210,25 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
 
             if (_respuesta.ok)
             {
-                _respuesta.objJwtClaims.name    = _encriptador.EncodeBase64(_respuesta.objJwtClaims.name);    //codifica
+                _respuesta.objJwtClaims.name = _encriptador.EncodeBase64(_respuesta.objJwtClaims.name);    //codifica
                 _respuesta.objJwtClaims.picture = _encriptador.EncodeBase64(_respuesta.objJwtClaims.picture); //codifica
             }
             return Json(_respuesta);
         }
         public JsonResult procesaFace(Login _login)             //Vincula la cuenta de facebook
         {
-            _login.user              = _encriptador.DecodeBase64(_login.user);              //decodifica
-            _login.redSocial_name    = _encriptador.DecodeBase64(_login.redSocial_name);    //decodifica
-            _login.redSocial_email   = _encriptador.DecodeBase64(_login.redSocial_email);   //decodifica
+            _login.user = _encriptador.DecodeBase64(_login.user);              //decodifica
+            _login.redSocial_name = _encriptador.DecodeBase64(_login.redSocial_name);    //decodifica
+            _login.redSocial_email = _encriptador.DecodeBase64(_login.redSocial_email);   //decodifica
             _login.redSocial_picture = _encriptador.DecodeBase64(_login.redSocial_picture); //decodifica
 
             Respuesta _respuesta = new Respuesta();
             _respuesta = _conexion.procesaFace(_login);
 
-            _respuesta.objJwtClaims.email   = "";   //Blanquea
-            _respuesta.objJwtClaims.name    = _encriptador.EncodeBase64(_respuesta.objJwtClaims.name);    //codifica
+            _respuesta.objJwtClaims.email = "";   //Blanquea
+            _respuesta.objJwtClaims.name = _encriptador.EncodeBase64(_respuesta.objJwtClaims.name);    //codifica
             _respuesta.objJwtClaims.picture = _encriptador.EncodeBase64(_respuesta.objJwtClaims.picture); //codifica
-            
+
             return Json(_respuesta);
         }
         public JsonResult procesaJWT(Login _login)              //Vincula la cuenta de google
@@ -238,8 +238,8 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
             Respuesta _respuesta = new Respuesta();
             _respuesta = _conexion.procesaJWT(_login);
 
-            _respuesta.objJwtClaims.email   = "";  //Blanquea
-            _respuesta.objJwtClaims.name    = _encriptador.EncodeBase64(_respuesta.objJwtClaims.name);    //codifica
+            _respuesta.objJwtClaims.email = "";  //Blanquea
+            _respuesta.objJwtClaims.name = _encriptador.EncodeBase64(_respuesta.objJwtClaims.name);    //codifica
             _respuesta.objJwtClaims.picture = _encriptador.EncodeBase64(_respuesta.objJwtClaims.picture); //codifica
 
             return Json(_respuesta);
@@ -266,7 +266,7 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
 
             return Json(_respuesta);
         }
- 
+
         //trae desde bd la url de la federada
         public string UrlFederada(string _codFederada)
         {

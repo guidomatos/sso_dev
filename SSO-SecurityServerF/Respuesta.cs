@@ -25,7 +25,7 @@ namespace SSO_SecurityServerF
         //FIN
         //juan carlos rodriguez donayre 29-09-2021 (agregado) para Actualizacion de datos
         public string celular { get; set; }
-        public string correo  { get; set; }
+        public string correo { get; set; }
         //fin
     }
 }

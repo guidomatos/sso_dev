@@ -67,7 +67,7 @@ public class IntegrationSSO : IIntegrationSSO
         HttpContext.Current.Response.Cookies.Add(aCookie);
         //aCookie.Value = token;
     }
-    
+
     public bool TokenCheker(string token)
     {
         //var token = GetTokenSSO();
@@ -117,8 +117,8 @@ public class IntegrationSSO : IIntegrationSSO
                 dictio.Add(claim.Type, claim.Value);
             }
 
-            return  JsonConvert.SerializeObject(dictio);
-             
+            return JsonConvert.SerializeObject(dictio);
+
         }
         return null;
     }

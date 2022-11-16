@@ -1,64 +1,67 @@
-﻿
-@{
+﻿@{
+
     ViewBag.Title = "end_session";
+
     Layout = "~/Views/Shared/_LayoutSSO.cshtml";
 }
 
-    <body class="background-05">
-        <div class="overlay dark">
+<body class="background-05">
+    <div class="overlay dark">
 
-            <div class="container">
-                <div class="row">
-                    <div class="col background-05-desktop">
-                        <div class="logo">
-                            <img src="~/img/upc-white.png" alt="UPC">
-                        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col background-05-desktop">
+                    <div class="logo">
+                        <img src="~/img/upc-white.png" alt="UPC">
+                    </div>
 
-                        <div class="mb-72">
-                            <h3 class="title">SESIÓN FINALIZADA</h3>
+                    <div class="mb-72">
+                        <h3 class="title">SESIÓN FINALIZADA</h3>
+                        <p class="d-none">
+                            Gracias por usar las plataformas UPC.
+                        </p>
+                        <p class="d-md-none">
+                            Tu sesión en las plataformas UPC ha terminado.
+                        </p>
+                        <p class="d-md-none">
+                            Si te encuentras en un dispositivo que no es tuyo o es de uso público, asegúrate de cerrar
+                            tu sesión también en Facebook y/o Google.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col bg-white">
+
+                    <!-- Formulario -->
+                    <form action="#" class="mt-md-64 mb-md-64">
+                        <div class="form-group mr-md-48 ml-md-48">
                             <p class="d-none">
-                                Gracias por usar las plataformas UPC.
-                            </p>
-                            <p class="d-md-none">
                                 Tu sesión en las plataformas UPC ha terminado.
                             </p>
-                            <p class="d-md-none">
-                                Si te encuentras en un dispositivo que no es tuyo o es de uso público, asegúrate de cerrar tu sesión también en Facebook y/o Google.
+                            <p class="font-zizou"
+                                style="padding:10px; background:#EBF3FF; color:#5D5D5D; border-radius:5px; text-align:justify">
+                                Si te encuentras en un dispositivo que no es tuyo o es de uso público, asegúrate de
+                                cerrar tu sesión también en Facebook y/o Google.
                             </p>
                         </div>
-                    </div>
 
-                    <div class="col bg-white">
+                        <div class="form-group mt-72">
+                            <a class="btn btn-block btn-primary" href="/Home/Index?_f=@ViewBag.federada">
+                                INICIAR SESIÓN DE NUEVO
+                            </a>
+                        </div>
 
-                        <!-- Formulario -->
-                        <form action="#" class="mt-md-64 mb-md-64">
-                            <div class="form-group mr-md-48 ml-md-48">
-                                <p class="d-none">
-                                    Tu sesión en las plataformas UPC ha terminado.
-                                </p>
-                                <p class="font-zizou" style="padding:10px; background:#EBF3FF; color:#5D5D5D; border-radius:5px; text-align:justify">
-                                    Si te encuentras en un dispositivo que no es tuyo o es de uso público, asegúrate de cerrar tu sesión también en Facebook y/o Google.
-                                </p>
-                            </div>
+                    </form>
 
-                            <div class="form-group mt-72">
-                                <a class="btn btn-block btn-primary" href="/Home/Index?_f=@ViewBag.federada">
-                                    INICIAR SESIÓN DE NUEVO
-                                </a>
-                            </div>
-
-                        </form>
-
-                    </div>
                 </div>
+            </div>
 
-                <div class="row" style="padding-top:20px">
-                    <p>&copy; @DateTime.Now.Year - SSO UPC</p>
-                </div>
-
+            <div class="row" style="padding-top:20px">
+                <p>&copy; @DateTime.Now.Year - SSO UPC</p>
             </div>
 
         </div>
-        <script>localStorage.clear();</script>
-    </body>
 
+    </div>
+    <script>localStorage.clear();</script>
+</body>

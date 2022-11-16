@@ -24,7 +24,7 @@ namespace SSO_SecurityServerF.Mailer
 
             string jsonPhat = System.IO.Directory.GetCurrentDirectory();
             var directory = AppDomain.CurrentDomain.BaseDirectory;
-            directory=directory.Replace("SSO-UPCI", "SSO-SecurityServerF");
+            directory = directory.Replace("SSO-UPCI", "SSO-SecurityServerF");
             jsonPhat = directory + "\\mailer";
 
             var builder = new ConfigurationBuilder()

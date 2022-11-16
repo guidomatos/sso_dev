@@ -34,7 +34,7 @@ namespace SSO_UPCI.Controllers
             _tokenGenerator = tokenGenerator;
             _processLogic = processLogic;
         }
-        
+
         public ActionResult Verifica(string _url)
         {
             var _redir = "";
@@ -52,7 +52,7 @@ namespace SSO_UPCI.Controllers
             }
             return Redirect(_redir);
         }
-        
+
         public ActionResult Verificaget(string _url) //recibe el parametro _url con el simbolo "?". Le respondemos con el simbolo "&"
         {
             var _redir = "";
@@ -70,7 +70,7 @@ namespace SSO_UPCI.Controllers
             }
             return Redirect(_redir);
         }
-        
+
         public ActionResult Index(string _f)
         {
             string pathCodeSend = Url.Action("Proceso/Home/CodeSend");
@@ -98,12 +98,12 @@ namespace SSO_UPCI.Controllers
             //Administra federadas-End
             return View();
         }
-        
+
         public ActionResult Login()
         {
             return View("login");
         }
-        
+
         public ActionResult VinculateAccounts()
         {
             //Juan Carlos Rodriguez 26-11-2021 (agregado)
@@ -116,7 +116,7 @@ namespace SSO_UPCI.Controllers
 
             return View("vinculate_accounts");
         }
-        
+
         public ActionResult RecoverPass(string _f)
         {
             //JUAN CARLOS RODRIGUEZ DONAYRE 25-05-2021 (AGREGADO) 
@@ -126,27 +126,27 @@ namespace SSO_UPCI.Controllers
             ViewBag.urlActData = System.Configuration.ConfigurationManager.AppSettings["urlActData"].ToString();
             return View("recover_pass");
         }
-        
+
         public ActionResult RecoverMethod()
         {
             return View("recover_method");
         }
-        
+
         public ActionResult RecoverConfirmSms()
         {
             return View("recover_confirm_sms");
         }
-        
+
         public ActionResult RecoverConfirmEmail()
         {
             return View("recover_confirm_email");
         }
-        
+
         public ActionResult RecoverVerification()
         {
             return View("recover_verification");
         }
-        
+
         public ActionResult CreatePassword()
         {
             //INICIO-(16-10-2020)-SE EVALUA EL USUARIO Y CODE
@@ -156,7 +156,7 @@ namespace SSO_UPCI.Controllers
             {
                 return RedirectToAction("EndSession");
             }
-            Login _login = new Login() { user= _usr, code= _code };
+            Login _login = new Login() { user = _usr, code = _code };
             Respuesta _respuesta = new Respuesta();
             _respuesta = _conexion.CodeEval(_login);
             if (_respuesta.ok == false)
@@ -166,12 +166,12 @@ namespace SSO_UPCI.Controllers
             //FIN
             return View("create_pass");
         }
-        
+
         public ActionResult UpdatedPassword()
         {
             return View("updated_pass");
         }
-        
+
         public ActionResult EndSession(string _f)
         {
             _verifyToken.KillToken();
@@ -180,18 +180,18 @@ namespace SSO_UPCI.Controllers
             ViewBag.federada = _f;
             return View("end_session");
         }
-        
+
         public ActionResult AppFederada()
         {
             if (_verifyToken.TokenCheker())
             {
                 return View("app_federada");
-              
+
             }
 
             return RedirectToAction("index");
         }
-        
+
         public string UrlFederada(string _codFederada)
         {
             Respuesta _rpta = new Respuesta();

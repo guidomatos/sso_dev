@@ -16,13 +16,13 @@ namespace SSO_UPCI.Controllers
     public class SamlController : Controller
     {
         private readonly IVerifyToken _verifyToken;
-        public readonly  IConexion    _conexion;
+        public readonly IConexion _conexion;
         private readonly IEncriptador _encriptador;
 
         public SamlController(IVerifyToken verifyToken, IConexion conexion, IEncriptador encriptador)
         {
             _verifyToken = verifyToken;
-            _conexion    = conexion;
+            _conexion = conexion;
             _encriptador = encriptador;
         }
 
@@ -35,10 +35,10 @@ namespace SSO_UPCI.Controllers
 
             Respuesta _rpta = _conexion.consulta_federada_nom(partnerName);
             Session["codfederada"] = _rpta.CodFederada;
-            return RedirectToAction("verificaToken","Saml");
+            return RedirectToAction("verificaToken", "Saml");
 
         }
-   
+
         public ActionResult verificaToken()
         {
             HttpCookie cookie = Request.Cookies.Get("tokenSSO");

@@ -2,17 +2,17 @@
 
 namespace SSO_UPCI.Areas.Proceso
 {
-    public class ProcesoAreaRegistration : AreaRegistration 
+    public class ProcesoAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
+        public override string AreaName
         {
-            get 
+            get
             {
                 return "Proceso";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Proceso_default",

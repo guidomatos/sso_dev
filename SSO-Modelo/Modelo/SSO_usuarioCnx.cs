@@ -11,14 +11,14 @@ namespace SSO_Modelo.Modelo
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class SSO_usuarioCnx
     {
         public int usuarioCnx_id { get; set; }
         public int usuarioCnx_usuario_id { get; set; }
         public System.DateTime usuarioCnx_fecha { get; set; }
         public string usuarioCnx_codFederada { get; set; }
-    
+
         public virtual SSO_usuario SSO_usuario { get; set; }
     }
 }

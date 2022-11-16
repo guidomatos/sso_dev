@@ -74,7 +74,7 @@ namespace SSO_IdentityServerF
 
         public void SetTokenCookie(string token)
         {
-            HttpCookie aCookie = new HttpCookie("tokenSSO",token);
+            HttpCookie aCookie = new HttpCookie("tokenSSO", token);
             aCookie.Expires = DateTime.Now.AddYears(10);
             HttpContext.Current.Response.Cookies.Add(aCookie);
             //aCookie.Value = token;
