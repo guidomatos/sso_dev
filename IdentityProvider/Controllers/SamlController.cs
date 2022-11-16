@@ -62,9 +62,7 @@ namespace IdentityProvider.Controllers
             {
                 // Logout locally.
 
-                //JC (comentado)
                 //HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-                //fin
 
                 // Respond to the SP-initiated SLO request indicating successful logout.
                 SAMLIdentityProvider.SendSLO(Response, null);
@@ -94,12 +92,10 @@ namespace IdentityProvider.Controllers
             // For demonstration purposes, include some claims.
             var attributes = new Dictionary<string, string>();
 
-            //JC (comentado)
             //foreach (var claim in ((ClaimsIdentity)User.Identity).Claims)
             //{
             //    attributes[claim.Type] = claim.Value;
             //}
-            //fin
 
             // The user is logged in at the identity provider.
             // Respond to the authn request by sending a SAML response containing a SAML assertion to the SP.
