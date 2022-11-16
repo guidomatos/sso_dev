@@ -1,0 +1,119 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutSSO.cshtml";
+}
+
+<body class="background-02">
+    <div class="overlay dark">
+
+        <div class="container">
+            <div class="row">
+                <div class="col background-03-desktop">
+                    <div class="logo">
+                        <img src="../img/upc-white.png" alt="UPC">
+                    </div>
+
+                    <div class="mb-72 ml-md-32 mr-md-64">
+                        <h3 class="title">Recuperar Contraseña</h3>
+                        <p class="mr-20p">Se te enviará un código de verificación para que puedas recuperar tu contraseña.</p>
+                    </div>
+                </div>
+
+                <div class="col bg-white">
+
+                    <!-- Formulario -->
+                    <form action="#" class="form-sign-in mt-md-32 mb-md-96">
+
+                        <div class="toast p-8">
+                            <div class="text-center text-danger error">
+                                <p class="font-14 mb-0">
+                                    <span class="icon-circle">!</span> <span class="toast-title">&nbsp;</span>
+                                </p>
+                                <p class="font-14 toast-message">&nbsp;</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <p>Elige por qué medio quieres recibir el mensaje:</p>
+                        </div>
+
+                        <!--SMS radio button-->
+                        <div class="form-group mb-0">
+                            <label for="input-sms" class="font-regular ml-16">
+                                <input type="radio" name="recover-method" id="input-sms" value="sms" />
+                                &nbsp; <span class="icon-sms font-20"></span> &nbsp;
+                                SMS
+                            </label>
+                        </div>
+                        <!--SMS textbox Ingresar celular JCRD 15.06.2020-->
+                        <div id="smstext">
+                            <div class="form-group">
+                                <p>Confirma el número de teléfono: <span id="span-sms">***</span></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="input-confirm-sms" class="sr-only"></label>
+                                <div class="input-icon">
+                                    <span class="icon-sms"></span>
+                                    <input type="text" id="input-confirm-sms" class="form-control input-icon-user" placeholder="Teléfono" />
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fin-->
+                        <!--Correo radio button-->
+                        <div class="form-group mb-0">
+                            <label for="input-email" class="font-regular ml-16">
+                                <input type="radio" name="recover-method" id="input-email" value="email" />
+                                &nbsp; <span class="icon-mail"></span> &nbsp;
+                                Correo electrónico
+                            </label>
+                        </div>
+                        <!--Mail textbox Ingresar correo JCRD 15.06.2020-->
+                        <div id="mailtext">
+                            <div class="form-group">
+                                <p>Ingresa tu correo personal: <span id="span-email">***</span></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="input-confirm-email" class="sr-only"></label>
+                                <div class="input-icon">
+                                    <span class="icon-mail"></span>
+                                    <input type="text" id="input-confirm-email" class="form-control" placeholder="Correo electrónico" />
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fin-->
+
+                        <div class="clearfix"></div>
+
+                        @*<div class="form-group mt-48">
+                             <a href="#" class="btn btn-block btn-primary" id="btn-continuar">
+                            Continuar
+                             </a>
+                        </div>*@
+                        <div class="form-group mt-64 mt-md-16">
+                            <button class="btn btn-block btn-primary" name="button" id="btn-enviar">
+                                <span class="button-label">Continuar</span> &nbsp; <span class="glyphicon glyphicon-refresh spin hide"></span>
+                            </button>
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:20px">
+                <p>&copy; @DateTime.Now.Year - SSO UPC</p>
+            </div>
+
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/recover_method")
+
+    @*
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/constants.js"></script>
+    <script src="~/Scripts/recover-method.js"></script>
+    *@
+
+</body>
+

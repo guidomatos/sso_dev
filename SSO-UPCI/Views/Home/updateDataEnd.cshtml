@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "UpdateDataEnd";
+    Layout = "~/Views/Shared/_LayoutSSO.cshtml";
+}
+
+<body class="background-02">
+    <div class="overlay dark">
+
+        <div class="container">
+            <div class="row">
+                <div class="col background-04-desktop">
+                    <div class="logo">
+                        <img src="../img/upc-white.png" alt="UPC">
+                    </div>
+
+                    <div class="SiempreArriba">Actualización de datos</div>
+
+                    <div class="Abajo mb-32">
+                        Mantener tu información actualizada
+                        asegurará que recibas toda la información y
+                        te podamos contactar fácilmente.
+                    </div>
+                </div>
+
+                <div class="col bg-white">
+
+                    <!-- Formulario -->
+                    <form action="#" style="margin-top:100px; margin-bottom:100px">
+
+
+                        <div class="form-group">
+                            <p class="mb-md-4 text-center">Gracias.</p>
+                            <p class="mb-md-4 text-center">Tus datos han sido actualizados con éxito.</p>
+                        </div>
+
+                        <div class="form-group mt-64 mt-md-48">
+                            @*<button type="button" class="btn btn-block btn-primary" id="btn-confirmar">
+                            CONTINUAR &nbsp;
+                        </button>*@
+                            <a href="@ViewBag.federada" class="btn btn-block btn-primary">CONTINUAR</a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:20px">
+                <p>&copy; @DateTime.Now.Year - SSO UPC</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/constants.js"></script>
+    <script src="~/Scripts/updateDataEnd.js"></script>
+</body>
+

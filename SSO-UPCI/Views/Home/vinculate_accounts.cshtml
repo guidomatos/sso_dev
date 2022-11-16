@@ -1,0 +1,123 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutSSO.cshtml";
+}
+
+<body class="background-01">
+    <!--Se agrega control de trafico adicional de Google Analytics (JCRodriguez 12-10-2020)-->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-594PBW" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="overlay">
+
+        <div class="container">
+            <div class="row">
+                <div class="col background-01-desktop">
+                    <div class="logo">
+                        <img src="../img/upc-white.png" alt="UPC" />
+                    </div>
+
+                    <div class="mb-48">
+                        <h3 class="title">VINCULAR CUENTAS</h3>
+                        <p class="mr-20p">
+                            Ingresa con mayor facilidad vinculando tu usuario UPC con tus cuentas de Facebook o Google.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col bg-white">
+
+                    <form action="#" class="mt-md-32 mb-md-48">
+                        <div class="accounts">
+                            <div class="acc-margin">
+                                <div class="acc-item">
+                                    <a href="#" id="btn-facebook" class="btn btn-facebook btn-more-rounded">
+                                        <span class="fas fa-facebook"></span>
+                                    </a>
+
+                                    <div class="user hide">
+                                        <div class="circle mr-8">
+                                            <img class="img-responsive" src="../img/img-user.jpg" alt="User name" />
+                                        </div>
+                                        <div class="username">
+                                            Conectado<br /><span>username</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="control">
+                                        <strong class="font-sgothic">VINCULAR</strong>
+                                        <div class="switch-checkbox ml-8">
+                                            <input type="checkbox" id="switch-facebook" />
+                                            <label for="switch-facebook">Facebook</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <hr class="w-100" />
+                                <div class="acc-item">
+                                    <a href="#" id="btn-google" class="btn btn-google btn-more-rounded">
+                                        <span class="fas fa-google"></span>
+                                    </a>
+
+                                    <div class="user hide">
+                                        <div class="circle mr-8">
+                                            <img class="img-responsive" src="../img/img-user.jpg" alt="User name" />
+                                        </div>
+                                        <div class="username">
+                                            Conectado<br /><span>username</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="control">
+                                        <strong class="font-sgothic">VINCULAR</strong>
+                                        <div class="switch-checkbox ml-8">
+                                            <input type="checkbox" id="switch-google" />
+                                            <label for="switch-google">Goggle</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <label>
+                                <input type="checkbox" id="chk-dont-show-again" />
+                                &nbsp; No volver a mostrar este mensaje
+                            </label>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="form-group mt-32">
+                            <a href="#" id="btn-vincular-despues" class="btn btn-block btn-primary" name="button" value="login">
+                                VINCULAR MAS TARDE
+                            </a>
+                            <a href="#" id="btn-vincular-continuar" class="btn btn-block btn-primary" name="button" value="login">
+                                CONTINUAR
+                            </a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:20px">
+                <p>&copy; @DateTime.Now.Year - SSO UPC</p>
+            </div>
+
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/vinculate_accounts")
+
+    @*
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/facebook-script.js"></script>
+    <script src="~/Scripts/google-script.js"></script>
+    <script src="~/Scripts/constants.js"></script>
+    <script src="~/Scripts/vinculate.js"></script>
+    *@
+
+</body>

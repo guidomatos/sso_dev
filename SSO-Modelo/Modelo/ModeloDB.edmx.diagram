@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f4e0a909957d4275a11b8d46c874c57c" Name="Diagram1">
+        <EntityTypeShape EntityType="SSOModel.SSO_auditoria" Width="2.375" PointX="5.625" PointY="1.375" />
+        <EntityTypeShape EntityType="SSOModel.SSO_code" Width="2.25" PointX="4.125" PointY="7.5" />
+        <EntityTypeShape EntityType="SSOModel.SSO_federada" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SSOModel.SSO_redSocial" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="SSOModel.SSO_servicios" Width="1.5" PointX="8.5" PointY="1.25" />
+        <EntityTypeShape EntityType="SSOModel.SSO_usuario" Width="2.125" PointX="0.75" PointY="4.875" />
+        <EntityTypeShape EntityType="SSOModel.SSO_usuarioCnx" Width="2.375" PointX="1" PointY="9.5" />
+        <EntityTypeShape EntityType="SSOModel.SSO_usuarioFederada" Width="2" PointX="6.75" PointY="5.375" />
+        <EntityTypeShape EntityType="SSOModel.SSO_usuarioRed" Width="2.25" PointX="4.25" PointY="4.125" />
+        <EntityTypeShape EntityType="SSOModel.SSO_variable" Width="1.5" PointX="8.875" PointY="3.875" />
+        <EntityTypeShape EntityType="SSOModel.sysdiagrams" Width="1.5" PointX="7.125" PointY="8" />
+        <AssociationConnector Association="SSOModel.FK__SSO_code__code_u__22751F6C" />
+        <AssociationConnector Association="SSOModel.FK__SSO_usuar__UF_fe__114A936A" />
+        <AssociationConnector Association="SSOModel.FK__SSO_usuar__usuar__3587F3E0" />
+        <AssociationConnector Association="SSOModel.FK__SSO_usuar__UF_us__10566F31" />
+        <AssociationConnector Association="SSOModel.FK__SSO_usuar__usuar__1DB06A4F" />
+        <AssociationConnector Association="SSOModel.FK__SSO_usuar__usuar__3493CFA7" />
+        <EntityTypeShape EntityType="SSOModel.SSO_usuarioClave" Width="2.875" PointX="4.375" PointY="10.875" />
+        <AssociationConnector Association="SSOModel.FK__SSO_usuar__usuar__4F47C5E3" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "updated_pass";
+    Layout = "~/Views/Shared/_LayoutSSO.cshtml";
+}
+
+<body class="background-02">
+    <div class="overlay dark">
+
+        <div class="container">
+            <div class="row">
+                <div class="col background-03-desktop">
+                    <div class="logo">
+                        <img src="../img/upc-white.png" alt="UPC">
+                    </div>
+
+                    <div class="mb-72 ml-md-32 mr-md-64">
+                        <h3 class="title">Contraseña Actualizada</h3>
+                        <p class="mr-30p d-md-none">Tu nueva contraseña ha sido cambiada con éxito. Ingresa nuevamente a UPC.</p>
+                    </div>
+                </div>
+
+                <div class="col bg-white">
+
+                    <form action="#" class="mt-md-96 mb-md-96">
+                        <div class="form-group">
+                            <p class="text-center d-none">Tu nueva contraseña ha sido cambiada con éxito. Ingresa nuevamente a UPC.</p>
+                        </div>
+                        <div class="clearfix"></div>
+
+                        <div class="form-group mt-64 mt-md-16">
+                            <a href="/Home/login" class="btn btn-block btn-primary" name="button" value="login">
+                                IR AL LOGIN
+                            </a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:20px">
+                <p>&copy; @DateTime.Now.Year - SSO UPC</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    @Scripts.Render("~/bundles/updated_pass")
+
+    @*
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/constants.js"></script>
+    *@
+
+</body>
+

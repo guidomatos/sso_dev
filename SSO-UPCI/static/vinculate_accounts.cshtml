@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>UPC - Mi Cuenta (SSO)</title>
+
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+<link href="./css/style.css" rel="stylesheet"></head>
+<body class="background-01">
+    <div class="overlay">
+
+        <div class="container">
+            <div class="row">
+                <div class="col background-01-desktop">
+                    <div class="logo">
+                        <img src="./img/upc-white.png" alt="UPC">
+                    </div>
+
+                    <div class="mb-48">
+                        <h3 class="title">VINCULAR CUENTAS</h3>
+                        <p class="mr-20p">
+                            Ingresa con mayor facilidad vinculando tu usuario UPC con tus cuentas de Facebook o Google.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col bg-white">
+
+                    <form action="#" class="mt-md-32 mb-md-48">
+                        <div class="accounts">
+                            <div class="acc-margin">
+                                <div class="acc-item">
+                                    <a href="#" class="btn btn-facebook btn-more-rounded">
+                                        <span class="fas fa-facebook"></span>
+                                    </a>
+                                    <div class="user hide">
+                                        <div class="circle mr-8">
+                                            <img class="img-responsive" src="data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/4QMqaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjUtYzAxNCA3OS4xNTE0ODEsIDIwMTMvMDMvMTMtMTI6MDk6MTUgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NEZEODcyNjY5NkY1MTFFQUFCMjM4NTI3MUE5MjgxNzMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NEZEODcyNjc5NkY1MTFFQUFCMjM4NTI3MUE5MjgxNzMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0RkQ4NzI2NDk2RjUxMUVBQUIyMzg1MjcxQTkyODE3MyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0RkQ4NzI2NTk2RjUxMUVBQUIyMzg1MjcxQTkyODE3MyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv/uAA5BZG9iZQBkwAAAAAH/2wCEAAYEBAQFBAYFBQYJBgUGCQsIBgYICwwKCgsKCgwQDAwMDAwMEAwODxAPDgwTExQUExMcGxsbHB8fHx8fHx8fHx8BBwcHDQwNGBAQGBoVERUaHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fHx8fH//AABEIAMgAyAMBEQACEQEDEQH/xACIAAEAAgMBAQEAAAAAAAAAAAAABwgBBAYFAwIBAQEAAAAAAAAAAAAAAAAAAAABEAABBAECAwMHBgsHAgcAAAABAAIDBAURBiExEkETB1FhcZFSFAiBoSIyQiOx4WJygqJDc5NWF8GSU2OjFSVUFoOzdJQmNhgRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/ALUoCAgICAgINXJZTG4yo+3kbUVOrGC6Sad7Y2ADieLiEEW7j+JXYuOL4sQyfOTjUB8De7r69h76Tp6m+dgcgjfN/Etv28XtxteniYncAWtdZmH6b+ln+miuMyPid4iZF3Vb3Hf18kEprD1VxEEHg2cnk7RJtXbFgnmZZpJD+s4oNbTt7fKg2a2TydUh1W7YrkcjFLJGf1XBB72N8TvETHO6qm47/omlNkeqwJQg7PCfEtv2iWNyVenlohwPU11aY/ps6mf6aCSdt/ErsXIlkWXZPg53aAvsN7yvr2nvo+oNHneGoiUsblMbk6jLeOtRW6sgDo5oHtkYQeI4tJQbKAgICAgICAgICAgIPjdu06NSW3cmZXqwt6pZ5XBjGt8rnHgEEFb8+JiCJ0lHZUDbTxq05i00iAHywxcHSel2gQQXns9nNwXPfc7fmyVjXqYZ3asZ+7iGjGfINUVo/hQEBAQEBAQED8KDewOfzm37nvuCvzY2xrq8wO0Y8/5kR1jf8o1QTpsP4mK8ro6O9YG1XnRrcxWBMBPLWaLi6P0jUIJ1pXad2rFbpzssVZm9UU0Tg9jm+VrhwKI+yAgICAgICAgIOV3/AOI+3Nk40WspKZLcwPuWPi0M87h7IP1W+048B8yCqm/PEnc+9rneZWbucex2tbEwkivGOwv/AMR/5Tvk0RXLoCAgICAgICAgICAgIOp2F4k7n2RcD8VL32Oe7WziZiTBJrzLP8N/5Tfl1QWq2D4jbc3vjTaxcpjtQge+4+XQTwOPtD7TT9lw4H5kR1SAgICAgICDgvFXxVxmx8a1rQ23nbbT7hQ14Acu9l04tjaflPIIKmZvN5bO5WfLZey63kLJ1kmfwAA5MY3k1jexoRWkgICAgICAgx1N101Gvk1QZQEBAQEBAQbuEzeWwWVgy2IsuqZCsdY5m8QQebHt5PY7taUFtPCrxVxu+caWuDamdqNHv9DXUaHh3sWvF0bj8o5FEd4gICAgIOV8R9/Y3ZG3JcpaAmtSHusfS10dPORqG+Zrebndg+RBTnN5vK53LWcvlpzYyFt/XNJyaB9ljB9ljBwa1FaSAgICAgw5zWtLnENaOZKCSdh+A28d0xx3rn/BYiTRzJ7DOqzI09sUB06Rx4F/qQTJg/hy8NcfGPfas2Yn0HXJclcW9XaWxxljW+hEdB/R3wx7ruv+3KfR+adfXrqg5/OfDj4a5GM+5VpsPNoeh9OV3T1dhdHJ1td6EENb88B947VikvVP+cw8epfPXYRZjaPtSwDXUaDiWcvIio3a5rmhzSC08iOSDKAgICAg3cHm8rgstWy+JnNfIVHdUMnMEH6zHj7THjg5qC43hzv7G7225FlKoENph7rIUtdXQTgalvna7m13aER1SAgIPjdu1KNOa5blbDVrsdLNK/g1rGjUkoKYeJG/Lm9tzzZWTqjx8WsOJqn9nXB+uR7cp+k71diK5dAQEBAQYJ0BJ4Dt1QWB8DPBeDuK27tzVxJLJpLiMdKPoxt5tsStPN55safqjjz5BPoRBAQEA6oIC8c/BeAQWd3bZriOVmsuYx0Q0bI3m6xE0cnjm9o+sOPPmVX4EEAjiOxBlAQEBAQdR4bb9ubI3RDlWdT8dNpDlqw/aQE/XA9uL6zflHagufSu1LtOG5UlbNVsMbLDK3i1zHjVpHpCI+yAggT4mN+Ojgg2VRk0faa2zmC08RAD91CeP7Rw1PmCCvqKICAgICDtvB3ZbN275q07LOvGUW++5EEatcxjgI4j+8f6wCguM0BoAA0A4ADkAiMoCAgICDDmhwII1BGhB5EFBTjxh2WzaW+bVKszoxl5vvuOAGjWxyOIkiH7t/LyAhFcSgygICAgILB/DPvx0sFjZV6TV9VptYcuPEwE/ewj9246jzFET0g1cpkqmMxtrI3HiOrTifPPIeADI2lzj6ggo1n87d3DnL+du6+85KZ05YfsMPCKP9CMBqK0UBAQEBAQWM+FfEsjwWcy7m/e2rja0cn+VXjH0f4j3FETigICAgICAgg34qMSx+DweXawd7VturPk/wAqxGT0/wASNqKrogICAgICDfwGeubeztDO0tfeMbM2cMH22DhLH+nGSPSgvLjMjUyeOq5Gm8SVbcTJ4JGnUFkjQ5p9RREWfEruQ47YrMPE/pnzk7YJADofdovvJuHkd0hh/OQVe1/GiiAgICAgwgtF8MUsbvDqaJv14sja7z9Ihw+YoiXEBAQEBAQEER/E7LG3w7giJ+8lyNboH5pc4/MEFXkUQEBAQED8KC0Xw17kOR2K/ESv6p8HO6uwE8fd5PvIeHkaHFg/NREbfEtmze39Bjmu6osTTa3pHZLZd3kn6jY0VEyAgICAgICCdvhZ3BHFczm3pHAPn7vIVgebukCGUD83Rh+VBYdEEBAQEBA1QV4+KbcEct3B7djcC6v3mQtAc29QMMIP52rz8iKglAQEBAQEBBLPw05s0d+2Ma52kWWpuboe2as7rZ+o+RBxfibkXZHxD3HbdzN+WEeisfdx80SDmkBAQEBAQEHrbT3Le2xuShnqQ6pqMnU+HXQSxOHTLET+Ww8PPoUF18BncZnsPUy+LlE9G5GJIZOR0PNrh2OaeBHYUR6GqAgICAg8/P57GYHD28vlJe4o04zJM/meHJrR2uceDR2lBSfde5b259x389eHTNel6mw66iKJv0Yoh+YwcfPqe1FeUgICAgICAg6bwxyLsd4ibctt/wCvigPosk1z80qDwclZNrJXLROrrE8sxPnkkLv7UGugICAgICAgIO88KfFnJ7FvOglY67t22/rt0Wn6cbzwM8GvDq9pvJ3pQWr21unAblxjMlhLkdyq8DqLD9NjvZkYfpMd5iER62qAgaoPJ3LurAbaxj8lm7kdOswHp6z9N7h9mNg+k93maEFVPFXxZye+rzYImPpbdqv6qlEn6cjxwE8+nDq9lvJvpRXBoCAgICAgICDYxlk1cnStA6GvYhmB/dyB39iDWGunHmgygICAgICAgICDcw+ZzGFvC9iLs2PuDh31d5YXDXXRwHBw8x4IJPwnxMb7pMbHk61PKtHOVzTXmd6TH936o0HQf/qybo/+rt6//XHTX/26Dn838TG+7rHR4ytTxLXcpWtNiZvoMv3frjQRhmMzl81edey92a/cPDvrDy8gc9Gg8GjzAaINNAQEBAQEBAQEGD5ufYg2clWNXJXKrhoa88sJHnjkLdPmQa6AgICAgICAg2sVictmLnuWIoz5G52wVmGQjt+kfqt+UoJQ298NO+sgGS5ezVw0LiOqLU2Z+k8dQGaM18xcg7jHfCztWNumSzF+47yw93WHqDZEHof/AJi8OOnTvsnr5feW6/8Alojzsl8LO1ZG/wDG5m/Td5Zu7sj1ERoOH3B8NO+seHyYmzVzMIJ6YtTWn6QNdSH6s18wciowyuJy2Hue5ZelPjrnZBZYWE9v0Sfou+QoNVAQEBAQEBAQbGMrG1k6dUDU2LEMIH7yQN/tQe74m452O8RNx1Hdl+WYeiyRYHzSoOaQEBAQEBBhzg0ak6dnyngAPKUEyeGvw8ZPNMiyu7TLjMY8B8OMYei3K08jM79i0+yPpejkgsTgduYLAUGUMLRhoVGcooWhuvncebjx5lEeigICAgIPOz23MFuCg+hmqMN+o8cYpmh2nnaebTw5goK7eJXw8ZPCslym0zJk8YwF82Meeq3CB2xO/bNHsn6XpRUNtc1w1adR6uI4EEdhQZQEBAQEBB03hjjjkvETblRv/XxTH0Vj7wfmiQdl8SuENHf0GRa3SLLU2uLvLLWd3cn6jo0EToCAgICDBOnn7AANST5AEFkvBTwSjxMdfc254A/MPAkx+PkALajSOD3jkZiP7nLmiJsQEBAQEBAQEBBCfjX4Ix5WOxubbEAZmGgyZDHxgBttoHF7ByEwH9/0oK2g6j8II0IPkKKygICAgIJZ+GnCG9v2xknN6osTTc7XyTWXd2z9RsiCSPiV22cjsaPMRM6p8HO2eQgcfd5fupuPkb1B5/NRFXkUQEBAQTH8O/htHmsm/deUi68bjZOjHROGrZbTeJkIPNsXZ+V+ags0iCAgICAgICAgICCsvxD+G0eFyjd1YuLoxmTk6MjE0fRitHUiQAcmy9v5XpRUOICAgIH4UFovhq22cdsV+XlZpPnJ3WGEjj7vH93Dx8jg0vH5yIlHKY2pk8bax1xgkq3InwTxkagskaWuHqKCjWewV3b+cv4K7r7zjZnQFx+2wcYpPP1xlrvSitFAQEH1p07F65Xo1QHWbksdeAHkZJniNmv6TggvJtfb9Hbu38fhKTdK9CFsTT2ucOL3u/Ke4lx85RHqICAgICAgICAgICDyt07fpbi29kMJdGte9C6Ikc2u5se38pjwHDzhBRy3UsUrdilZAbZqSyV7DRyEkLzG/T9JpRXyQEBBvYDA3Nw52hgqWvvGSmbAHjmxh4yyfoRguQXlxmNqYzG1cdTYI6tOJkEEbRoAyNoa0eoIjaQQJ8TGw3SQ1960Y9XVmtq5hrRxMBP3Ux/duPSfMUFfEVlAQdB4dyQM39tx0+ndDI1wdeXU5/Sz9chBd3tRBAQEBAQEBAQEBAQEFIvEN8L9+7jdBp3X+42ANPK15a79cFFc+gICCwXwz7DdFBY3rej0faa6thw4cRAD97MOH7Rw0HmCIntAQfG7SqXqc1O3E2arYY6KeJ/FrmPGjgUFMPEjYdzZO6JsTJ1SY+XWbFWjykgJ+qT7cZ+i71orl0BB+opZoZY54HmOeF7ZIZBza9hDmuHocNUF1/D3edHeG1qeYrOaJnNEd6uDq6GwwASRn5eLfK3QojpEBAQEBAQEBAQEBBzXiHvSjs/a1zL2XNMzWmOjXJ0dNYeNI2Ac+fF3kaCUFKZZZppZJp3mSeZ7pJpDzc95LnOPpJ1RX5QEHUeG2w7m990Q4pnUzHQ6TZayP2dcH6gPty/Vb6+xBc+lSqUacNOpE2GrXY2KCJnBrWNGjQPkRH2QEBByviPsDG7325Ji7RENqM97j7umroJwNA7ztdycO0fIgpzm8JlcFlrOIy0BrZCo7omjPEH2XsP2mPHFpRWkgIOh2Pv3cWy8schh5GuZLo27Ql17mdg5dWn1XDscOI9CCxG2viN8PcpA3/dJpMFc0+nBbaXR9RPJk0Yc13zIjph4t+GnA/8AcdLj/mfiQZ/q34a/zHS/ifiQP6t+Gv8AMdL+J+JA/q34a/zHS/ifiQP6t+Gv8x0v4n4kD+rfhr/MdL+J+JA/q34a/wAx0v4n4kD+rfhr/MdL+J+JBg+Lfhpof/kdLh/mfiQczuX4jfD3FwO/2uaTO3NPoQVGlsfVryfNIGtb86Cu++N+bh3plhkMxI1rItW06MWvcwMPMN1+s4/aceJ9CK55AQbuEwmVzuWrYjEwGxkLbumGPkAPtPefssYOLnILjeHGwcbsnbkWLqkTWpD3uQu6aOnnI4u8zW8mt7AiOqQEBAQEHBeK3hTjd8Y0PYW1M9Uafcb5GoI591NpxdG4+rmEFTM1hMtg8pPisvWdUyFY6Swv7R2PY7k9juxwRWkgICD89DPZHqQOhnsj1BA6GeyPUEDoZ7I9QQOhnsj1BA6GeyPUEDoZ7I9QQOhnsj1BA6GeyPUg/SAgIN3CYTLZ3KwYnEVnW8hYOkcLOQA5ve7kxje1xQWz8KfCrG7Hxhc5zbedttHv9/Thpz7mLX6sbT6+ZRHeoCAgICAgIOU3/wCHG3N7Y0VcpGY7cIPuWRi0E8Lj7J+00/aaeB+dBVXfvhvufZNzu8tD3uPe7StloQTXk8gd/hv/ACXfJqiuXQEBAQEBAQEBAQEBAQdRsPw23Rve53eKh7nHsdpZy0wIrx+UM/xH/kt+XRBarYHhxtzZONNXFxmS3MB77kZdDPO4e0fstH2WDgPnRHVoCAgICAgICAg+F2lTvVJalyBlmrM3plglaHscD2OaeBQQXvz4ZoZXSXtlWG1nHVzsPace5J8kMvF0fodqEEF53A5zb9z3LO0JsbZ10aJ26Mf5O7kGsb/kOqK0SgICAgICAgIAQb2CwOc3Bc9ywVCbJWddHCBurGfvJDoxnynVBOmw/hngjdHe3rO208aOGHrOIgB8k0vB0noboEROtKlUo1IqlOFlerC3pigiaGMa3yNaOAQfZAQEBAQEBAQEBAQEGrksVjcpUfTyNWK5VkBbJDOxsjCDz4OBQRbuP4ati5Evlw8k+DndqRHA7vK+vYO5k6ukeZhagjbN/DVv6iXux09PLQt4gMc6tMf0JOpn+oiuMyPhl4iY5/Tb25fBHbDEbLfT1VzKEHhWcbkqpLbVOeuRzEsUjD+s0INbUa+fyINmtjclaOlWnPYJ5CKJ8h/VaUHu47wy8RMi7pqbcvnyGaI1h/esGIIOzwnw1b+vFjslPTxMTuJ6nOszD/w4+ln+ogknbnw1bFxxZLmJJ85ONCWTu7uvr2juY+nqb5nlyIlLG4vG4yoynjqsVOrGA2OGBjY2ADgODQEG0gICAgICAg//2Q==" alt="Uner name" />
+                                        </div>
+                                        <div class="username">
+                                            Conectado<br/>
+                                            <span>luis pintado</span>
+                                        </div>
+                                    </div>
+                                    <div class="control">
+                                        <strong class="font-sgothic">VINCULAR</strong>
+                                        <div class="switch-checkbox ml-8">
+                                            <input type="checkbox" id="switch-facebook" />
+                                            <label for="switch-facebook">Facebook</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <hr class="w-100" />
+                                <div class="acc-item">
+                                    <a href="#" class="btn btn-google btn-more-rounded">
+                                        <span class="fas fa-google"></span>
+                                    </a>
+                                    <div class="control">
+                                        <strong class="font-sgothic">VINCULAR</strong>
+                                        <div class="switch-checkbox ml-8">
+                                            <input type="checkbox" id="switch-google" />
+                                            <label for="switch-google">Goggle</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <label>
+                                <input type="checkbox" id="chk-dont-show-again" />
+                                &nbsp; No volver a mostrar este mensaje
+                            </label>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="form-group mt-32">
+                            <a href="http://localhost:8080/" class="btn btn-block btn-secondary" >
+                                CONTINUAR &nbsp; <span class="glyphicon glyphicon-refresh spin hide"></span>
+                            </a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="./js/vinculate.js"></script></body>
+</html>

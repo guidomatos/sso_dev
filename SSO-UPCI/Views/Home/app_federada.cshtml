@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "app_federada";
+    Layout = "~/Views/Shared/_LayoutSSO.cshtml";
+}
+
+    <body class="background-05">
+        <div class="overlay dark">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col background-05-desktop">
+                        <div class="logo">
+                            <img src="~/img/upc-white.png" alt="UPC">
+                        </div>
+
+                        <div class="mb-72">
+                            <h3 class="title">APLICACIÓN FEDERADA</h3>
+                            <p class="mr-30p">
+                                Aplicación de UPC que será integrada con Single Sign On
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col bg-white">
+
+                        <!-- Formulario -->
+                        <form action="#" class="mt-md-64 mb-md-64">
+                            <div class="form-group mr-md-48 ml-md-48">
+                                <p>
+                                    La autenticación al sistema ha sido exitosa.
+                                </p>
+                                <p>
+                                    Esta página debe mostrar la información del usuario en base a los
+                                    roles y permisos que tiene en la Aplicación Federada
+                                </p>
+                            </div>
+
+                            <div class="form-group mt-72">
+                                <a href="/Home/endsession/" class="btn btn-block btn-accent">
+                                    CERRAR SESIÓN
+                                </a>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+                <div class="row" style="padding-top:20px">
+                    <p>&copy; @DateTime.Now.Year - SSO UPC</p>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    </body>
+

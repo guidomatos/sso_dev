@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "create_pass";
+    Layout = "~/Views/Shared/_LayoutSSO.cshtml";
+}
+
+<body class="background-02">
+    <div class="overlay dark">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="col background-03-desktop">
+                    <div class="logo">
+                        <img src="../img/upc-white.png" alt="UPC">
+                    </div>
+
+                    <div class="mb-48">
+                        <h3 class="title">Crear Contraseña</h3>
+                        <p>
+                            Genera tu nueva contraseña.<br />
+                            Debe ser mínimo de <strong>8 caracteres</strong> y contener <strong>mayúsculas, minúsculas, números y símbolos</strong>.
+                        </p>
+                        <p class="mt-32 d-md-none">
+                            <span class="icon-user"></span>&nbsp; <span class="span-user"></span><br />
+                            <span class="icon-mail"></span>&nbsp; <span class="span-email"></span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col bg-white">
+
+                    <form action="#" class=" mb-32" autocomplete="off">
+                        <div class="toast p-8">
+                            <div class="text-center text-danger error">
+                                <p class="font-14 mb-0">
+                                    <span class="icon-circle">!</span> <span class="toast-title"></span>
+                                </p>
+                                <p class="font-14 toast-message"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group d-none">
+                            <p class="mt-32 mt-md-8 mb-md-32 ">
+                                <span class="icon-user "></span>&nbsp; <span class="span-user"></span><br />
+                                <span class="icon-mail"></span>&nbsp; <span class="span-email"></span>
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-password" class="sr-only">Contraseña</label>
+                            <div class="input-icon">
+                                <span class="icon-lock"></span>
+                                <input type="text" name="prevent_autofill" id="prevent_autofill" value="" style="display:none;" />
+                                <input type="password" name="password_fake" id="password_fake" value="" style="display:none;" />
+                                <input autocomplete="chrome-off" type="password" id="input-password" class="form-control input-icon-lock" placeholder="Nueva contraseña" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-password-confirm" class="sr-only">Confirmar Contraseña</label>
+                            <div class="input-icon">
+                                <span class="icon-lock"></span>
+                                <input autocomplete="chrome-off" type="password" id="input-password-confirm" class="form-control input-icon-lock" placeholder="Confirmar nueva Contraseña" required />
+                            </div>
+                        </div>
+                        <style>
+                            ul.list-validation {
+                                list-style: none;
+                            }
+
+                            ul.list-validation li {
+                                color: #545454;
+                            }
+                            ul.list-validation li:before {
+                                content: "\e013";
+                                font-family: 'Glyphicons Halflings';
+                                font-size: 9px;
+                                float: left;
+                                margin-top: 4px;
+                                margin-left: -17px;
+                            }
+                            ul.list-validation li.good {
+                                color: green;
+                            }
+                            ul.list-validation li.good:before {
+                                content: "\e013";
+                            }
+                            ul.list-validation li.bad {
+                                color: red;
+                            }
+                            ul.list-validation li.bad:before {
+                                content: "\e014";
+                            }
+                        </style>
+                        <div class="form-group">
+                            <ul class="list-validation">
+                                <li>Mínimo 8 caracteres</li>
+                                <li>Al menos 1 letra en mayúsculas</li>
+                                <li>Al menos 1 letra en minúsculas</li>
+                                <li>Al menos 1 número</li>
+                                <li>Al menos un caracter especial</li>
+                                <li>No uses tu nombre y/o apellido</li>
+                                <li>No uses tu usuario</li>
+                                @*<li>No uses contraseñas anteriores</li>*@
+                            </ul>
+                        </div>
+                        <div class="form-group mt-64 mt-md-32">
+                            <button class="btn btn-block btn-primary" id="btn-continuar">
+                                Continuar &nbsp; <span class="glyphicon glyphicon-refresh spin hide"></span>
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:20px">
+                <p>&copy; @DateTime.Now.Year - SSO UPC</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    @Scripts.Render("~/bundles/create_pass")
+
+    @*
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/constants.js"></script>
+    <script src="~/Scripts/create-pass.js"></script>
+    *@
+
+</body>
+

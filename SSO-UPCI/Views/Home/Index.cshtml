@@ -1,0 +1,98 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutSSO.cshtml";
+}
+
+<body class="background-01">
+
+    <!--Se agrega control de trafico adicional de Google Analytics (JCRodriguez 12-10-2020)-->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-594PBW" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="overlay">
+
+        <div class="container mt-64">
+            <div class="row">
+                <div class="col background-01-desktop">
+                    <div class="logo">
+                        <img src="../img/upc-white.png" />
+                    </div>
+                    <div class="ml-md-32 mr-md-64">
+                        <h3 class="title">Bienvenido a UPC</h3>
+                        <p class="mb-0 mb-md-16">
+                            Accede fácilmente vinculando tu usuario UPC con tus cuentas de
+                            Facebook o Google.
+                        </p>
+                        <p>
+                            Para configurar esta funcionalidad, ingresa con
+                            tu usuario UPC por única vez.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col bg-white">
+
+                    <!-- Formulario -->
+                    <form action="#">
+
+                        <div class="toast p-8">
+                            <div class="text-center text-danger error">
+                                <p class="font-14 mb-0">
+                                    <span class="icon-circle">!</span> <span class="toast-title"></span>
+                                </p>
+                                <p class="font-14 toast-message"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-64 mt-64 mb-md-16 mt-md-48">
+                            <a id="link-login" href="#" class="btn btn-block btn-accent" name="button" value="login">
+                                INGRESAR CON USUARIO UPC
+                            </a>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <hr class="separator" />
+                        <div class="clearfix"></div>
+
+                        <div class="form-group mt-32 mt-md-16">
+                            <p class="YaTeVinculaste font-zizou">Si ya vinculaste tu cuenta, accede a través de:</p>
+
+                            <button href="#" class="btn btn-block btn-facebook" id="btn-facebook">
+                                <span class="fas fa-facebook"></span>
+                                &nbsp; &nbsp; INICIAR SESIÓN CON FACEBOOK
+                            </button>
+                        </div>
+
+                        <div class="form-group mb-md-48">
+                            <button href="#" class="btn btn-block btn-google" id="btn-google">
+                                <span class="fas fa-google"></span>
+                                &nbsp; &nbsp; INICIAR SESIÓN CON GOOGLE
+                            </button>
+                        </div>
+
+                        <p class="font-zizou" style="padding:10px; background:#EBF3FF; color:darkslategrey; border-radius:5px; text-align:justify">
+                            Si te encuentras en un dispositivo que no es tuyo o es de uso público, recuerda cerrar tu sesión al salir.
+                        </p>
+
+                    </form>
+                </div>
+            </div>
+            <div class="row" style="padding-top:20px">
+                <p>&copy; @DateTime.Now.Year - SSO UPC</p>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/index")
+
+    @*
+      <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+      <script src="~/Scripts/facebook-script.js"></script>
+      <script src="~/Scripts/google-script.js"></script>
+      <script src="~/Scripts/constants.js"></script>
+      <script src="~/Scripts/index.js"></script>
+    *@
+
+</body>

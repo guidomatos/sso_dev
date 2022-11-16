@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "UpdateDataConfirm";
+    Layout = "~/Views/Shared/_LayoutSSO.cshtml";
+}
+
+<body class="background-02">
+    <div class="overlay dark">
+
+        <div class="container">
+            <div class="row">
+                <div class="col background-04-desktop">
+                    <div class="logo">
+                        <img src="../img/upc-white.png" alt="UPC">
+                    </div>
+
+                    <div class="SiempreArriba">Actualización de datos</div>
+
+                    <div class="Abajo mb-32">
+                        Mantener tu información actualizada
+                        asegurará que recibas toda la información y
+                        te podamos contactar fácilmente.
+                    </div>
+                </div>
+
+                <div class="col bg-white">
+
+                    <!-- Formulario -->
+                    <form action="#" class="mb-32">
+
+                        <div style="height:20px"></div>
+
+                        @*Mensaje de error*@
+                        <div class="toast p-8">
+                            <div class="text-center text-danger error">
+                                <p class="font-14 mb-0">
+                                    <span class="icon-circle">!</span> <span class="toast-message"></span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div style="height:40px"></div>
+
+                        <div class="form-group">
+                            <p class="mb-md-4">Los datos que serán actualizados son:</p>
+                        </div>
+
+                        <div class="form-group">
+                            <p class="mb-md-4">Email:    &nbsp; <strong>  <span id="IdSpanMail">xxxx@gmail.com</span> </strong> </p>
+                            <p class="mb-md-4">Teléfono: &nbsp; <strong>  <span id="IdSpanCel">999666333</span>       </strong></p>
+                        </div>
+
+                        <div class="form-group mt-64 mt-md-48">
+                            <button type="button" class="btn btn-block btn-primary" id="btn-confirmar">
+                                ACTUALIZAR &nbsp; <span class="glyphicon glyphicon-refresh spin hide"></span>
+                            </button>
+                        </div>
+                        <div style="height:60px"></div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/constants.js"></script>
+    <script src="~/Scripts/updateDataConfirm.js"></script>
+</body>
+

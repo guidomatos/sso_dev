@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "recover_confirm_email";
+    Layout = "~/Views/Shared/_LayoutSSO.cshtml";
+}
+
+<body class="background-02">
+    <!--Se agrega control de trafico adicional de Google Analytics (JCRodriguez 12-10-2020)-->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-594PBW" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="overlay dark">
+
+        <div class="container">
+            <div class="row">
+                <div class="col background-03-desktop">
+                    <div class="logo">
+                        <img src="../img/upc-white.png" alt="UPC">
+                    </div>
+
+                    <div class="mb-48 ml-md-32 mr-md-64">
+                        <h3 class="title">Recuperar Contraseña</h3>
+                        <p class="mr-30p">
+                            Se te enviará un código de verificación para que puedas recuperar tu contraseña.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col bg-white">
+
+                    <form action="#" class="form-sign-in mt-md-16 mb-md-48">
+
+                        <div class="toast p-8">
+                            <div class="text-center text-danger error">
+                                <p class="font-14 mb-0">
+                                    <span class="icon-circle">!</span> <span class="toast-title">Usuario o contraseña incorrecta</span>
+                                </p>
+                                <p class="font-14 toast-message">
+                                    Recuerde que luego de algunos intentos fallidos su cuenta se bloqueará.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <p>Ingresa tu correo personal: <span id="span-email">***</span></p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-confirm-email" class="sr-only"></label>
+                            <div class="input-icon">
+                                <span class="icon-mail"></span>
+                                <input type="text" id="input-confirm-email" class="form-control" placeholder="Correo electrónico" />
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="form-group mt-64 mt-md-16">
+                            <button class="btn btn-block btn-primary" name="button" id="btn-enviar">
+                                <span class="button-label">Continuar</span> &nbsp; <span class="glyphicon glyphicon-refresh spin hide"></span>
+                            </button>
+                        </div>
+
+                        <p class="text-center mt-32">
+                            <a href="#" id="link-recover-method" class="">Cambiar método de envío</a>
+                        </p>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:20px">
+                <p>&copy; @DateTime.Now.Year - SSO UPC</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    @Scripts.Render("~/bundles/recover_confirm_email")
+
+    @*
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/constants.js"></script>
+    <script src="~/Scripts/recover-confirm.js"></script>
+    *@
+
+</body>
+

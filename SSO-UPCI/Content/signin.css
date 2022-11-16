@@ -1,0 +1,348 @@
+/*@font-face {
+  font-family: "sgothic-bdcap";
+  src: url("../fonts/upc_sgothic-bdcap-webfont.eot");
+  src: url("../fonts/upc_sgothic-bdcap-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/upc_sgothic-bdcap-webfont.woff") format("woff"), url("../fonts/upc_sgothic-bdcap-webfont.ttf") format("truetype"), url("../fonts/upc_sgothic-bdcap-webfont.svg../#fonts/upc_sgothic-bdcap-webfont") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "sgothic-rgcap";
+  src: url("../fonts/upc_sgothic-rgcap-webfont.eot");
+  src: url("../fonts/upc_sgothic-rgcap-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/upc_sgothic-rgcap-webfont.woff") format("woff"), url("../fonts/upc_sgothic-rgcap-webfont.ttf") format("truetype"), url("../fonts/upc_sgothic-rgcap-webfont.svg../#fonts/upc_sgothic-rgcap-webfont") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "sgothic-stencilcap";
+  src: url("../fonts/upc_sgothic-stencilcap-webfont.eot");
+  src: url("../fonts/upc_sgothic-stencilcap-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/upc_sgothic-stencilcap-webfont.woff") format("woff"), url("../fonts/upc_sgothic-stencilcap-webfont.ttf") format("truetype"), url("../fonts/upc_sgothic-stencilcap-webfont.svg#../fonts/upc_sgothic-stencilcap-webfont") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "zizou-slab-regular";
+  src: url("../fonts/zizou-slab-regular.eot");
+  src: url("../fonts/zizou-slab-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/zizou-slab-regular.woff") format("woff"), url("../fonts/zizou-slab-regular.ttf") format("truetype"), url("../fonts/zizou-slab-regular.svg#../fonts/zizou-slab-regular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "zizou-slab-bold";
+  src: url("../fonts/zizou-slab-bold.eot");
+  src: url("../fonts/zizou-slab-bold.eot?#iefix") format("embedded-opentype"), url("../fonts/zizou-slab-bold.woff") format("woff"), url("../fonts/zizou-slab-bold.ttf") format("truetype"), url("../fonts/zizou-slab-bold.svg#../fonts/zizou-slab-bold") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "zizou-slab-light";
+  src: url("../fonts/zizou-slab-light.eot");
+  src: url("../fonts/zizou-slab-light.eot?#iefix") format("embedded-opentype"), url("../fonts/zizou-slab-light.woff") format("woff"), url("../fonts/zizou-slab-light.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html, body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #000000;
+  color: #ffffff;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  position: relative;
+}
+
+.validation-summary-errors ul {
+    list-style: none;
+    margin-left: -40px
+}
+
+.background-signin {
+  background: #000000 url('../imagenes/002login.jpg') center no-repeat;
+  background-size: cover;
+}
+
+@media (min-width: 900px) {
+  .background-signin {
+    background: none;
+  }
+}
+
+.background-password {
+  background: #000000 url('../imagenes/005login.jpg') center no-repeat;
+}
+
+@media (min-width: 900px) {
+  .background-password {
+    background: none;
+  }
+}
+
+.brand-white {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+}
+
+@media (min-width: 900px) {
+  .brand-white {
+    display: none;
+  }
+}
+
+.container {
+  height: 100%;
+  position: relative;
+}
+
+@media (min-width: 900px) {
+  .container {
+    width: 900px;
+    display: table;
+  }
+}
+
+.vertical-align {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 100%;
+}
+
+.form-signin {
+  max-width: 330px;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+  .form-signin {
+    max-width: 900px;
+    background-color: #ffffff;
+    display: table-row;
+  }
+  .form-signin .col {
+    width: 50%;
+    padding-bottom: 2.5rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-top: 2.5rem;
+    display: table-cell;
+  }
+  .form-signin .background-signin-desktop {
+        background: #000000 url('../imagenes/001102.jpg') center no-repeat;
+        background-size: cover;
+    }
+  .form-signin .background-password-change {
+    background: #000000 url('../imagenes/001103.jpg') center no-repeat;
+    background-size: cover;
+  }
+  .form-signin .col .form-signin-text-gray {
+    color: #404040;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    padding: 0 1.2rem;
+  }
+}
+
+.form-signin .form-signin-heading {
+  font-size: 1.8rem;
+  font-family: "sgothic-bdcap";
+  margin: 0;
+  margin-bottom: 1.25rem;
+}
+
+.form-signin .form-signin-text {
+  font-size: 1rem;
+  font-family: "zizou-slab-light";
+  max-width: 75%;
+  margin: 0;
+  margin-bottom: 4.25rem;
+  line-height: 1.25rem;
+}
+
+.form-signin .form-signin-brand {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .form-signin .form-signin-brand {
+    display: block;
+  }
+}
+
+.form-signin .form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-signin .form-control {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 2.5rem;
+  color: #EAEAEA;
+  border: 1px solid #ffffff;
+  background-color: rgba(0, 0, 0, 0.43);
+  font-family: "zizou-slab-regular";
+  padding-left: 4rem;
+ }
+
+@media (min-width: 900px) {
+  .form-signin .form-control {
+    border: 1px solid #D6D6D6;
+    background-color: initial;
+  }
+}
+
+.form-signin #inputUser {
+  background-image: url('../imagenes/icon-user.svg');
+  background-position: .8rem center;
+  background-repeat: no-repeat;
+  background-size: 5%;
+  color: #6C6C6C;
+}
+
+.form-signin #inputPassword, .form-signin #inputPasswordConfirm {
+  background-image: url('../imagenes/icon-pass.svg');
+  background-position: .8rem center;
+  background-repeat: no-repeat;
+  background-size: 5%;
+  color: #6C6C6C;
+}
+
+.form-signin #inputEmail {
+  background-image: url('../imagenes/icon-email.svg');
+  background-position: .8rem center;
+  background-repeat: no-repeat;
+  background-size: 5%;
+  color: #000000;
+}
+
+.form-signin .form-control-error {
+  border: 2px solid #FF0000;
+}
+
+.form-signin .error {
+  color: #FF0000;
+  font-family: "zizou-slab-regular";
+  font-size: .8rem;
+}
+
+.toast {
+  background-color: #FF0000;
+  font-family: "zizou-slab-regular";
+  font-size: .9rem;
+  padding: .9rem;
+  line-height: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .toast {
+    background-color: #FFF3F3;
+    color: #FF0000;
+  }
+}
+
+.toast .bold {
+  font-family: "zizou-slab-bold";
+}
+
+.form-signin .btn {
+  background-color: #ffffff;
+  color: #000000;
+  font-family: "sgothic-bdcap";
+  font-size: 1rem;
+  border: 1px solid #ffffff;
+  margin-top: .63rem;
+}
+
+@media (min-width: 900px) {
+  .form-signin .btn {
+    background-color: #050505;
+    color: #ffffff;
+  }
+}
+
+.form-signin a {
+  color: #D5D5D5;
+  font-size: .8rem;
+  font-family: "zizou-slab-regular";
+}
+
+.bg-danger {
+  background-color: red;
+  color: white;
+}
+
+@media (min-width: 900px) {
+  .form-signin-brand {
+    margin-bottom: 2.4rem;
+    margin-top: 1rem;
+  }
+}*/
+
+/*Diseño nuevo*/
+
+/*RestaurarClave*/
+.FondoRestaurarClave {
+    background: #000000 url('../imagenes/005login.jpg') center no-repeat;
+    /*background-size: cover;*/
+    height: 500px;
+    width: 500px;
+    margin-top: 10px;
+}
+@media (min-width: 900px) {
+    .FondoRestaurarClave {
+        background: #000000 url('../imagenes/001103.jpg') center no-repeat;
+        background-size: cover;
+        height: 700px;
+        margin-top: 10px;
+    }
+}
+
+/*Redes*/
+.FondoRedes {
+    background: #000000 url('../imagenes/002login.jpg') center no-repeat;
+    background-size: cover;
+    height: 500px;
+    width: 500px;
+    text-align: center;
+    margin-top: 10px;
+}
+@media (min-width: 900px) {
+    .FondoRedes {
+        background: #000000 url('../imagenes/001102.jpg') center no-repeat;
+        background-size: cover;
+    }
+}
+
+/*Index*/
+.portadaDesktopMovil {
+    background: #000000 url('../imagenes/002login.jpg') center no-repeat;
+    background-size: cover;
+    height: 500px;
+    width: 500px;
+    text-align: center;
+    margin-top: 10px;
+}
+@media (min-width: 900px) {
+    .portadaDesktopMovil {
+        background: #000000 url('../imagenes/001102.jpg') center no-repeat;
+        background-size: cover;
+        height: 500px;
+        width: 500px;
+        text-align: center;
+        margin-top: 10px;
+    }
+}
+
+

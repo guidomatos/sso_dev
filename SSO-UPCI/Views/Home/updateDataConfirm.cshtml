@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "UpdateDataConfirm";
+    Layout = "~/Views/Shared/_LayoutSSO.cshtml";
+}
+
+<body class="background-02">
+    <div class="overlay dark">
+
+        <div class="container">
+            <div class="row">
+                <div class="col background-04-desktop">
+                    <div class="logo">
+                        <img src="../img/upc-white.png" alt="UPC">
+                    </div>
+
+                    <div class="Arriba d-none">Actualización de datos</div>
+
+                    <div class="Abajo d-none">
+                        Mantener tu información actualizada
+                        asegurará que recibas toda la información y
+                        te podamos contactar fácilmente.
+                    </div>
+                </div>
+
+                <div class="col bg-white">
+
+                    <!-- Formulario -->
+                    <form action="#" class="mb-32">
+
+                        <div class="Titulo">Código de verificación</div>
+
+                        <div class="form-group">
+                            <p class="mb-md-4">El código de verificación ha sido enviado a:</p>
+                            <p class="mb-md-4"><strong><span id="IdSpanMail" style="text-transform: uppercase">XXX</span></strong></p>
+                            <p class="mb-md-4">Ingresa los 4 dígitos para verificarlo.</p>
+                        </div>
+
+                        @*Mensaje de error*@
+                        <div class="toast p-8">
+                            <div class="text-center text-danger error">
+                                <p class="font-14 mb-0">
+                                    <span class="icon-circle">!</span> <span class="toast-message"></span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group-code">
+                            <input maxlength="1" type="text" id="input-code1" class="form-control form-control-min" />
+                            <input maxlength="1" type="text" id="input-code2" class="form-control form-control-min" />
+                            <input maxlength="1" type="text" id="input-code3" class="form-control form-control-min" />
+                            <input maxlength="1" type="text" id="input-code4" class="form-control form-control-min" />
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="form-group mt-64 mt-md-48">
+                            <button type="button" class="btn btn-block btn-primary" id="btn-confirmar">
+                                VERIFICAR &nbsp; <span class="glyphicon glyphicon-refresh spin hide"></span>
+                            </button>
+                        </div>
+
+                        <div class="form-group">
+                            <p class="text-center">
+                                <button type="button" id="link-reenviar" class="btn-link" style="color:#3396FF;font-weight: bold;">Reenviar código de verificación</button>
+                            </p>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:20px">
+                <p>&copy; @DateTime.Now.Year - SSO UPC</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/constants.js"></script>
+    <script src="~/Scripts/updateDataConfirm.js"></script>
+</body>
+

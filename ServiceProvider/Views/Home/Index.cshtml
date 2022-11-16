@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div class="jumbotron">
+    <h1>Service Provider-ALMA</h1>
+    <p class="lead">
+        Este ejemplo demuestra el uso de la biblioteca ComponentSpace SAML v2.0 para habilitar el inicio de sesión único SAML
+        como proveedor de servicios con SSO UPC.
+    </p>
+    <p>@Html.ActionLink("SSO-UPC", "InitiateSingleSignOn", "Saml", null, new { @class = "btn btn-primary btn-lg" })</p>
+    <strong>Usuario:</strong>@ViewBag.userName
+    <p>@Html.ActionLink("LogOff-UPC", "LogOff", "Home", null, new { @class = "btn btn-primary btn-lg" })</p>
+</div>

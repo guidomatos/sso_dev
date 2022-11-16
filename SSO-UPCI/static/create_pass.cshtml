@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>UPC - Mi Cuenta (SSO)</title>
+
+    <link rel="stylesheet" href="./css/bootstrap3-4-1.min.css">
+    <link rel="stylesheet" href="./css/fonts.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/forms.css">
+
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+</head>
+<body class="background-02">
+    <div class="overlay dark">
+
+        <div class="container">
+            <div class="row">
+                <div class="col background-03-desktop">
+                    <div class="logo">
+                        <img src="./img/upc-white.png" alt="UPC">
+                    </div>
+
+                    <div class="mb-48">
+                        <h3 class="title">Crear Contraseña</h3>
+                        <p>
+                            Genera tu nueva contraseña.<br/>
+                            Debe ser mínimo de <strong>8 caracteres</strong> y contener <strong>mayúsculas, minúsculas, números y símbolos</strong>.
+                        </p>
+                        <p class="mt-32 d-md-none">
+                            <span class="icon-user "></span>&nbsp; U21212121<br/>
+                            <span class="icon-mail"></span>&nbsp; juan.perez@outlook.com
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col bg-white">
+
+                    <form action="#" class="mt-32 mb-64">
+                        <div class="form-group d-none">
+                            <p class="mt-32 mb-md-32">
+                                <span class="icon-user "></span>&nbsp; U21212121<br/>
+                                <span class="icon-mail"></span>&nbsp; juan.perez@outlook.com
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label for="input-password" class="sr-only">Contraseña</label>
+                            <div class="input-icon">
+                                <span class="icon-lock"></span>
+                                <input type="password" id="input-password" class="form-control input-icon-lock" placeholder="Nueva contraseña" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-password" class="sr-only">Confirmar Contraseña</label>
+                            <div class="input-icon">
+                                <span class="icon-lock"></span>
+                                <input type="password" id="input-password" class="form-control input-icon-lock" placeholder="Confirmar nueva Contraseña" required />
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-64 mt-md-32">
+                            <button class="btn btn-block btn-primary" name="button" value="login">
+                                Continuar
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="./js/libs/jquery-3.5.0.min.js"></script>
+</body>
+</html>

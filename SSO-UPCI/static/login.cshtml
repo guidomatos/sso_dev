@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>UPC - Mi Cuenta (SSO)</title>
+
+
+    <!--link rel="icon" type="image/x-icon" href="./favicon.ico" /-->
+<link href="./css/style.css" rel="stylesheet"></head>
+<body class="background-01">
+    <div class="overlay">
+
+        <div class="container">
+            <div class="row">
+                <div class="col background-01-desktop clearfix">
+                    <div class="logo">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF7mlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDIgNzkuMTYwOTI0LCAyMDE3LzA3LzEzLTAxOjA2OjM5ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIiB4bXA6Q3JlYXRlRGF0ZT0iMjAxOS0wOC0xMlQxNzoxODoxOC0wNTowMCIgeG1wOk1vZGlmeURhdGU9IjIwMTktMDgtMTJUMTc6MjI6MjctMDU6MDAiIHhtcDpNZXRhZGF0YURhdGU9IjIwMTktMDgtMTJUMTc6MjI6MjctMDU6MDAiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6ZTMzMDRlNWUtOTU2OS1mZDRmLWExNjEtNjA5MTBkMTA2YzgwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjFBQjhEMzVDRUU5NTExRThCRDE2ODNFMjE3MEUxOEQxIiB4bXBNTTpPcmlnaW5hbERvY3VtZW50SUQ9InhtcC5kaWQ6MUFCOEQzNUNFRTk1MTFFOEJEMTY4M0UyMTcwRTE4RDEiIGRjOmZvcm1hdD0iaW1hZ2UvcG5nIiBwaG90b3Nob3A6Q29sb3JNb2RlPSIzIiBwaG90b3Nob3A6SUNDUHJvZmlsZT0ic1JHQiBJRUM2MTk2Ni0yLjEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxQUI4RDM1OUVFOTUxMUU4QkQxNjgzRTIxNzBFMThEMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxQUI4RDM1QUVFOTUxMUU4QkQxNjgzRTIxNzBFMThEMSIvPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDplMzMwNGU1ZS05NTY5LWZkNGYtYTE2MS02MDkxMGQxMDZjODAiIHN0RXZ0OndoZW49IjIwMTktMDgtMTJUMTc6MjI6MjctMDU6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE4IChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7RHoWVAAAD0klEQVRYhcWYXYhWRRjHf3tst+Q1e920FpPWcNsKKQwVKYs0ugjCKPsgy0qxm6SL0JvqLiH3wsCL6APzIyITEiFKkOgDtBAqag2UiJRaXSnQV/xawk39dzFz2tnZM2fmbO/aHw5nzjz/eZ7/mTnzzMxBEk26ZknaJamziT7JaA4eA34ATgN9TfJp0IS3XKQh3NrM3kvtwXEltm5ghy03gKMV++eyGKFM4DXAWnsP4X2g1ZYHgfPJ0gzqwDpgRogQElgHPgNOAscCnEXAPOd5MtBeUeAJ4BCwE7i2kBEY+712RpZ9H99qJFaM8lvbIulAkS1ElqRaicNbCsRJ0vejFJjZ9h/HBD5kiesjDpcEBErS0lGKfNm2XxYSOFHSWUvqjDh7rUSgJN0/CoF1p31HXu9OkleBGrCPeLK9OmL/BHgiZZY4OAl8acs9eWUusANYactfJDi7GLG3AtuAJ9P1AfCVvT8LTIchgS8Abba8P8HRH4kBtzI8FcXwk723AC+BEdgKPO2Q+hMcHagQdCtDyTyGP53yYmB8BtwGXO8YziY4+g64kBh0BrAskTvolKcA8zPgHo/URhz9mJUmFasTef66vyADbvcqOxKd9cQp/6IbmJXAm+Q9z85sYxc3Jgb9Bvg0kdvCyJEqwk3ec2eGGWsXdyUGBVgOHEnk+sGL4MeuZZjk7OIOYEJi0AbwIHAqgVuP2McBC7y6y4u2W3Xg0YSAOfYBc4CDEV4suT8AXOdXZsBfBeSVBXVlOAjcB/xewmlEfLxYUDeYAccLDHOBh1OUOejDJNcQypL7Qnv5GMiAXwONNhD/bnz0Ah8W1J9naJ310QZsCtgOZ9ZpESYDGyvJM9hQUNdL+Bt9C7ghYOtF0rzI3u6Nivu6iZKOJe4P18T2lUhqk3QkQny7gsCapF+ctp8HeLFNb0NSLSe/HiFL5hA1PVFg/sINSdM8+1RJOxLivSdnyz9N0sWERmckvSKpvUTgzZY7IGmmU3+VpFWSTiTEkaQuVyCS3klsKEn9Mr2+UNIkT+B6SV/LnPyQdLekHkm/VfC/LffXIimfMe2YQ3S94qw9iklVPwMCngG2W9u9QGdFf38DXcBhYMSx8/EKbzlWeE4l52Ikbf7/tGm7r8cdYhc7MYv3pcRuzCcxbFMR+nn0CLBrrBU52IPZto3c8fhd6l1bLsGwfiSpJaQhZWV4StKpMRA2IOn5WPzU5atL0kZJ55ok7gMNT+L/WWB+dUt6U9WSbo4+Se+mCsuv0CyOoQbMB+4EZmP+o1wJXGHt54AzmGT7I7AXcwo8XTXQPzR4h4YySeC4AAAAAElFTkSuQmCC" alt="UPC">
+                    </div>
+
+                    <div class="mb-72  ml-md-32 mr-md-64">
+                        <h3 class="title">Login UPC</h3>
+                    </div>
+                </div>
+
+                <div class="col bg-white">
+
+                    <form action="#" class="mt-48 mt-md-36 mb-md-64">
+                        <div class="toast p-8">
+                            <div class="text-center text-danger error">
+                                <p class="font-14 mb-0">
+                                    <span class="icon-circle">!</span> <span>Usuario o contraseña incorrecta</span>
+                                </p>
+                                <p class="font-14">
+                                    Recuerde que luego de algunos intentos fallidos su cuenta se bloqueará.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-user" class="sr-only">Usuario UPC</label>
+                            <div class="input-icon">
+                                <span class="icon-user"></span>
+                                <input type="text" id="input-user" class="form-control" name="user" placeholder="Usuario UPC" autofocus required />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-password" class="sr-only">Contraseña</label>
+                            <div class="input-icon">
+                                <span class="icon-lock"></span>
+                                <input type="password" id="input-password" name="password" class="form-control" placeholder="Contraseña" required />
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="form-group mt-32">
+                            <button class="btn btn-block btn-primary" id="btn-login" name="button" value="login">
+                                Inicia sesión
+                            </button>
+                        </div>
+
+                        <p class="text-center mt-32">
+                            <a href="#" id="link-forgot-pass" class="">¿Olvidaste tu contraseña?</a>
+                        </p>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<script src="./js/login.js"></script></body>
+</html>

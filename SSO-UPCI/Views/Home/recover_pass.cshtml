@@ -1,0 +1,106 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_LayoutSSO.cshtml";
+}
+
+<body class="background-02">
+    <!--Se agrega control de trafico adicional de Google Analytics (JCRodriguez 12-10-2020)-->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-594PBW" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div class="overlay dark">
+
+        <div class="container">
+            <div class="row">
+                <div class="col background-03-desktop">
+                    <div class="logo">
+                        <img src="../img/upc-white.png" alt="UPC">
+                    </div>
+
+                    <div class="mb-72 ml-md-32 mr-md-64">
+                        <h3 class="title">Recuperar Contraseña</h3>
+                        <p>Ingresa tu nombre de usuario UPC.</p>
+                    </div>
+                </div>
+
+                <div class="col bg-white">
+
+                    @*<form action="#" class="form-sign-in mt-md-48 mb-md-96">*@
+                    <form action="#" class="mb-32">
+                        <div class="toast p-8">
+                            <div class="text-center text-danger error">
+                                <p class="font-14 mb-0">
+                                    <span class="icon-circle">!</span> <span class="toast-title"></span>
+                                </p>
+                                <p class="font-14 toast-message"></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-username" class="sr-only">Usuario UPC</label>
+                            <div class="input-icon">
+                                <span class="icon-user"></span>
+                                <input type="text" id="input-username" class="form-control" placeholder="Usuario UPC" autofocus required />
+                            </div>
+                            <span class="hint">Ej: U20152020</span>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="form-group mt-64 mt-md-16">
+                            <button type="button" id="btn-continuar" class="btn btn-block btn-primary">
+                                Continuar &nbsp; <span class="glyphicon glyphicon-refresh spin hide"></span>
+                            </button>
+                        </div>
+
+                        <!--JUAN CARLOS RODRIGUEZ DONAYRE 08-06-2021 (AGREGADO)-->
+                        <span style="color:Highlight; margin:10px 30px;"><strong>¿Deseas registrar tu correo personal o celular?</strong></span>
+
+                        <div class="chatPhone">
+                            <a href="@ViewBag.urlActData" target="_blank">
+                                <strong style="font-size:small">ACTUALIZA TUS DATOS</strong>
+                            </a>
+                        </div>
+
+                        <span style="color:Highlight; margin:10px 75px;"><strong>¿Deseas contactarte a IT Service?</strong></span>
+
+                        <div class="chatPhone">
+                            <i class="fas fa-phone-volume"></i>
+                            <a href="tel:+51016303333" target="_self">
+                                <strong> &nbsp; &nbsp;630 - 33 33</strong>
+                            </a>
+                        </div>
+
+                        <div class="chatPhone">
+                            <i class="fab fa-whatsapp"></i>
+                            <a href="https://api.whatsapp.com/send?phone=51962222408&text=Hola!%20quiero%20hacerte%20una%20consulta!" target="blank">
+                                <strong> &nbsp; &nbsp;962 222 408</strong>
+                            </a>
+                        </div>
+                        <!--FIN-->
+
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="row" style="padding-top:20px">
+                <p>&copy; @DateTime.Now.Year - SSO UPC</p>
+            </div>
+
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/recover_pass")
+
+    @*
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/constants.js"></script>
+    <script src="~/Scripts/recover-pass.js"></script>
+    *@
+
+</body>
+

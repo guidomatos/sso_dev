@@ -1,0 +1,698 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SSOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SSO_auditoria">
+          <Key>
+            <PropertyRef Name="auditoria_id" />
+          </Key>
+          <Property Name="auditoria_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="auditoria_tablaNombre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="auditoria_operacion" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="auditoria_fechaOperacion" Type="datetime" Nullable="false" />
+          <Property Name="auditoria_usuario" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SSO_code">
+          <Key>
+            <PropertyRef Name="code_id" />
+          </Key>
+          <Property Name="code_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="code_usuario_id" Type="int" Nullable="false" />
+          <Property Name="code_CodeValue" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="code_fechaRegistro" Type="datetime" />
+          <Property Name="code_medioEnvio" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="SSO_federada">
+          <Key>
+            <PropertyRef Name="federada_id" />
+          </Key>
+          <Property Name="federada_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="federada_nombre" Type="varchar" MaxLength="140" />
+          <Property Name="federada_url" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="federada_descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="federada_estado" Type="bit" Nullable="false" />
+          <Property Name="federada_api" Type="varchar" MaxLength="10" />
+          <Property Name="federada_codigo" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="SSO_redSocial">
+          <Key>
+            <PropertyRef Name="redSocial_id" />
+          </Key>
+          <Property Name="redSocial_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="redSocial_nombre" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="redSocial_idApi" Type="varchar" MaxLength="50" />
+          <Property Name="redSocial_secretApi" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="SSO_servicios">
+          <Key>
+            <PropertyRef Name="servicio_id" />
+          </Key>
+          <Property Name="servicio_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="servicio_url" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="servicio_tipo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="servicio_nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="servicio_descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="servicio_estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SSO_usuario">
+          <Key>
+            <PropertyRef Name="usuario_id" />
+          </Key>
+          <Property Name="usuario_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario_login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="usuario_nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="usuario_apPaterno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="usuario_apMaterno" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="usuario_correoUPC" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="usuario_correoPersonal" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="usuario_telefono" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="usuario_estado" Type="bit" Nullable="false" />
+          <Property Name="usuario_flagAsociarRedes" Type="bit" Nullable="false" />
+          <Property Name="usuario_flagRecPas" Type="bit" />
+          <Property Name="usuario_tipo" Type="varchar" MaxLength="20" />
+          <Property Name="usuario_ultActDatos" Type="datetime" />
+        </EntityType>
+        <EntityType Name="SSO_usuarioClave">
+          <Key>
+            <PropertyRef Name="usuarioClave_id" />
+          </Key>
+          <Property Name="usuarioClave_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuarioClave_usuario_id" Type="int" Nullable="false" />
+          <Property Name="usuarioClave_fecha" Type="datetime" Nullable="false" />
+          <Property Name="usuarioClave_pwd" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SSO_usuarioCnx">
+          <Key>
+            <PropertyRef Name="usuarioCnx_id" />
+          </Key>
+          <Property Name="usuarioCnx_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuarioCnx_usuario_id" Type="int" Nullable="false" />
+          <Property Name="usuarioCnx_fecha" Type="datetime" Nullable="false" />
+          <Property Name="usuarioCnx_codFederada" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="SSO_usuarioFederada">
+          <Key>
+            <PropertyRef Name="UF_usuario_id" />
+            <PropertyRef Name="UF_federada_id" />
+          </Key>
+          <Property Name="UF_usuario_id" Type="int" Nullable="false" />
+          <Property Name="UF_federada_id" Type="int" Nullable="false" />
+          <Property Name="UF_fecha" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SSO_usuarioRed">
+          <Key>
+            <PropertyRef Name="usuarioRed_usuario_id" />
+            <PropertyRef Name="usuarioRed_redSocial_id" />
+          </Key>
+          <Property Name="usuarioRed_usuario_id" Type="int" Nullable="false" />
+          <Property Name="usuarioRed_redSocial_id" Type="int" Nullable="false" />
+          <Property Name="usuarioRed_correo_usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="usuarioRed_nombre_usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="usuarioRed_imagenUrl" Type="varchar" MaxLength="1000" />
+          <Property Name="usuarioRed_fecha" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SSO_variable">
+          <Key>
+            <PropertyRef Name="variable_id" />
+          </Key>
+          <Property Name="variable_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="variable_nombre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="variable_valor" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__SSO_code__code_u__5165187F">
+          <End Role="SSO_usuario" Type="Self.SSO_usuario" Multiplicity="1" />
+          <End Role="SSO_code" Type="Self.SSO_code" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSO_usuario">
+              <PropertyRef Name="usuario_id" />
+            </Principal>
+            <Dependent Role="SSO_code">
+              <PropertyRef Name="code_usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SSO_usuar__UF_fe__47DBAE45">
+          <End Role="SSO_federada" Type="Self.SSO_federada" Multiplicity="1" />
+          <End Role="SSO_usuarioFederada" Type="Self.SSO_usuarioFederada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSO_federada">
+              <PropertyRef Name="federada_id" />
+            </Principal>
+            <Dependent Role="SSO_usuarioFederada">
+              <PropertyRef Name="UF_federada_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SSO_usuar__UF_us__46E78A0C">
+          <End Role="SSO_usuario" Type="Self.SSO_usuario" Multiplicity="1" />
+          <End Role="SSO_usuarioFederada" Type="Self.SSO_usuarioFederada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSO_usuario">
+              <PropertyRef Name="usuario_id" />
+            </Principal>
+            <Dependent Role="SSO_usuarioFederada">
+              <PropertyRef Name="UF_usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SSO_usuar__usuar__3E52440B">
+          <End Role="SSO_usuario" Type="Self.SSO_usuario" Multiplicity="1" />
+          <End Role="SSO_usuarioRed" Type="Self.SSO_usuarioRed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSO_usuario">
+              <PropertyRef Name="usuario_id" />
+            </Principal>
+            <Dependent Role="SSO_usuarioRed">
+              <PropertyRef Name="usuarioRed_usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SSO_usuar__usuar__3F466844">
+          <End Role="SSO_redSocial" Type="Self.SSO_redSocial" Multiplicity="1" />
+          <End Role="SSO_usuarioRed" Type="Self.SSO_usuarioRed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSO_redSocial">
+              <PropertyRef Name="redSocial_id" />
+            </Principal>
+            <Dependent Role="SSO_usuarioRed">
+              <PropertyRef Name="usuarioRed_redSocial_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SSO_usuar__usuar__4222D4EF">
+          <End Role="SSO_usuario" Type="Self.SSO_usuario" Multiplicity="1" />
+          <End Role="SSO_usuarioCnx" Type="Self.SSO_usuarioCnx" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSO_usuario">
+              <PropertyRef Name="usuario_id" />
+            </Principal>
+            <Dependent Role="SSO_usuarioCnx">
+              <PropertyRef Name="usuarioCnx_usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SSO_usuar__usuar__4F47C5E3">
+          <End Role="SSO_usuario" Type="Self.SSO_usuario" Multiplicity="1" />
+          <End Role="SSO_usuarioClave" Type="Self.SSO_usuarioClave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSO_usuario">
+              <PropertyRef Name="usuario_id" />
+            </Principal>
+            <Dependent Role="SSO_usuarioClave">
+              <PropertyRef Name="usuarioClave_usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SSOModelStoreContainer">
+          <EntitySet Name="SSO_auditoria" EntityType="Self.SSO_auditoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SSO_code" EntityType="Self.SSO_code" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SSO_federada" EntityType="Self.SSO_federada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SSO_redSocial" EntityType="Self.SSO_redSocial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SSO_servicios" EntityType="Self.SSO_servicios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SSO_usuario" EntityType="Self.SSO_usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SSO_usuarioClave" EntityType="Self.SSO_usuarioClave" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SSO_usuarioCnx" EntityType="Self.SSO_usuarioCnx" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SSO_usuarioFederada" EntityType="Self.SSO_usuarioFederada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SSO_usuarioRed" EntityType="Self.SSO_usuarioRed" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SSO_variable" EntityType="Self.SSO_variable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__SSO_code__code_u__5165187F" Association="Self.FK__SSO_code__code_u__5165187F">
+            <End Role="SSO_usuario" EntitySet="SSO_usuario" />
+            <End Role="SSO_code" EntitySet="SSO_code" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SSO_usuar__UF_fe__47DBAE45" Association="Self.FK__SSO_usuar__UF_fe__47DBAE45">
+            <End Role="SSO_federada" EntitySet="SSO_federada" />
+            <End Role="SSO_usuarioFederada" EntitySet="SSO_usuarioFederada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SSO_usuar__UF_us__46E78A0C" Association="Self.FK__SSO_usuar__UF_us__46E78A0C">
+            <End Role="SSO_usuario" EntitySet="SSO_usuario" />
+            <End Role="SSO_usuarioFederada" EntitySet="SSO_usuarioFederada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SSO_usuar__usuar__3E52440B" Association="Self.FK__SSO_usuar__usuar__3E52440B">
+            <End Role="SSO_usuario" EntitySet="SSO_usuario" />
+            <End Role="SSO_usuarioRed" EntitySet="SSO_usuarioRed" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SSO_usuar__usuar__3F466844" Association="Self.FK__SSO_usuar__usuar__3F466844">
+            <End Role="SSO_redSocial" EntitySet="SSO_redSocial" />
+            <End Role="SSO_usuarioRed" EntitySet="SSO_usuarioRed" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SSO_usuar__usuar__4222D4EF" Association="Self.FK__SSO_usuar__usuar__4222D4EF">
+            <End Role="SSO_usuario" EntitySet="SSO_usuario" />
+            <End Role="SSO_usuarioCnx" EntitySet="SSO_usuarioCnx" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SSO_usuar__usuar__4F47C5E3" Association="Self.FK__SSO_usuar__usuar__4F47C5E3">
+            <End Role="SSO_usuario" EntitySet="SSO_usuario" />
+            <End Role="SSO_usuarioClave" EntitySet="SSO_usuarioClave" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SSOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SSOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SSO_auditoria" EntityType="SSOModel.SSO_auditoria" />
+          <EntitySet Name="SSO_code" EntityType="SSOModel.SSO_code" />
+          <EntitySet Name="SSO_federada" EntityType="SSOModel.SSO_federada" />
+          <EntitySet Name="SSO_redSocial" EntityType="SSOModel.SSO_redSocial" />
+          <EntitySet Name="SSO_servicios" EntityType="SSOModel.SSO_servicios" />
+          <EntitySet Name="SSO_usuario" EntityType="SSOModel.SSO_usuario" />
+          <EntitySet Name="SSO_usuarioCnx" EntityType="SSOModel.SSO_usuarioCnx" />
+          <EntitySet Name="SSO_usuarioFederada" EntityType="SSOModel.SSO_usuarioFederada" />
+          <EntitySet Name="SSO_usuarioRed" EntityType="SSOModel.SSO_usuarioRed" />
+          <EntitySet Name="SSO_variable" EntityType="SSOModel.SSO_variable" />
+          <EntitySet Name="sysdiagrams" EntityType="SSOModel.sysdiagrams" />
+          <AssociationSet Name="FK__SSO_code__code_u__22751F6C" Association="SSOModel.FK__SSO_code__code_u__22751F6C">
+            <End Role="SSO_usuario" EntitySet="SSO_usuario" />
+            <End Role="SSO_code" EntitySet="SSO_code" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SSO_usuar__UF_fe__114A936A" Association="SSOModel.FK__SSO_usuar__UF_fe__114A936A">
+            <End Role="SSO_federada" EntitySet="SSO_federada" />
+            <End Role="SSO_usuarioFederada" EntitySet="SSO_usuarioFederada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SSO_usuar__usuar__3587F3E0" Association="SSOModel.FK__SSO_usuar__usuar__3587F3E0">
+            <End Role="SSO_redSocial" EntitySet="SSO_redSocial" />
+            <End Role="SSO_usuarioRed" EntitySet="SSO_usuarioRed" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SSO_usuar__UF_us__10566F31" Association="SSOModel.FK__SSO_usuar__UF_us__10566F31">
+            <End Role="SSO_usuario" EntitySet="SSO_usuario" />
+            <End Role="SSO_usuarioFederada" EntitySet="SSO_usuarioFederada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SSO_usuar__usuar__1DB06A4F" Association="SSOModel.FK__SSO_usuar__usuar__1DB06A4F">
+            <End Role="SSO_usuario" EntitySet="SSO_usuario" />
+            <End Role="SSO_usuarioCnx" EntitySet="SSO_usuarioCnx" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SSO_usuar__usuar__3493CFA7" Association="SSOModel.FK__SSO_usuar__usuar__3493CFA7">
+            <End Role="SSO_usuario" EntitySet="SSO_usuario" />
+            <End Role="SSO_usuarioRed" EntitySet="SSO_usuarioRed" />
+          </AssociationSet>
+          <EntitySet Name="SSO_usuarioClave" EntityType="SSOModel.SSO_usuarioClave" />
+          <AssociationSet Name="FK__SSO_usuar__usuar__4F47C5E3" Association="SSOModel.FK__SSO_usuar__usuar__4F47C5E3">
+            <End Role="SSO_usuario" EntitySet="SSO_usuario" />
+            <End Role="SSO_usuarioClave" EntitySet="SSO_usuarioClave" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="SSO_auditoria">
+          <Key>
+            <PropertyRef Name="auditoria_id" />
+          </Key>
+          <Property Name="auditoria_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="auditoria_tablaNombre" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="auditoria_operacion" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="auditoria_fechaOperacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="auditoria_usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SSO_code">
+          <Key>
+            <PropertyRef Name="code_id" />
+          </Key>
+          <Property Name="code_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="code_usuario_id" Type="Int32" Nullable="false" />
+          <Property Name="code_CodeValue" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="code_fechaRegistro" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SSO_usuario" Relationship="SSOModel.FK__SSO_code__code_u__22751F6C" FromRole="SSO_code" ToRole="SSO_usuario" />
+          <Property Name="code_medioEnvio" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SSO_federada">
+          <Key>
+            <PropertyRef Name="federada_id" />
+          </Key>
+          <Property Name="federada_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="federada_nombre" Type="String" MaxLength="140" FixedLength="false" Unicode="false" />
+          <Property Name="federada_url" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="federada_descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="federada_estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="SSO_usuarioFederada" Relationship="SSOModel.FK__SSO_usuar__UF_fe__114A936A" FromRole="SSO_federada" ToRole="SSO_usuarioFederada" />
+          <Property Name="federada_api" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="federada_codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SSO_redSocial">
+          <Key>
+            <PropertyRef Name="redSocial_id" />
+          </Key>
+          <Property Name="redSocial_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="redSocial_nombre" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="redSocial_idApi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="redSocial_secretApi" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SSO_usuarioRed" Relationship="SSOModel.FK__SSO_usuar__usuar__3587F3E0" FromRole="SSO_redSocial" ToRole="SSO_usuarioRed" />
+        </EntityType>
+        <EntityType Name="SSO_servicios">
+          <Key>
+            <PropertyRef Name="servicio_id" />
+          </Key>
+          <Property Name="servicio_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="servicio_url" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="servicio_tipo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="servicio_nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="servicio_descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="servicio_estado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SSO_usuario">
+          <Key>
+            <PropertyRef Name="usuario_id" />
+          </Key>
+          <Property Name="usuario_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario_login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_apPaterno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_apMaterno" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_correoUPC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_correoPersonal" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_telefono" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_estado" Type="Boolean" Nullable="false" />
+          <Property Name="usuario_flagAsociarRedes" Type="Boolean" Nullable="false" />
+          <Property Name="usuario_flagRecPas" Type="Boolean" />
+          <NavigationProperty Name="SSO_code" Relationship="SSOModel.FK__SSO_code__code_u__22751F6C" FromRole="SSO_usuario" ToRole="SSO_code" />
+          <NavigationProperty Name="SSO_usuarioFederada" Relationship="SSOModel.FK__SSO_usuar__UF_us__10566F31" FromRole="SSO_usuario" ToRole="SSO_usuarioFederada" />
+          <NavigationProperty Name="SSO_usuarioCnx" Relationship="SSOModel.FK__SSO_usuar__usuar__1DB06A4F" FromRole="SSO_usuario" ToRole="SSO_usuarioCnx" />
+          <NavigationProperty Name="SSO_usuarioRed" Relationship="SSOModel.FK__SSO_usuar__usuar__3493CFA7" FromRole="SSO_usuario" ToRole="SSO_usuarioRed" />
+          <Property Name="usuario_tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="usuario_ultActDatos" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SSO_usuarioClave" Relationship="SSOModel.FK__SSO_usuar__usuar__4F47C5E3" FromRole="SSO_usuario" ToRole="SSO_usuarioClave" />
+        </EntityType>
+        <EntityType Name="SSO_usuarioCnx">
+          <Key>
+            <PropertyRef Name="usuarioCnx_id" />
+          </Key>
+          <Property Name="usuarioCnx_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuarioCnx_usuario_id" Type="Int32" Nullable="false" />
+          <Property Name="usuarioCnx_fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SSO_usuario" Relationship="SSOModel.FK__SSO_usuar__usuar__1DB06A4F" FromRole="SSO_usuarioCnx" ToRole="SSO_usuario" />
+          <Property Name="usuarioCnx_codFederada" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SSO_usuarioFederada">
+          <Key>
+            <PropertyRef Name="UF_usuario_id" />
+            <PropertyRef Name="UF_federada_id" />
+          </Key>
+          <Property Name="UF_usuario_id" Type="Int32" Nullable="false" />
+          <Property Name="UF_federada_id" Type="Int32" Nullable="false" />
+          <Property Name="UF_fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SSO_federada" Relationship="SSOModel.FK__SSO_usuar__UF_fe__114A936A" FromRole="SSO_usuarioFederada" ToRole="SSO_federada" />
+          <NavigationProperty Name="SSO_usuario" Relationship="SSOModel.FK__SSO_usuar__UF_us__10566F31" FromRole="SSO_usuarioFederada" ToRole="SSO_usuario" />
+        </EntityType>
+        <EntityType Name="SSO_usuarioRed">
+          <Key>
+            <PropertyRef Name="usuarioRed_usuario_id" />
+            <PropertyRef Name="usuarioRed_redSocial_id" />
+          </Key>
+          <Property Name="usuarioRed_usuario_id" Type="Int32" Nullable="false" />
+          <Property Name="usuarioRed_redSocial_id" Type="Int32" Nullable="false" />
+          <Property Name="usuarioRed_correo_usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioRed_nombre_usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioRed_imagenUrl" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioRed_fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SSO_redSocial" Relationship="SSOModel.FK__SSO_usuar__usuar__3587F3E0" FromRole="SSO_usuarioRed" ToRole="SSO_redSocial" />
+          <NavigationProperty Name="SSO_usuario" Relationship="SSOModel.FK__SSO_usuar__usuar__3493CFA7" FromRole="SSO_usuarioRed" ToRole="SSO_usuario" />
+        </EntityType>
+        <EntityType Name="SSO_variable">
+          <Key>
+            <PropertyRef Name="variable_id" />
+          </Key>
+          <Property Name="variable_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="variable_nombre" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="variable_valor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__SSO_code__code_u__22751F6C">
+          <End Type="SSOModel.SSO_usuario" Role="SSO_usuario" Multiplicity="1" />
+          <End Type="SSOModel.SSO_code" Role="SSO_code" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSO_usuario">
+              <PropertyRef Name="usuario_id" />
+            </Principal>
+            <Dependent Role="SSO_code">
+              <PropertyRef Name="code_usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SSO_usuar__UF_fe__114A936A">
+          <End Type="SSOModel.SSO_federada" Role="SSO_federada" Multiplicity="1" />
+          <End Type="SSOModel.SSO_usuarioFederada" Role="SSO_usuarioFederada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSO_federada">
+              <PropertyRef Name="federada_id" />
+            </Principal>
+            <Dependent Role="SSO_usuarioFederada">
+              <PropertyRef Name="UF_federada_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SSO_usuar__usuar__3587F3E0">
+          <End Type="SSOModel.SSO_redSocial" Role="SSO_redSocial" Multiplicity="1" />
+          <End Type="SSOModel.SSO_usuarioRed" Role="SSO_usuarioRed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSO_redSocial">
+              <PropertyRef Name="redSocial_id" />
+            </Principal>
+            <Dependent Role="SSO_usuarioRed">
+              <PropertyRef Name="usuarioRed_redSocial_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SSO_usuar__UF_us__10566F31">
+          <End Type="SSOModel.SSO_usuario" Role="SSO_usuario" Multiplicity="1" />
+          <End Type="SSOModel.SSO_usuarioFederada" Role="SSO_usuarioFederada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSO_usuario">
+              <PropertyRef Name="usuario_id" />
+            </Principal>
+            <Dependent Role="SSO_usuarioFederada">
+              <PropertyRef Name="UF_usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SSO_usuar__usuar__1DB06A4F">
+          <End Type="SSOModel.SSO_usuario" Role="SSO_usuario" Multiplicity="1" />
+          <End Type="SSOModel.SSO_usuarioCnx" Role="SSO_usuarioCnx" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSO_usuario">
+              <PropertyRef Name="usuario_id" />
+            </Principal>
+            <Dependent Role="SSO_usuarioCnx">
+              <PropertyRef Name="usuarioCnx_usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SSO_usuar__usuar__3493CFA7">
+          <End Type="SSOModel.SSO_usuario" Role="SSO_usuario" Multiplicity="1" />
+          <End Type="SSOModel.SSO_usuarioRed" Role="SSO_usuarioRed" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSO_usuario">
+              <PropertyRef Name="usuario_id" />
+            </Principal>
+            <Dependent Role="SSO_usuarioRed">
+              <PropertyRef Name="usuarioRed_usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SSO_usuarioClave">
+          <Key>
+            <PropertyRef Name="usuarioClave_id" />
+          </Key>
+          <Property Name="usuarioClave_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuarioClave_usuario_id" Type="Int32" Nullable="false" />
+          <Property Name="usuarioClave_fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="usuarioClave_pwd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SSO_usuario" Relationship="SSOModel.FK__SSO_usuar__usuar__4F47C5E3" FromRole="SSO_usuarioClave" ToRole="SSO_usuario" />
+        </EntityType>
+        <Association Name="FK__SSO_usuar__usuar__4F47C5E3">
+          <End Type="SSOModel.SSO_usuario" Role="SSO_usuario" Multiplicity="1" />
+          <End Type="SSOModel.SSO_usuarioClave" Role="SSO_usuarioClave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSO_usuario">
+              <PropertyRef Name="usuario_id" />
+            </Principal>
+            <Dependent Role="SSO_usuarioClave">
+              <PropertyRef Name="usuarioClave_usuario_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SSOModelStoreContainer" CdmEntityContainer="SSOEntities">
+          <EntitySetMapping Name="SSO_auditoria">
+            <EntityTypeMapping TypeName="SSOModel.SSO_auditoria">
+              <MappingFragment StoreEntitySet="SSO_auditoria">
+                <ScalarProperty Name="auditoria_usuario" ColumnName="auditoria_usuario" />
+                <ScalarProperty Name="auditoria_fechaOperacion" ColumnName="auditoria_fechaOperacion" />
+                <ScalarProperty Name="auditoria_operacion" ColumnName="auditoria_operacion" />
+                <ScalarProperty Name="auditoria_tablaNombre" ColumnName="auditoria_tablaNombre" />
+                <ScalarProperty Name="auditoria_id" ColumnName="auditoria_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSO_code">
+            <EntityTypeMapping TypeName="SSOModel.SSO_code">
+              <MappingFragment StoreEntitySet="SSO_code">
+                <ScalarProperty Name="code_medioEnvio" ColumnName="code_medioEnvio" />
+                <ScalarProperty Name="code_fechaRegistro" ColumnName="code_fechaRegistro" />
+                <ScalarProperty Name="code_CodeValue" ColumnName="code_CodeValue" />
+                <ScalarProperty Name="code_usuario_id" ColumnName="code_usuario_id" />
+                <ScalarProperty Name="code_id" ColumnName="code_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSO_federada">
+            <EntityTypeMapping TypeName="SSOModel.SSO_federada">
+              <MappingFragment StoreEntitySet="SSO_federada">
+                <ScalarProperty Name="federada_codigo" ColumnName="federada_codigo" />
+                <ScalarProperty Name="federada_api" ColumnName="federada_api" />
+                <ScalarProperty Name="federada_estado" ColumnName="federada_estado" />
+                <ScalarProperty Name="federada_descripcion" ColumnName="federada_descripcion" />
+                <ScalarProperty Name="federada_url" ColumnName="federada_url" />
+                <ScalarProperty Name="federada_nombre" ColumnName="federada_nombre" />
+                <ScalarProperty Name="federada_id" ColumnName="federada_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSO_redSocial">
+            <EntityTypeMapping TypeName="SSOModel.SSO_redSocial">
+              <MappingFragment StoreEntitySet="SSO_redSocial">
+                <ScalarProperty Name="redSocial_secretApi" ColumnName="redSocial_secretApi" />
+                <ScalarProperty Name="redSocial_idApi" ColumnName="redSocial_idApi" />
+                <ScalarProperty Name="redSocial_nombre" ColumnName="redSocial_nombre" />
+                <ScalarProperty Name="redSocial_id" ColumnName="redSocial_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSO_servicios">
+            <EntityTypeMapping TypeName="SSOModel.SSO_servicios">
+              <MappingFragment StoreEntitySet="SSO_servicios">
+                <ScalarProperty Name="servicio_estado" ColumnName="servicio_estado" />
+                <ScalarProperty Name="servicio_descripcion" ColumnName="servicio_descripcion" />
+                <ScalarProperty Name="servicio_nombre" ColumnName="servicio_nombre" />
+                <ScalarProperty Name="servicio_tipo" ColumnName="servicio_tipo" />
+                <ScalarProperty Name="servicio_url" ColumnName="servicio_url" />
+                <ScalarProperty Name="servicio_id" ColumnName="servicio_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSO_usuario">
+            <EntityTypeMapping TypeName="SSOModel.SSO_usuario">
+              <MappingFragment StoreEntitySet="SSO_usuario">
+                <ScalarProperty Name="usuario_ultActDatos" ColumnName="usuario_ultActDatos" />
+                <ScalarProperty Name="usuario_tipo" ColumnName="usuario_tipo" />
+                <ScalarProperty Name="usuario_flagRecPas" ColumnName="usuario_flagRecPas" />
+                <ScalarProperty Name="usuario_flagAsociarRedes" ColumnName="usuario_flagAsociarRedes" />
+                <ScalarProperty Name="usuario_estado" ColumnName="usuario_estado" />
+                <ScalarProperty Name="usuario_telefono" ColumnName="usuario_telefono" />
+                <ScalarProperty Name="usuario_correoPersonal" ColumnName="usuario_correoPersonal" />
+                <ScalarProperty Name="usuario_correoUPC" ColumnName="usuario_correoUPC" />
+                <ScalarProperty Name="usuario_apMaterno" ColumnName="usuario_apMaterno" />
+                <ScalarProperty Name="usuario_apPaterno" ColumnName="usuario_apPaterno" />
+                <ScalarProperty Name="usuario_nombre" ColumnName="usuario_nombre" />
+                <ScalarProperty Name="usuario_login" ColumnName="usuario_login" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSO_usuarioCnx">
+            <EntityTypeMapping TypeName="SSOModel.SSO_usuarioCnx">
+              <MappingFragment StoreEntitySet="SSO_usuarioCnx">
+                <ScalarProperty Name="usuarioCnx_codFederada" ColumnName="usuarioCnx_codFederada" />
+                <ScalarProperty Name="usuarioCnx_fecha" ColumnName="usuarioCnx_fecha" />
+                <ScalarProperty Name="usuarioCnx_usuario_id" ColumnName="usuarioCnx_usuario_id" />
+                <ScalarProperty Name="usuarioCnx_id" ColumnName="usuarioCnx_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSO_usuarioFederada">
+            <EntityTypeMapping TypeName="SSOModel.SSO_usuarioFederada">
+              <MappingFragment StoreEntitySet="SSO_usuarioFederada">
+                <ScalarProperty Name="UF_fecha" ColumnName="UF_fecha" />
+                <ScalarProperty Name="UF_federada_id" ColumnName="UF_federada_id" />
+                <ScalarProperty Name="UF_usuario_id" ColumnName="UF_usuario_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSO_usuarioRed">
+            <EntityTypeMapping TypeName="SSOModel.SSO_usuarioRed">
+              <MappingFragment StoreEntitySet="SSO_usuarioRed">
+                <ScalarProperty Name="usuarioRed_fecha" ColumnName="usuarioRed_fecha" />
+                <ScalarProperty Name="usuarioRed_imagenUrl" ColumnName="usuarioRed_imagenUrl" />
+                <ScalarProperty Name="usuarioRed_nombre_usuario" ColumnName="usuarioRed_nombre_usuario" />
+                <ScalarProperty Name="usuarioRed_correo_usuario" ColumnName="usuarioRed_correo_usuario" />
+                <ScalarProperty Name="usuarioRed_redSocial_id" ColumnName="usuarioRed_redSocial_id" />
+                <ScalarProperty Name="usuarioRed_usuario_id" ColumnName="usuarioRed_usuario_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSO_variable">
+            <EntityTypeMapping TypeName="SSOModel.SSO_variable">
+              <MappingFragment StoreEntitySet="SSO_variable">
+                <ScalarProperty Name="variable_valor" ColumnName="variable_valor" />
+                <ScalarProperty Name="variable_nombre" ColumnName="variable_nombre" />
+                <ScalarProperty Name="variable_id" ColumnName="variable_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SSOModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSO_usuarioClave">
+            <EntityTypeMapping TypeName="SSOModel.SSO_usuarioClave">
+              <MappingFragment StoreEntitySet="SSO_usuarioClave">
+                <ScalarProperty Name="usuarioClave_pwd" ColumnName="usuarioClave_pwd" />
+                <ScalarProperty Name="usuarioClave_fecha" ColumnName="usuarioClave_fecha" />
+                <ScalarProperty Name="usuarioClave_usuario_id" ColumnName="usuarioClave_usuario_id" />
+                <ScalarProperty Name="usuarioClave_id" ColumnName="usuarioClave_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
