@@ -68,6 +68,19 @@
   <ItemGroup>
     <Compile Include="Clases\Conexion.cs" />
     <Compile Include="DatosTokenModel.cs" />
+    <Compile Include="DTO\AuthenticationOnAzureRequestDto.cs" />
+    <Compile Include="DTO\AuthenticationOnAzureResponseDto.cs" />
+    <Compile Include="DTO\AuthenticationOnPremiseRequestDto.cs" />
+    <Compile Include="DTO\AuthenticationOnPremiseResponseDto.cs" />
+    <Compile Include="DTO\ChangePasswordRequestDto.cs" />
+    <Compile Include="DTO\ChangePasswordResponseDto.cs" />
+    <Compile Include="DTO\GetContactInfoResponseDto.cs" />
+    <Compile Include="DTO\GetUserInfoFromAzureRequestDto.cs" />
+    <Compile Include="DTO\GetUserInfoFromAzureResponseDto.cs" />
+    <Compile Include="DTO\GetUserInfoFromOnPremiseRequestDto.cs" />
+    <Compile Include="DTO\GetUserInfoFromOnPremiseResponseDto.cs" />
+    <Compile Include="DTO\GetUserInfoResponseDto.cs" />
+    <Compile Include="DTO\SendSmsResponseDto.cs" />
     <Compile Include="Interfaces\IConexion.cs" />
     <Compile Include="Modelo\ModeloDB.Context.cs">
       <AutoGen>True</AutoGen>
@@ -157,6 +170,7 @@
       <Name>SSO-SecurityServerF</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

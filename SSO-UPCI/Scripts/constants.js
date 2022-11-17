@@ -3,8 +3,8 @@
 const API_URLS = {
     VALIDATE_CREDENTIALS:   '/Seguridad/Home/ValidaCredenciales',
     VALIDATE_USER:          '/Seguridad/Home/ValidaSoloUsuario',
-    EVALUATE_FB:            '/Seguridad/Home/evaluaFace',
-    EVALUATE_JWT:           '/Seguridad/Home/evaluaJWT',
+    EVALUATE_FB:            '/Seguridad/Home/EvaluaFace',
+    EVALUATE_JWT:           '/Seguridad/Home/EvaluaJWT',
     PROCESS_FB:             '/Seguridad/Home/procesaFace',
     PROCESS_JWT:            '/Seguridad/Home/procesaJWT',
     NET_USERS:              '/Seguridad/Home/consulta_SSO_usuarioRed',

@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using SSO_SecurityServerF;
 using SSO_SecurityServerF.Clases;
 using SSO_UPCI.Clases;
-using SSO_SecurityServerF.Mailer;
 using SSO_BusinessLogic.Interfaces;
 using SSO_IdentityServerF;
 using SSO_Modelo.Interfaces;
+using System.Configuration;
 
 namespace SSO_UPCI.Areas.Seguridad.Controllers
 {
@@ -40,10 +37,11 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
             _login.user = _encriptador.DecodeBase64(_login.user);      //decodifica
             _login.password = _encriptador.DecodeBase64(_login.password);  //decodifica
 
-            Respuesta _respuesta = new Respuesta();
             _login.user = ClsComun.QuitaTilde(_login.user);
             _login.CodFederada = string.IsNullOrEmpty((string)Session["federada"]) ? "Default" : (string)Session["federada"];
-            var _pwdSSO = System.Configuration.ConfigurationManager.AppSettings["_passwordSSO"].ToString();
+            var _pwdSSO = ConfigurationManager.AppSettings["_passwordSSO"].ToString();
+
+            var _respuesta = new Respuesta();
             if (!string.IsNullOrEmpty(_login.user) && _login.password == _pwdSSO)
             {
                 _login.password = "";
@@ -89,10 +87,9 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
         {
             _login.user = _encriptador.DecodeBase64(_login.user);   //decodifica
 
-            Respuesta _respuesta = new Respuesta();
             _login.user = ClsComun.QuitaTilde(_login.user);
             _login.CodFederada = string.IsNullOrEmpty((string)Session["federada"]) ? "Default" : (string)Session["federada"];
-            _respuesta = _processLogic.ValidaSoloUsuario(_login);
+            var _respuesta = _processLogic.ValidaSoloUsuario(_login);
 
             if (_respuesta.ok)
             {
@@ -116,15 +113,14 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
         {
             //recibe el parametro "_login.redSocial_token" en formato token
 
-            Respuesta _respuesta = new Respuesta();
-            _respuesta = _processLogic.evaluaJWT(_login);
+            var _respuesta = _processLogic.EvaluaJWT(_login);
             if (_respuesta.ok)
             {
                 var duracion = TimeSpan.FromDays(2000);
                 var usuarioData = _respuesta.obj;
                 var token = _tokenGenerator.generateToken(usuarioData.usuario_login, usuarioData.usuario_nombre, usuarioData.usuario_apPaterno, usuarioData.usuario_correoUPC, duracion, string.Empty, false);
                 //Encripta tripleDES
-                string _stKey = System.Configuration.ConfigurationManager.AppSettings["stKey"].ToString();
+                string _stKey = ConfigurationManager.AppSettings["stKey"].ToString();
                 token = _encriptador.Encripta3DES(token, _stKey);
                 //Fin TripleDES
                 _verifyToken.SetTokenCookie(token);
@@ -153,15 +149,14 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
         {
             _login.redSocial_email = _encriptador.DecodeBase64(_login.redSocial_email); //decodifica
 
-            Respuesta _respuesta = new Respuesta();
-            _respuesta = _processLogic.evaluaFace(_login);
+            var _respuesta = _processLogic.EvaluaFace(_login);
             if (_respuesta.ok)
             {
                 var duracion = TimeSpan.FromDays(2000);
                 var usuarioData = _respuesta.obj;
                 var token = _tokenGenerator.generateToken(usuarioData.usuario_login, usuarioData.usuario_nombre, usuarioData.usuario_apPaterno, usuarioData.usuario_correoUPC, duracion, string.Empty, false);
                 //Encripta tripleDES
-                string _stKey = System.Configuration.ConfigurationManager.AppSettings["stKey"].ToString();
+                string _stKey = ConfigurationManager.AppSettings["stKey"].ToString();
                 token = _encriptador.Encripta3DES(token, _stKey);
                 //Fin TripleDES
                 _verifyToken.SetTokenCookie(token);
@@ -189,8 +184,7 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
         {
             _login.user = _encriptador.DecodeBase64(_login.user); //decodifica
 
-            Respuesta _respuesta = new Respuesta();
-            _respuesta = _conexion.consulta_NoMostrar(_login);
+            var _respuesta = _conexion.consulta_NoMostrar(_login);
 
             //No codifica respuesta porque responde con el flag de NoMostrar y "_respuesta.ok"
             return Json(_respuesta);
@@ -201,8 +195,7 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
         {
             _login.user = _encriptador.DecodeBase64(_login.user); //decodifica
 
-            Respuesta _respuesta = new Respuesta();
-            _respuesta = _conexion.consulta_SSO_usuarioRed(_login);
+            var _respuesta = _conexion.consulta_SSO_usuarioRed(_login);
 
             if (_respuesta.ok)
             {
@@ -218,8 +211,7 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
             _login.redSocial_email = _encriptador.DecodeBase64(_login.redSocial_email);   //decodifica
             _login.redSocial_picture = _encriptador.DecodeBase64(_login.redSocial_picture); //decodifica
 
-            Respuesta _respuesta = new Respuesta();
-            _respuesta = _conexion.procesaFace(_login);
+            var _respuesta = _conexion.procesaFace(_login);
 
             _respuesta.objJwtClaims.email = "";   //Blanquea
             _respuesta.objJwtClaims.name = _encriptador.EncodeBase64(_respuesta.objJwtClaims.name);    //codifica
@@ -231,8 +223,7 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
         {
             _login.user = _encriptador.DecodeBase64(_login.user);  //decodifica
 
-            Respuesta _respuesta = new Respuesta();
-            _respuesta = _conexion.procesaJWT(_login);
+            var _respuesta = _conexion.procesaJWT(_login);
 
             _respuesta.objJwtClaims.email = "";  //Blanquea
             _respuesta.objJwtClaims.name = _encriptador.EncodeBase64(_respuesta.objJwtClaims.name);    //codifica
@@ -244,8 +235,7 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
         {
             _login.user = _encriptador.DecodeBase64(_login.user); //decodifica
 
-            Respuesta _respuesta = new Respuesta();
-            _respuesta = _conexion.BorraEn_SSO_usuarioRed(_login);
+            var _respuesta = _conexion.BorraEn_SSO_usuarioRed(_login);
 
             //No codifica respuesta porque solo responde "_respuesta.ok"
 
@@ -255,8 +245,7 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
         {
             _login.user = _encriptador.DecodeBase64(_login.user); //decodifica
 
-            Respuesta _respuesta = new Respuesta();
-            _respuesta = _conexion.UpdNoMostrar(_login);
+            var _respuesta = _conexion.UpdNoMostrar(_login);
 
             //No codifica respuesta porque solo responde "_respuesta.ok"
 
@@ -266,8 +255,7 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
         //trae desde bd la url de la federada
         public string UrlFederada(string _codFederada)
         {
-            Respuesta _rpta = new Respuesta();
-            _rpta = _conexion.consulta_federada(_codFederada);
+            var _rpta = _conexion.consulta_federada(_codFederada);
             return _rpta.federada;
         }
 
