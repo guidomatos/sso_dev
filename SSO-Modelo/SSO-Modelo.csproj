@@ -67,7 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\Conexion.cs" />
-    <Compile Include="DatosTokenModel.cs" />
     <Compile Include="DTO\AuthenticationOnAzureRequestDto.cs" />
     <Compile Include="DTO\AuthenticationOnAzureResponseDto.cs" />
     <Compile Include="DTO\AuthenticationOnPremiseRequestDto.cs" />
