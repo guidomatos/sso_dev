@@ -39,8 +39,8 @@ namespace SSO_IdentityServerF
 
         public string generateToken(string Sub, string GivenName, string FamilyName, string Email, TimeSpan duration, string requestor, bool isAdmin)
         {
-            string audience = _conexion.consulta_Variables("ssoTokenAudience").mensaje;
-            string SecurityKey = _conexion.consulta_Variables("ssoSecurityKey").mensaje;
+            string audience = _conexion.Consulta_Variables("ssoTokenAudience").mensaje;
+            string SecurityKey = _conexion.Consulta_Variables("ssoSecurityKey").mensaje;
 
             SymmetricSecurityKey SymmetricSecurityKey = new SymmetricSecurityKey(Convert.FromBase64String(SecurityKey));
             SigningCredentials SigningCredentials = new SigningCredentials(SymmetricSecurityKey, SecurityAlgorithms.HmacSha256);

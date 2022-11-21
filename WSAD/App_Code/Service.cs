@@ -19,14 +19,14 @@ public class Service : IService
     public AD.res GetUser(string alias)
     {
         var ad = new AD();
-        var r = ad.getUser(alias);
+        var r = ad.GetUser(alias);
         return new AD.res() { ok = r.ok, msg = r.msg, AdUser = r.AdUser, code = r.code };
     }
 
     public AD.res SetEmail(string alias, string email)
     {
         var ad = new AD();
-        var r = ad.setEmail(alias, email);
+        var r = ad.SetEmail(alias, email);
         return new AD.res() { ok = r.ok, msg = r.msg, code = r.code };
     }
 

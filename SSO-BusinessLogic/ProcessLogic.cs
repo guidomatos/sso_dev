@@ -56,7 +56,7 @@
             _API_ENVIO_SMS_PWD = ConfigurationManager.AppSettings["API_ENVIO_SMS_PWD"];
             _API_ENVIO_SENDER_ID = ConfigurationManager.AppSettings["API_ENVIO_SENDER_ID"];
         }
-        
+
         /// <summary>
         /// Consulta datos de usuario del Active Directory
         /// </summary>
@@ -69,7 +69,7 @@
             bool _result;
             if (!string.IsNullOrEmpty(_login.password))
             {
-                var r = _AD.auth(_login.user, _login.password);
+                var r = _AD.Auth(_login.user, _login.password);
                 _result = r.Result.ok;
                 _usuarioAD.usuario_code = r.Result.code;
                 _usuarioAD.usuario_msg = MensajesAD(r.Result.code);
@@ -81,7 +81,7 @@
 
             if (_result)
             {
-                var userInfo = _AD.getUser(_login.user);
+                var userInfo = _AD.GetUser(_login.user);
                 _result = userInfo.Result.ok;
                 _usuarioAD.usuario_code = userInfo.Result.code;
                 _usuarioAD.usuario_msg = MensajesAD(userInfo.Result.code);
@@ -120,7 +120,7 @@
 
                     // USO DE APIS Y LECTURA DE FEDERA DESDE BD (agregado)
                     //Respuesta _rpta = new Respuesta();
-                    //_rpta = _conexion.consulta_federada(_login.CodFederada);
+                    //_rpta = _conexion.Consulta_federada(_login.CodFederada);
                     //if (_rpta.federada_api == "A")
                     //{
                     //    _respuesta = ChangePasswordAD_API_A(_login);
@@ -153,7 +153,7 @@
                 //REGISTRA FLAG A FALSO PARA NO RECUPERAR CONTRASEÑA AL INICIO SIGUIENTE
                 if (_respuesta.ok == true)
                 {
-                    var _result = _conexion.registraFlag(_login);
+                    var _result = _conexion.RegistraFlag(_login);
                 }
             }
             catch (Exception ex)
@@ -178,7 +178,7 @@
                     //UsuarioAD _UsuarioAD = consultaAD(_login);
                     //USO DE APIS Y LECTURA DE FEDERA DESDE BD
                     var UsuarioAD = new UsuarioAD();
-                    var rpta = _conexion.consulta_federada(_login.CodFederada);
+                    var rpta = _conexion.Consulta_federada(_login.CodFederada);
                     if (rpta.federada_api == "A")
                     {
                         UsuarioAD = Auth_Azure(_login);
@@ -227,7 +227,7 @@
                 //CONSULTA FLAG RECUPERAR CONTRASEÑA
                 if (Respuesta.ok)
                 {
-                    Respuesta.flagRecPas = _conexion.consultaFlag(_login);
+                    Respuesta.flagRecPas = _conexion.ConsultaFlag(_login);
                 }
             }
             catch (Exception ex)
@@ -307,7 +307,7 @@
                     // Si el switch es 1 toma la contraseña desde la tabla de variables
                     if (switchReadPwdFromTable == "1")
                     {
-                        var res = _conexion.consulta_Variables_Id(3);
+                        var res = _conexion.Consulta_Variables_Id(3);
                         mail_Pwd = res.mensaje;
                     }
 
@@ -364,7 +364,7 @@
                     // Si el switch es 1 toma la contraseña desde la tabla de variables
                     if (switchReadPwdFromTable == "1")
                     {
-                        var res = _conexion.consulta_Variables_Id(4);
+                        var res = _conexion.Consulta_Variables_Id(4);
                         _API_ENVIO_SMS_PWD = res.mensaje;
                     }
 
@@ -427,7 +427,7 @@
         /// <returns></returns>
         public Respuesta EvaluaJWT(Login _login)
         {
-            var respuesta = _conexion.evaluaJWT(_login);
+            var respuesta = _conexion.EvaluaJWT(_login);
             if (respuesta.ok)
             {
                 var _loginUsuario = new Login() { user = respuesta.obj.usuario_login };
@@ -441,9 +441,9 @@
         /// </summary>
         /// <param name="_login"></param>
         /// <returns></returns>
-        public Respuesta EvaluaFace (Login _login)
+        public Respuesta EvaluaFace(Login _login)
         {
-            var respuesta = _conexion.evaluaFace(_login);
+            var respuesta = _conexion.EvaluaFace(_login);
             if (respuesta.ok)
             {
                 var _loginUsuario = new Login() { user = respuesta.obj.usuario_login };
@@ -488,7 +488,7 @@
                 // Si el switch es 1 toma la contraseña desde la tabla de variables
                 if (switchReadPwdFromTable == "1")
                 {
-                    var res = _conexion.consulta_Variables_Id(5);
+                    var res = _conexion.Consulta_Variables_Id(5);
                     ApiCredencialAuth = res.mensaje;
                 }
 
@@ -542,7 +542,7 @@
                 // Si el switch es 1 toma la contraseña desde la tabla de variables
                 if (switchReadPwdFromTable == "1")
                 {
-                    var res = _conexion.consulta_Variables_Id(5);
+                    var res = _conexion.Consulta_Variables_Id(5);
                     ApiCredencialAuth = res.mensaje;
                 }
 
@@ -627,7 +627,7 @@
                 // Si el switch es 1 toma la contraseña desde la tabla de variables
                 if (switchReadPwdFromTable == "1")
                 {
-                    var res = _conexion.consulta_Variables_Id(5);
+                    var res = _conexion.Consulta_Variables_Id(5);
                     ApiCredencialAuth = res.mensaje;
                 }
 
@@ -680,7 +680,7 @@
                 // Si el switch es 1 toma la contraseña desde la tabla de variables
                 if (switchReadPwdFromTable == "1")
                 {
-                    var res = _conexion.consulta_Variables_Id(5);
+                    var res = _conexion.Consulta_Variables_Id(5);
                     ApiCredencialAuth = res.mensaje;
                 }
 
@@ -745,7 +745,7 @@
                 // Si el switch es 1 toma la contraseña desde la tabla de variables
                 if (switchReadPwdFromTable == "1")
                 {
-                    var res = _conexion.consulta_Variables_Id(5);
+                    var res = _conexion.Consulta_Variables_Id(5);
                     ApiCredencialAuth = res.mensaje;
                 }
 
@@ -832,7 +832,7 @@
                 // Si el switch es 1 toma la contraseña desde la tabla de variables
                 if (switchReadPwdFromTable == "1")
                 {
-                    var res = _conexion.consulta_Variables_Id(5);
+                    var res = _conexion.Consulta_Variables_Id(5);
                     ApiCredencialAuth = res.mensaje;
                 }
 
@@ -900,7 +900,7 @@
                 // Si el switch es 1 toma la contraseña desde la tabla de variables
                 if (switchReadPwdFromTable == "1")
                 {
-                    var res = _conexion.consulta_Variables_Id(5);
+                    var res = _conexion.Consulta_Variables_Id(5);
                     ApiCredencialAuth = res.mensaje;
                 }
 
@@ -970,7 +970,7 @@
                 // Si el switch es 1 toma la contraseña desde la tabla de variables
                 if (switchReadPwdFromTable == "1")
                 {
-                    var res = _conexion.consulta_Variables_Id(5);
+                    var res = _conexion.Consulta_Variables_Id(5);
                     ApiCredencialAuth = res.mensaje;
                 }
 

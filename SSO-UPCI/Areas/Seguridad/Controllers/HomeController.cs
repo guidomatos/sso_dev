@@ -109,7 +109,7 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
         }
 
         //Sección loguea con redes sociales
-        public JsonResult evaluaJWT(Login _login)
+        public JsonResult EvaluaJWT(Login _login)
         {
             //recibe el parametro "_login.redSocial_token" en formato token
 
@@ -145,7 +145,7 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
 
             return Json(_respuesta);
         }
-        public JsonResult evaluaFace(Login _login)
+        public JsonResult EvaluaFace(Login _login)
         {
             _login.redSocial_email = _encriptador.DecodeBase64(_login.redSocial_email); //decodifica
 
@@ -180,22 +180,22 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
 
             return Json(_respuesta);
         }
-        public JsonResult consulta_NoMostrar(Login _login)     //al validarse con una red social consulta el check NoMostar para ver si muestra la vista de vincular red social 
+        public JsonResult Consulta_NoMostrar(Login _login)     //al validarse con una red social consulta el check NoMostar para ver si muestra la vista de vincular red social 
         {
             _login.user = _encriptador.DecodeBase64(_login.user); //decodifica
 
-            var _respuesta = _conexion.consulta_NoMostrar(_login);
+            var _respuesta = _conexion.Consulta_NoMostrar(_login);
 
             //No codifica respuesta porque responde con el flag de NoMostrar y "_respuesta.ok"
             return Json(_respuesta);
         }
 
         //Sección Vincula redes sociales
-        public JsonResult consulta_SSO_usuarioRed(Login _login) //recupera la data de la red social vinculada
+        public JsonResult Consulta_SSO_usuarioRed(Login _login) //recupera la data de la red social vinculada
         {
             _login.user = _encriptador.DecodeBase64(_login.user); //decodifica
 
-            var _respuesta = _conexion.consulta_SSO_usuarioRed(_login);
+            var _respuesta = _conexion.Consulta_SSO_usuarioRed(_login);
 
             if (_respuesta.ok)
             {
@@ -204,14 +204,14 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
             }
             return Json(_respuesta);
         }
-        public JsonResult procesaFace(Login _login)             //Vincula la cuenta de facebook
+        public JsonResult ProcesaFace(Login _login)             //Vincula la cuenta de facebook
         {
             _login.user = _encriptador.DecodeBase64(_login.user);              //decodifica
             _login.redSocial_name = _encriptador.DecodeBase64(_login.redSocial_name);    //decodifica
             _login.redSocial_email = _encriptador.DecodeBase64(_login.redSocial_email);   //decodifica
             _login.redSocial_picture = _encriptador.DecodeBase64(_login.redSocial_picture); //decodifica
 
-            var _respuesta = _conexion.procesaFace(_login);
+            var _respuesta = _conexion.ProcesaFace(_login);
 
             _respuesta.objJwtClaims.email = "";   //Blanquea
             _respuesta.objJwtClaims.name = _encriptador.EncodeBase64(_respuesta.objJwtClaims.name);    //codifica
@@ -219,11 +219,11 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
 
             return Json(_respuesta);
         }
-        public JsonResult procesaJWT(Login _login)              //Vincula la cuenta de google
+        public JsonResult ProcesaJWT(Login _login)              //Vincula la cuenta de google
         {
             _login.user = _encriptador.DecodeBase64(_login.user);  //decodifica
 
-            var _respuesta = _conexion.procesaJWT(_login);
+            var _respuesta = _conexion.ProcesaJWT(_login);
 
             _respuesta.objJwtClaims.email = "";  //Blanquea
             _respuesta.objJwtClaims.name = _encriptador.EncodeBase64(_respuesta.objJwtClaims.name);    //codifica
@@ -255,7 +255,7 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
         //trae desde bd la url de la federada
         public string UrlFederada(string _codFederada)
         {
-            var _rpta = _conexion.consulta_federada(_codFederada);
+            var _rpta = _conexion.Consulta_federada(_codFederada);
             return _rpta.federada;
         }
 

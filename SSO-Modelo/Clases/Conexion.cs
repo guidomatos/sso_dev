@@ -14,25 +14,29 @@ namespace SSO_Modelo.Clases
     public class Conexion : IConexion
     {
         private readonly IEncriptador _encriptador;
-        public Conexion(IEncriptador encriptador)
+        private readonly SSOEntities BD;
+        public Conexion
+        (
+            IEncriptador encriptador,
+            SSOEntities _BD
+        )
         {
             _encriptador = encriptador;
+            BD = _BD;
         }
 
-        SSOEntities BD = new SSOEntities();
-
-        public Boolean registraUltActDatos(Login _login)
+        public bool RegistraUltActDatos(Login _login)
         {
-            Boolean _result = false;
-            SSO_usuario _reg = BD.SSO_usuario.FirstOrDefault(x => x.usuario_login.ToUpper() == _login.user.ToUpper());
+            var _result = false;
+            var _reg = BD.SSO_usuario.FirstOrDefault(x => x.usuario_login.ToUpper() == _login.user.ToUpper());
             _reg.usuario_ultActDatos = DateTime.Now;
             _result = BD.SaveChanges() > 0;
             return _result;
         }
-        public Boolean registraUsuarioTipo(Login _login) // Solo para el proceso de carga del campo usuario_tipo
+        public bool RegistraUsuarioTipo(Login _login) // Solo para el proceso de carga del campo usuario_tipo
         {
-            Boolean _result = false;
-            SSO_usuario _reg = BD.SSO_usuario.FirstOrDefault(x => x.usuario_login.ToUpper() == _login.user.ToUpper());
+            var _result = false;
+            var _reg = BD.SSO_usuario.FirstOrDefault(x => x.usuario_login.ToUpper() == _login.user.ToUpper());
             _reg.usuario_tipo = _login.usuarioTipo;
             _result = BD.SaveChanges() > 0;
             return _result;
@@ -47,24 +51,23 @@ namespace SSO_Modelo.Clases
                            select u).ToList();
             return Listado;
         }
-
-        public Boolean registraFlag(Login _login)
+        public bool RegistraFlag(Login _login)
         {
-            Boolean _result = false;
-            SSO_usuario _reg = BD.SSO_usuario.FirstOrDefault(x => x.usuario_login.ToUpper() == _login.user.ToUpper());
+            var _result = false;
+            var _reg = BD.SSO_usuario.FirstOrDefault(x => x.usuario_login.ToUpper() == _login.user.ToUpper());
             _reg.usuario_flagRecPas = false;
             _result = BD.SaveChanges() > 0;
             return _result;
         }
-        public Boolean consultaFlag(Login _login)
+        public bool ConsultaFlag(Login _login)
         {
             var _reg = BD.SSO_usuario.FirstOrDefault(x => x.usuario_login.ToUpper() == _login.user.ToUpper());
-            Boolean _flag = (Boolean)_reg.usuario_flagRecPas;
+            var _flag = (bool)_reg.usuario_flagRecPas;
             return _flag;
         }
-        public Respuesta consulta_SSO_usuarioRed(Login _login)
+        public Respuesta Consulta_SSO_usuarioRed(Login _login)
         {
-            Respuesta _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
+            var _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
 
             try
             {
@@ -72,7 +75,7 @@ namespace SSO_Modelo.Clases
 
                 var _reg_consulta = BD.SSO_usuarioRed.FirstOrDefault(x => x.usuarioRed_usuario_id == _reg.usuario_id
                                                                      && x.usuarioRed_redSocial_id == _login.redSocial_id);
-                JwtClaims _reg_claims = new JwtClaims();
+                var _reg_claims = new JwtClaims();
 
                 if (!(_reg_consulta == null))
                 {
@@ -92,9 +95,9 @@ namespace SSO_Modelo.Clases
             }
             return _respuesta;
         }
-        public Respuesta consulta_NoMostrar(Login _login)
+        public Respuesta Consulta_NoMostrar(Login _login)
         {
-            Respuesta _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
+            var _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
 
             try
             {
@@ -112,9 +115,9 @@ namespace SSO_Modelo.Clases
             }
             return _respuesta;
         }
-        public Respuesta consulta_Variables(string nombreVariable)
+        public Respuesta Consulta_Variables(string nombreVariable)
         {
-            Respuesta _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
+            var _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
 
             try
             {
@@ -132,9 +135,9 @@ namespace SSO_Modelo.Clases
             }
             return _respuesta;
         }
-        public Respuesta consulta_Variables_Id(int variableId)
+        public Respuesta Consulta_Variables_Id(int variableId)
         {
-            Respuesta _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
+            var _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
 
             try
             {
@@ -152,105 +155,6 @@ namespace SSO_Modelo.Clases
             }
             return _respuesta;
         }
-        public Boolean registraEn_SSO_usuario(UsuarioAD _usuarioAD)
-        {
-            Boolean _result = false;
-            SSO_usuario _reg = BD.SSO_usuario.FirstOrDefault(x => x.usuario_login.ToUpper() == _usuarioAD.usuario_login.ToUpper());
-            if (_reg == null)
-            {
-                SSO_usuario _sso_usuario = new SSO_usuario();
-
-                _sso_usuario.usuario_login = _usuarioAD.usuario_login;
-                _sso_usuario.usuario_nombre = _usuarioAD.usuario_nombre;
-                _sso_usuario.usuario_apPaterno = _usuarioAD.usuario_apPaterno;
-                _sso_usuario.usuario_apMaterno = _usuarioAD.usuario_apMaterno;
-                _sso_usuario.usuario_correoUPC = _usuarioAD.usuario_correoUPC;
-                _sso_usuario.usuario_correoPersonal = string.IsNullOrEmpty(_usuarioAD.Usuario_correoPersonal) ? "" : _usuarioAD.Usuario_correoPersonal;
-                _sso_usuario.usuario_telefono = string.IsNullOrEmpty(_usuarioAD.usuario_telefono) ? "" : _usuarioAD.usuario_telefono;
-                _sso_usuario.usuario_estado = true;
-                _sso_usuario.usuario_flagAsociarRedes = false;
-                _sso_usuario.usuario_flagRecPas = true;
-                _sso_usuario.usuario_tipo = _usuarioAD.usuarioTipo;
-
-                BD.SSO_usuario.Add(_sso_usuario);
-                _result = BD.SaveChanges() > 0;
-
-                //Registra auditoria
-                if (_result == true) _result = registraEn_SSO_auditoria(_usuarioAD.usuario_login.ToUpper(), "SSO_USUARIO", "C");
-
-            }
-            else
-            {
-                //Actualiza CorreoPersonal y telefono
-                Boolean _entro = false;
-                _result = true;
-
-                if (!string.IsNullOrEmpty(_usuarioAD.Usuario_correoPersonal))
-                {
-                    if (_reg.usuario_correoPersonal != _usuarioAD.Usuario_correoPersonal)
-                    {
-                        _entro = true;
-                    }
-                }
-                if (!string.IsNullOrEmpty(_usuarioAD.usuario_telefono))
-                {
-                    if (_reg.usuario_telefono != _usuarioAD.usuario_telefono)
-                    {
-                        _entro = true;
-                    }
-                }
-                if (_entro == true)
-                {
-                    _reg.usuario_telefono = _usuarioAD.usuario_telefono ?? string.Empty;
-                    _reg.usuario_correoPersonal = _usuarioAD.Usuario_correoPersonal ?? string.Empty;
-                    _result = BD.SaveChanges() > 0;
-                    //Registra auditoria
-                    if (_result == true) _result = registraEn_SSO_auditoria(_usuarioAD.usuario_login.ToUpper(), "SSO_USUARIO", "U");
-                }
-            }
-            return _result;
-        }
-        public Boolean registraEn_SSO_usuarioCnx(UsuarioAD _usuarioAD, string codFederada)
-        {
-            Boolean _result = false;
-            var _reg = BD.SSO_usuario.FirstOrDefault(x => x.usuario_login.ToUpper() == _usuarioAD.usuario_login.ToUpper()); //obtiene el "usuario_id"
-
-            SSO_usuarioCnx _obj = new SSO_usuarioCnx();
-            _obj.usuarioCnx_usuario_id = _reg.usuario_id;
-            _obj.usuarioCnx_fecha = DateTime.Now;
-            _obj.usuarioCnx_codFederada = codFederada;
-
-            BD.SSO_usuarioCnx.Add(_obj);
-            _result = BD.SaveChanges() > 0;
-
-            //Registra auditoria
-            //if (_result == true) _result = registraEn_SSO_auditoria(_usuarioAD.usuario_login.ToUpper(), "SSO_USUARIOCNX", "C");
-
-            return _result;
-        }
-        public Boolean registraEn_SSO_auditoria(string _usuario, string _tabla, string _operacion)
-        {
-            SSO_auditoria _obj = new SSO_auditoria();
-
-            _obj.auditoria_tablaNombre = _tabla;
-            _obj.auditoria_operacion = _operacion;
-            _obj.auditoria_fechaOperacion = DateTime.Now;
-            _obj.auditoria_usuario = _usuario;
-
-            BD.SSO_auditoria.Add(_obj);
-            return BD.SaveChanges() > 0;
-        }
-        public Boolean registraEn_SSO_code(SSO_code _sso_code, Login _login)
-        {
-            Boolean _result = false;
-            BD.SSO_code.Add(_sso_code);
-            _result = BD.SaveChanges() > 0;
-
-            //Registra auditoria
-            //if (_result == true) _result = registraEn_SSO_auditoria(_login.user.ToUpper(), "SSO_CODE", "C");
-
-            return _result;
-        }
         public Respuesta RegistrarValidaCredenciales(Respuesta _respuesta)
         {
             _respuesta.ok = false;
@@ -259,10 +163,10 @@ namespace SSO_Modelo.Clases
             {
                 bool _result = false;
 
-                _result = registraEn_SSO_usuario(_respuesta.obj);
+                _result = RegistraEn_SSO_usuario(_respuesta.obj);
                 if (_result == false) throw new ApplicationException("No registró en SSO_usuario");
 
-                _result = registraEn_SSO_usuarioCnx(_respuesta.obj, _respuesta.CodFederada);
+                _result = RegistraEn_SSO_usuarioCnx(_respuesta.obj, _respuesta.CodFederada);
                 if (_result == false) throw new ApplicationException("No regitró en SSO_usuarioCnx");
 
                 _respuesta.ok = true;
@@ -278,10 +182,10 @@ namespace SSO_Modelo.Clases
         }
         public Respuesta RegisterCodeSend(Login _login)
         {
-            Respuesta _respuesta = new Respuesta() { ok = false, mensaje = "!! Error: Usuario incorrecto !!" };
+            var _respuesta = new Respuesta() { ok = false, mensaje = "!! Error: Usuario incorrecto !!" };
             try
             {
-                Boolean _result = false;
+                var _result = false;
                 var _reg = BD.SSO_usuario.FirstOrDefault(x => x.usuario_login == _login.user);
                 SSO_code _sso_code = new SSO_code()
                 {
@@ -290,8 +194,8 @@ namespace SSO_Modelo.Clases
                     code_fechaRegistro = DateTime.Now,
                     code_medioEnvio = "MAIL"
                 };
-                _result = registraEn_SSO_code(_sso_code, _login);
-                if (_result == false) throw new ApplicationException("No registró en SSO_code");
+                _result = RegistraEn_SSO_code(_sso_code, _login);
+                if (!_result) throw new ApplicationException("No registró en SSO_code");
 
                 _respuesta.ok = true;
                 _respuesta.mensaje = "";
@@ -307,20 +211,20 @@ namespace SSO_Modelo.Clases
         }
         public Respuesta CodeSendSMS(Login _login)
         {
-            Respuesta _respuesta = new Respuesta() { ok = false, mensaje = "!! Error: Usuario incorrecto !!" };
+            var _respuesta = new Respuesta() { ok = false, mensaje = "!! Error: Usuario incorrecto !!" };
             try
             {
-                Boolean _result = false;
+                var _result = false;
                 var _reg = BD.SSO_usuario.FirstOrDefault(x => x.usuario_login == _login.user);
-                SSO_code _sso_code = new SSO_code()
+                var _sso_code = new SSO_code()
                 {
                     code_usuario_id = _reg.usuario_id,
                     code_CodeValue = _login.code,
                     code_fechaRegistro = DateTime.Now,
                     code_medioEnvio = "SMS"
                 };
-                _result = registraEn_SSO_code(_sso_code, _login);
-                if (_result == false) throw new ApplicationException("No registró en SSO_code");
+                _result = RegistraEn_SSO_code(_sso_code, _login);
+                if (!_result) throw new ApplicationException("No registró en SSO_code");
 
                 _respuesta.ok = true;
                 _respuesta.mensaje = "";
@@ -332,10 +236,10 @@ namespace SSO_Modelo.Clases
             }
             return _respuesta;
         }
-        public Respuesta procesaJWT(Login _login)
+        public Respuesta ProcesaJWT(Login _login)
         {
-            Respuesta _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
-            JwtClaims _claims = new JwtClaims();
+            var _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
+            var _claims = new JwtClaims();
             try
             {
                 if (!string.IsNullOrEmpty(_login.redSocial_token))
@@ -351,10 +255,10 @@ namespace SSO_Modelo.Clases
                     _respuesta.objJwtClaims = _claims;
                 }
 
-                if (_respuesta.ok == true)
+                if (_respuesta.ok)
                 {
-                    Boolean _result = RegistraEn_SSO_usuarioRed(_login, _respuesta);
-                    if (_result == false)
+                    var _result = RegistraEn_SSO_usuarioRed(_login, _respuesta);
+                    if (!_result)
                     {
                         throw new ApplicationException("No se registró en SSO_usuarioRed");
                     }
@@ -369,7 +273,7 @@ namespace SSO_Modelo.Clases
         }
         public Respuesta UpdNoMostrar(Login _login)
         {
-            Respuesta _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
+            var _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
 
             try
             {
@@ -388,9 +292,9 @@ namespace SSO_Modelo.Clases
             }
             return _respuesta;
         }
-        public Respuesta evaluaJWT(Login _login)
+        public Respuesta EvaluaJWT(Login _login)
         {
-            Respuesta _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada", obj = new UsuarioAD() };
+            var _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada", obj = new UsuarioAD() };
 
             try
             {
@@ -429,52 +333,20 @@ namespace SSO_Modelo.Clases
             }
             return _respuesta;
         }
-        public bool RegistraEn_SSO_usuarioRed(Login _login, Respuesta _claims)
-        {
-            Boolean _result = false;
-
-            var _reg = BD.SSO_usuario.FirstOrDefault(x => x.usuario_login.ToUpper() == _login.user.ToUpper());
-
-            var _reg_delete = BD.SSO_usuarioRed.FirstOrDefault(x => x.usuarioRed_usuario_id == _reg.usuario_id
-                                                                    && x.usuarioRed_redSocial_id == _login.redSocial_id);
-            if (!(_reg_delete == null))
-            {
-                BD.SSO_usuarioRed.Remove(_reg_delete);
-                _result = BD.SaveChanges() > 0;
-            }
-            else
-            {
-                _result = true;
-            }
-
-            if (_result == true)
-            {
-                SSO_usuarioRed _reg_insert = new SSO_usuarioRed();
-                _reg_insert.usuarioRed_usuario_id = _reg.usuario_id;
-                _reg_insert.usuarioRed_redSocial_id = _login.redSocial_id;
-                _reg_insert.usuarioRed_correo_usuario = _claims.objJwtClaims.email;
-                _reg_insert.usuarioRed_nombre_usuario = _claims.objJwtClaims.name;
-                _reg_insert.usuarioRed_imagenUrl = _claims.objJwtClaims.picture;
-                _reg_insert.usuarioRed_fecha = DateTime.Now;
-
-                BD.SSO_usuarioRed.Add(_reg_insert);
-                _result = BD.SaveChanges() > 0;
-            }
-
-            return _result;
-        }
         public Respuesta CodeEval(Login _login)
         {
-            Respuesta _respuesta = new Respuesta();
-            _respuesta.ok = false;
-            _respuesta.mensaje = "Sesión expirada";
+            var _respuesta = new Respuesta
+            {
+                ok = false,
+                mensaje = "Sesión expirada"
+            };
             try
             {
                 if (!(string.IsNullOrEmpty(_login.user) || _login.code == ""))
                 {
-                    DateTime FechaHora = DateTime.Now.AddMinutes(-5);
+                    var FechaHora = DateTime.Now.AddMinutes(-5);
 
-                    SSO_code _reg = new SSO_code();
+                    var _reg = new SSO_code();
                     try
                     {
                         var _obj = BD.SSO_usuario.FirstOrDefault(x => x.usuario_login == _login.user);
@@ -508,10 +380,10 @@ namespace SSO_Modelo.Clases
             }
             return _respuesta;
         }
-        public Respuesta procesaFace(Login _login)
+        public Respuesta ProcesaFace(Login _login)
         {
-            Respuesta _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
-            JwtClaims _claims = new JwtClaims();
+            var _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
+            var _claims = new JwtClaims();
             try
             {
                 if (!string.IsNullOrEmpty(_login.redSocial_name))
@@ -525,10 +397,10 @@ namespace SSO_Modelo.Clases
                     _respuesta.objJwtClaims = _claims;
                 }
 
-                if (_respuesta.ok == true)
+                if (_respuesta.ok)
                 {
-                    Boolean _result = RegistraEn_SSO_usuarioRed(_login, _respuesta);
-                    if (_result == false)
+                    var _result = RegistraEn_SSO_usuarioRed(_login, _respuesta);
+                    if (!_result)
                     {
                         throw new ApplicationException("No se registró en SSO_usuarioRed");
                     }
@@ -541,9 +413,9 @@ namespace SSO_Modelo.Clases
             }
             return _respuesta;
         }
-        public Respuesta evaluaFace(Login _login)
+        public Respuesta EvaluaFace(Login _login)
         {
-            Respuesta _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada", obj = new UsuarioAD() };
+            var _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada", obj = new UsuarioAD() };
 
             try
             {
@@ -573,8 +445,8 @@ namespace SSO_Modelo.Clases
         }
         public Respuesta BorraEn_SSO_usuarioRed(Login _login)
         {
-            Respuesta _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
-            Boolean _result = false;
+            var _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
+            var _result = false;
             try
             {
                 var _reg = BD.SSO_usuario.FirstOrDefault(x => x.usuario_login.ToUpper() == _login.user.ToUpper());
@@ -587,9 +459,9 @@ namespace SSO_Modelo.Clases
                     _result = BD.SaveChanges() > 0;
 
                     //Registra auditoria
-                    if (_result == true) _result = registraEn_SSO_auditoria(_login.user.ToUpper(), "SSO_USUARIORED", "D");
+                    if (_result) _result = RegistraEn_SSO_auditoria(_login.user.ToUpper(), "SSO_USUARIORED", "D");
 
-                    if (_result == true)
+                    if (_result)
                     {
                         _respuesta.ok = true;
                         _respuesta.mensaje = "";
@@ -613,7 +485,7 @@ namespace SSO_Modelo.Clases
         }
         public string MensajesAD(int _code)
         {
-            string Observa = "";
+            string Observa;
             switch (_code)
             {
                 case 0:
@@ -643,10 +515,9 @@ namespace SSO_Modelo.Clases
             }
             return Observa;
         }
-
-        public Respuesta consulta_federada(string _codFederada)
+        public Respuesta Consulta_federada(string _codFederada)
         {
-            Respuesta _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
+            var _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
 
             try
             {
@@ -670,9 +541,9 @@ namespace SSO_Modelo.Clases
             }
             return _respuesta;
         }
-        public Respuesta consulta_federada_nom(string _nomFederada)
+        public Respuesta Consulta_federada_nom(string _nomFederada)
         {
-            Respuesta _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
+            var _respuesta = new Respuesta() { ok = false, mensaje = "Sesión expirada" };
 
             try
             {
@@ -689,20 +560,21 @@ namespace SSO_Modelo.Clases
             }
             return _respuesta;
         }
-        public Boolean registraEn_usuarioClave(Login _Login)
+        public bool RegistraEn_usuarioClave(Login _Login)
         {
-            Boolean _result = false;
+            var _result = false;
 
             var _rs = BD.SSO_usuario.FirstOrDefault(x => x.usuario_login.ToUpper() == _Login.user.ToUpper());
-            string pwd = _encriptador.EncodeMD5(_Login.password);
+            var pwd = _encriptador.EncodeMD5(_Login.password);
             var _reg = BD.SSO_usuarioClave.FirstOrDefault(x => x.usuarioClave_usuario_id == _rs.usuario_id && x.usuarioClave_pwd == pwd);
             if (_reg == null)
             {
-                SSO_usuarioClave sso_usuarioClave = new SSO_usuarioClave();
-
-                sso_usuarioClave.usuarioClave_usuario_id = _rs.usuario_id;
-                sso_usuarioClave.usuarioClave_fecha = DateTime.Now;
-                sso_usuarioClave.usuarioClave_pwd = pwd;
+                var sso_usuarioClave = new SSO_usuarioClave
+                {
+                    usuarioClave_usuario_id = _rs.usuario_id,
+                    usuarioClave_fecha = DateTime.Now,
+                    usuarioClave_pwd = pwd
+                };
 
                 BD.SSO_usuarioClave.Add(sso_usuarioClave);
                 _result = BD.SaveChanges() > 0;
@@ -710,6 +582,147 @@ namespace SSO_Modelo.Clases
             }
             return _result;
         }
+
+        #region "Metodos privados"
+        private bool RegistraEn_SSO_usuario(UsuarioAD _usuarioAD)
+        {
+            var _result = false;
+            var _reg = BD.SSO_usuario.FirstOrDefault(x => x.usuario_login.ToUpper() == _usuarioAD.usuario_login.ToUpper());
+            if (_reg == null)
+            {
+                var _sso_usuario = new SSO_usuario
+                {
+                    usuario_login = _usuarioAD.usuario_login,
+                    usuario_nombre = _usuarioAD.usuario_nombre,
+                    usuario_apPaterno = _usuarioAD.usuario_apPaterno,
+                    usuario_apMaterno = _usuarioAD.usuario_apMaterno,
+                    usuario_correoUPC = _usuarioAD.usuario_correoUPC,
+                    usuario_correoPersonal = string.IsNullOrEmpty(_usuarioAD.Usuario_correoPersonal) ? "" : _usuarioAD.Usuario_correoPersonal,
+                    usuario_telefono = string.IsNullOrEmpty(_usuarioAD.usuario_telefono) ? "" : _usuarioAD.usuario_telefono,
+                    usuario_estado = true,
+                    usuario_flagAsociarRedes = false,
+                    usuario_flagRecPas = true,
+                    usuario_tipo = _usuarioAD.usuarioTipo
+                };
+
+                BD.SSO_usuario.Add(_sso_usuario);
+                _result = BD.SaveChanges() > 0;
+
+                //Registra auditoria
+                if (_result) _result = RegistraEn_SSO_auditoria(_usuarioAD.usuario_login.ToUpper(), "SSO_USUARIO", "C");
+
+            }
+            else
+            {
+                //Actualiza CorreoPersonal y telefono
+                var _entro = false;
+                _result = true;
+
+                if (!string.IsNullOrEmpty(_usuarioAD.Usuario_correoPersonal))
+                {
+                    if (_reg.usuario_correoPersonal != _usuarioAD.Usuario_correoPersonal)
+                    {
+                        _entro = true;
+                    }
+                }
+                if (!string.IsNullOrEmpty(_usuarioAD.usuario_telefono))
+                {
+                    if (_reg.usuario_telefono != _usuarioAD.usuario_telefono)
+                    {
+                        _entro = true;
+                    }
+                }
+                if (_entro)
+                {
+                    _reg.usuario_telefono = _usuarioAD.usuario_telefono ?? string.Empty;
+                    _reg.usuario_correoPersonal = _usuarioAD.Usuario_correoPersonal ?? string.Empty;
+                    _result = BD.SaveChanges() > 0;
+                    //Registra auditoria
+                    if (_result) _result = RegistraEn_SSO_auditoria(_usuarioAD.usuario_login.ToUpper(), "SSO_USUARIO", "U");
+                }
+            }
+            return _result;
+        }
+        private bool RegistraEn_SSO_usuarioCnx(UsuarioAD _usuarioAD, string codFederada)
+        {
+            var _result = false;
+            var _reg = BD.SSO_usuario.FirstOrDefault(x => x.usuario_login.ToUpper() == _usuarioAD.usuario_login.ToUpper()); //obtiene el "usuario_id"
+
+            var _obj = new SSO_usuarioCnx
+            {
+                usuarioCnx_usuario_id = _reg.usuario_id,
+                usuarioCnx_fecha = DateTime.Now,
+                usuarioCnx_codFederada = codFederada
+            };
+
+            BD.SSO_usuarioCnx.Add(_obj);
+            _result = BD.SaveChanges() > 0;
+
+            //Registra auditoria
+            //if (_result == true) _result = RegistraEn_SSO_auditoria(_usuarioAD.usuario_login.ToUpper(), "SSO_USUARIOCNX", "C");
+
+            return _result;
+        }
+        private bool RegistraEn_SSO_auditoria(string _usuario, string _tabla, string _operacion)
+        {
+            var _obj = new SSO_auditoria
+            {
+                auditoria_tablaNombre = _tabla,
+                auditoria_operacion = _operacion,
+                auditoria_fechaOperacion = DateTime.Now,
+                auditoria_usuario = _usuario
+            };
+
+            BD.SSO_auditoria.Add(_obj);
+            return BD.SaveChanges() > 0;
+        }
+        private bool RegistraEn_SSO_code(SSO_code _sso_code, Login _login)
+        {
+            BD.SSO_code.Add(_sso_code);
+            bool _result = BD.SaveChanges() > 0;
+
+            //Registra auditoria
+            //if (_result == true) _result = RegistraEn_SSO_auditoria(_login.user.ToUpper(), "SSO_CODE", "C");
+
+            return _result;
+        }
+        private bool RegistraEn_SSO_usuarioRed(Login _login, Respuesta _claims)
+        {
+            var _result = false;
+
+            var _reg = BD.SSO_usuario.FirstOrDefault(x => x.usuario_login.ToUpper() == _login.user.ToUpper());
+
+            var _reg_delete = BD.SSO_usuarioRed.FirstOrDefault(x => x.usuarioRed_usuario_id == _reg.usuario_id
+                                                                    && x.usuarioRed_redSocial_id == _login.redSocial_id);
+            if (!(_reg_delete == null))
+            {
+                BD.SSO_usuarioRed.Remove(_reg_delete);
+                _result = BD.SaveChanges() > 0;
+            }
+            else
+            {
+                _result = true;
+            }
+
+            if (_result)
+            {
+                var _reg_insert = new SSO_usuarioRed
+                {
+                    usuarioRed_usuario_id = _reg.usuario_id,
+                    usuarioRed_redSocial_id = _login.redSocial_id,
+                    usuarioRed_correo_usuario = _claims.objJwtClaims.email,
+                    usuarioRed_nombre_usuario = _claims.objJwtClaims.name,
+                    usuarioRed_imagenUrl = _claims.objJwtClaims.picture,
+                    usuarioRed_fecha = DateTime.Now
+                };
+
+                BD.SSO_usuarioRed.Add(_reg_insert);
+                _result = BD.SaveChanges() > 0;
+            }
+
+            return _result;
+        }
+        #endregion
 
     }
 }

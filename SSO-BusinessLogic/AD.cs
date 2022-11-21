@@ -8,12 +8,11 @@ namespace SSO_BusinessLogic
 {
     public class AD
     {
-        WSAD.ServiceClient ws;
+        readonly WSAD.ServiceClient ws;
         //readonly string wsad = "http://localhost:56616/Service.svc";
         //readonly string wsad = ConfigurationManager.AppSettings["wsad"];
-        public class userAD : AdUser
+        public class UserAD : AdUser
         {
-            public string OU { get; set; }
             public string EmailPersonal { get; set; }
             public string Cel { get; set; }
         }
@@ -32,9 +31,9 @@ namespace SSO_BusinessLogic
                     wsad = ConfigurationManager.AppSettings["wsap"];
                     break;
             }
-            ws = new WSAD.ServiceClient(getBinding(), new EndpointAddress(wsad));
+            ws = new WSAD.ServiceClient(GetBinding(), new EndpointAddress(wsad));
         }
-        public async Task<(bool ok, string msg, int code)> auth(string user, string pass)
+        public async Task<(bool ok, string msg, int code)> Auth(string user, string pass)
         {
             try
             {
@@ -49,14 +48,14 @@ namespace SSO_BusinessLogic
                 return (r.Result.ok, r.Result.msg, r.Result.code);
 
             }
-            catch (Exception x)
+            catch // (Exception x)
             {
                 //if (!Helpers.PROD()) Sentry.LogSentryWriter(x);
 
                 return (false, "Lo sentimos, tuvimos un error en la comunicación. Por favor intentar nuevamente.", 101);
             }
         }
-        public async Task<resAD> getUser(string user)
+        public async Task<resAD> GetUser(string user)
         {
             try
             {
@@ -64,7 +63,7 @@ namespace SSO_BusinessLogic
                 var result = new resAD();
                 if (adUser.Result.AdUser != null)
                 {
-                    var userAd = new userAD()
+                    var userAd = new UserAD()
                     {
                         Id = user,
                         Name = adUser.Result.AdUser.Name,
@@ -89,12 +88,12 @@ namespace SSO_BusinessLogic
                 return result;
             }
 
-            catch (Exception x)
+            catch
             {
                 return null;
             }
         }
-        public (bool, string) setEmail(string user, string email, string cel = null)
+        public (bool, string) SetEmail(string user, string email, string cel = null)
         {
             var r = ws.SetEmailAsync(user, email);
 
@@ -115,14 +114,16 @@ namespace SSO_BusinessLogic
         //    var r = ws.ModifiedUsersAsync(DateTime.Today);
         //    return r.Result;
         //}
-        private static BasicHttpBinding getBinding()
+        private static BasicHttpBinding GetBinding()
         {
-            var binding = new BasicHttpBinding();
-            binding.MaxBufferPoolSize = long.MaxValue;
-            binding.MaxBufferSize = int.MaxValue;
-            binding.ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max;
-            binding.MaxReceivedMessageSize = int.MaxValue;
-            binding.AllowCookies = true;
+            var binding = new BasicHttpBinding
+            {
+                MaxBufferPoolSize = long.MaxValue,
+                MaxBufferSize = int.MaxValue,
+                ReaderQuotas = System.Xml.XmlDictionaryReaderQuotas.Max,
+                MaxReceivedMessageSize = int.MaxValue,
+                AllowCookies = true
+            };
             binding.Security.Mode = BasicHttpSecurityMode.Transport;
             binding.SendTimeout = TimeSpan.FromSeconds(20);
             return binding;

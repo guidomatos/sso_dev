@@ -16,9 +16,9 @@ namespace SSO_IdentityServerF
             _conexion = conexion;
         }
 
-        public static string tokenSecurityKey => _conexion.consulta_Variables("ssoSecurityKey").mensaje;
+        public static string tokenSecurityKey => _conexion.Consulta_Variables("ssoSecurityKey").mensaje;
 
-        public static string tokenAudience => _conexion.consulta_Variables("ssoTokenAudience").mensaje;
+        public static string tokenAudience => _conexion.Consulta_Variables("ssoTokenAudience").mensaje;
 
 
     }

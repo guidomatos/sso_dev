@@ -186,7 +186,7 @@ namespace SSO_UPCI.Controllers
         public string UrlFederada(string _codFederada)
         {
             Respuesta _rpta = new Respuesta();
-            _rpta = _conexion.consulta_federada(_codFederada);
+            _rpta = _conexion.Consulta_federada(_codFederada);
             return _rpta.federada;
         }
 
@@ -371,23 +371,23 @@ namespace SSO_UPCI.Controllers
         //    _respuesta = _processLogic.ChangePasswordAD(_login);
         //    return Json(_respuesta);
         //}
-        //public JsonResult procesaJWT(Login _login)
+        //public JsonResult ProcesaJWT(Login _login)
         //{
         //    Respuesta _respuesta = new Respuesta();
-        //    _respuesta = _conexion.procesaJWT(_login);
+        //    _respuesta = _conexion.ProcesaJWT(_login);
         //    return Json(_respuesta);
         //}
-        //public JsonResult procesaFace(Login _login)
+        //public JsonResult ProcesaFace(Login _login)
         //{
         //    Respuesta _respuesta = new Respuesta();
-        //    _respuesta = _conexion.procesaFace(_login);
+        //    _respuesta = _conexion.ProcesaFace(_login);
         //    return Json(_respuesta);
         //}
 
-        //public JsonResult consulta_SSO_usuarioRed(Login _login)
+        //public JsonResult Consulta_SSO_usuarioRed(Login _login)
         //{
         //    Respuesta _respuesta = new Respuesta();
-        //    _respuesta = _conexion.consulta_SSO_usuarioRed(_login);
+        //    _respuesta = _conexion.Consulta_SSO_usuarioRed(_login);
         //    return Json(_respuesta);
         //}
         //public JsonResult UpdNoMostrar(Login _login)
@@ -396,10 +396,10 @@ namespace SSO_UPCI.Controllers
         //    _respuesta = _conexion.UpdNoMostrar(_login);
         //    return Json(_respuesta);
         //}
-        //public JsonResult consulta_NoMostrar(Login _login)
+        //public JsonResult Consulta_NoMostrar(Login _login)
         //{
         //    Respuesta _respuesta = new Respuesta();
-        //    _respuesta = _conexion.consulta_NoMostrar(_login);
+        //    _respuesta = _conexion.Consulta_NoMostrar(_login);
         //    return Json(_respuesta);
         //}
         //public JsonResult BorraEn_SSO_usuarioRed(Login _login)
@@ -408,10 +408,10 @@ namespace SSO_UPCI.Controllers
         //    _respuesta = _conexion.BorraEn_SSO_usuarioRed(_login);
         //    return Json(_respuesta);
         //}
-        //public JsonResult evaluaJWT(Login _login)
+        //public JsonResult EvaluaJWT(Login _login)
         //{
         //    Respuesta _respuesta = new Respuesta();
-        //    _respuesta = _processLogic.evaluaJWT(_login);
+        //    _respuesta = _processLogic.EvaluaJWT(_login);
         //    if (_respuesta.ok)
         //    {
         //        var duracion = TimeSpan.FromDays(2000);
@@ -423,10 +423,10 @@ namespace SSO_UPCI.Controllers
         //    }
         //    return Json(_respuesta);
         //}
-        //public JsonResult evaluaFace(Login _login)
+        //public JsonResult EvaluaFace(Login _login)
         //{
         //    Respuesta _respuesta = new Respuesta();
-        //    _respuesta = _processLogic.evaluaFace(_login);
+        //    _respuesta = _processLogic.EvaluaFace(_login);
         //    if (_respuesta.ok)
         //    {
         //        var duracion = TimeSpan.FromDays(2000);
@@ -497,7 +497,7 @@ namespace SSO_UPCI.Controllers
         //        string switchReadPwdFromTable = System.Configuration.ConfigurationManager.AppSettings["switchReadPwdFromTable"];
         //        if (switchReadPwdFromTable == "1")
         //        {
-        //            Respuesta res = _conexion.consulta_Variables_Id(5);
+        //            Respuesta res = _conexion.Consulta_Variables_Id(5);
         //            _ApiCredencial = res.mensaje;
         //        }
         //        //Fin
@@ -561,7 +561,7 @@ namespace SSO_UPCI.Controllers
         //        //Registra la fecha de actualización de datos en la tabla SSO_usuario. Cambio ralizado el 25/10/2021
         //        if (_respuesta.ok == true)
         //        {
-        //            Boolean _result = _conexion.registraUltActDatos(_login);
+        //            Boolean _result = _conexion.RegistraUltActDatos(_login);
         //        }
 
         //    }
@@ -588,7 +588,7 @@ namespace SSO_UPCI.Controllers
         //        string switchReadPwdFromTable = System.Configuration.ConfigurationManager.AppSettings["switchReadPwdFromTable"];
         //        if (switchReadPwdFromTable == "1")
         //        {
-        //            Respuesta res = _conexion.consulta_Variables_Id(5);
+        //            Respuesta res = _conexion.Consulta_Variables_Id(5);
         //            _ApiCredencial = res.mensaje;
         //        }
         //        //Fin
@@ -670,7 +670,7 @@ namespace SSO_UPCI.Controllers
         //            Login _login = new Login();
         //            _login.user = _reg.usuario_login;
         //            _login.usuarioTipo = _processLogic.Api_Usuarios_Tipo(_reg.usuario_login);
-        //            _cnx.registraUsuarioTipo(_login);
+        //            _cnx.RegistraUsuarioTipo(_login);
         //        }
         //        _respuesta.ok = true;
         //    }

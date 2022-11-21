@@ -26,8 +26,8 @@ namespace SSO_IdentityServerF
         {
             try
             {
-                string audience = _conexion.consulta_Variables("ssoTokenAudience").mensaje;
-                string SecurityKey = _conexion.consulta_Variables("ssoSecurityKey").mensaje;
+                string audience = _conexion.Consulta_Variables("ssoTokenAudience").mensaje;
+                string SecurityKey = _conexion.Consulta_Variables("ssoSecurityKey").mensaje;
 
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var jwtToken = tokenHandler.ReadToken(token) as JwtSecurityToken;

@@ -93,7 +93,7 @@ namespace SSO_UPCI.Areas.Proceso.Controllers
             //
             Respuesta _respuesta = new Respuesta();
 
-            Boolean rs = _conexion.registraEn_usuarioClave(_login);
+            Boolean rs = _conexion.RegistraEn_usuarioClave(_login);
             if (rs == false)
             {
                 _respuesta.ok = false;

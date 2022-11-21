@@ -74,7 +74,7 @@ public class AD
         }
     }
 
-    public res getUser(string user)
+    public res GetUser(string user)
     {
         //if (user == "mail@jdbpocketware.com") return new res { ok = true, code = 0, msg = "Ok", AdUser = new AdUser() { Email = user, EmailUPC = user, Id = user, Name = user, LastName = user } };
 
@@ -101,7 +101,7 @@ public class AD
         return Helpers.Amb == "PRO" ? Helpers.DCPRO : Helpers.Amb == "CER" ? Helpers.DCCER : Helpers.DCDEV;
     }
 
-    public res setEmail(string user, string email, string cel = null)
+    public res SetEmail(string user, string email, string cel = null)
     {
         DirectoryEntry myLdapConnection = createDirectoryEntry();
 

@@ -33,7 +33,7 @@ namespace SSO_UPCI.Controllers
 
             SAMLIdentityProvider.ReceiveSSO(Request, out partnerName);
 
-            Respuesta _rpta = _conexion.consulta_federada_nom(partnerName);
+            Respuesta _rpta = _conexion.Consulta_federada_nom(partnerName);
             Session["codfederada"] = _rpta.CodFederada;
             return RedirectToAction("verificaToken", "Saml");
 
