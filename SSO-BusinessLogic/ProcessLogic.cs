@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using RestSharp;
-using SSO_BusinessLogic.Interfaces;
-using SSO_Modelo.Interfaces;
-using SSO_SecurityServerF;
-using SSO_SecurityServerF.Clases;
-using SSO_SecurityServerF.Mailer;
-using Newtonsoft.Json;
-using System.Net.Http;
-using System.Net.Http.Formatting;
-using SSO_Modelo.DTO;
-
-namespace SSO_BusinessLogic
+﻿namespace SSO_BusinessLogic
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Linq;
+    using RestSharp;
+    using SSO_BusinessLogic.Interfaces;
+    using SSO_Modelo.Interfaces;
+    using SSO_SecurityServerF;
+    using SSO_SecurityServerF.Clases;
+    using SSO_SecurityServerF.Mailer;
+    using Newtonsoft.Json;
+    using System.Net.Http;
+    using System.Net.Http.Formatting;
+    using SSO_Modelo.DTO;
+
+    /// <summary>
+    /// Clase para manejar metodos de autenticacion
+    /// </summary>
     public class ProcessLogic : IProcessLogic
     {
         private readonly IConexion _conexion;
@@ -30,6 +33,10 @@ namespace SSO_BusinessLogic
         private string _API_ENVIO_SMS_PWD;
         private readonly string _API_ENVIO_SENDER_ID;
 
+        /// <summary>
+        /// Clase constructor
+        /// </summary>
+        /// <param name="conexion"></param>
         public ProcessLogic(IConexion conexion)
         {
             _conexion = conexion;
@@ -50,6 +57,11 @@ namespace SSO_BusinessLogic
             _API_ENVIO_SENDER_ID = ConfigurationManager.AppSettings["API_ENVIO_SENDER_ID"];
         }
         
+        /// <summary>
+        /// Consulta datos de usuario del Active Directory
+        /// </summary>
+        /// <param name="_login"></param>
+        /// <returns></returns>
         public UsuarioAD ConsultaAD(Login _login)
         {
             var _usuarioAD = new UsuarioAD();
@@ -89,6 +101,11 @@ namespace SSO_BusinessLogic
             }
             return _usuarioAD;
         }
+        /// <summary>
+        /// Cambiar contraseña de usuario
+        /// </summary>
+        /// <param name="_login"></param>
+        /// <returns></returns>
         public Respuesta ChangePasswordAD(Login _login)
         {
             Respuesta _respuesta = new Respuesta() { ok = false, mensaje = "!! Error: Usuario incorrecto !!" };
@@ -146,6 +163,11 @@ namespace SSO_BusinessLogic
             }
             return _respuesta;
         }
+        /// <summary>
+        /// Validar credenciales (usuario y contraseña)
+        /// </summary>
+        /// <param name="_login"></param>
+        /// <returns></returns>
         public Respuesta ValidaCredenciales(Login _login)
         {
             var Respuesta = new Respuesta() { ok = false, mensaje = "!! Error: Usuario incorrecto !!" };
@@ -216,6 +238,11 @@ namespace SSO_BusinessLogic
 
             return Respuesta;
         }
+        /// <summary>
+        /// Validar credenciales (solo usuario)
+        /// </summary>
+        /// <param name="_login"></param>
+        /// <returns></returns>
         public Respuesta ValidaSoloUsuario(Login _login)
         {
             var Respuesta = new Respuesta() { ok = false, mensaje = "!! Error: Usuario incorrecto !!" };
@@ -256,6 +283,11 @@ namespace SSO_BusinessLogic
 
             return Respuesta;
         }
+        /// <summary>
+        /// Enviar correo electronico
+        /// </summary>
+        /// <param name="_login"></param>
+        /// <returns></returns>
         public Respuesta CodeSend(Login _login)
         {
             var _respuesta = new Respuesta() { ok = false, mensaje = "!! Error: Usuario incorrecto !!" };
@@ -313,6 +345,11 @@ namespace SSO_BusinessLogic
             return _respuesta;
 
         }
+        /// <summary>
+        /// Enviar SMS
+        /// </summary>
+        /// <param name="_login"></param>
+        /// <returns></returns>
         public Respuesta CodeSendSMS(Login _login)
         {
             var _respuesta = new Respuesta() { ok = false, mensaje = "!! Error: Usuario incorrecto !!" };
@@ -383,6 +420,11 @@ namespace SSO_BusinessLogic
             }
             return _respuesta;
         }
+        /// <summary>
+        /// Valida token y de estar ok devuelve datos de usuario
+        /// </summary>
+        /// <param name="_login"></param>
+        /// <returns></returns>
         public Respuesta EvaluaJWT(Login _login)
         {
             var respuesta = _conexion.evaluaJWT(_login);
@@ -394,6 +436,11 @@ namespace SSO_BusinessLogic
 
             return respuesta;
         }
+        /// <summary>
+        /// Validar email facebook y de estar ok devuelve datos de usuario
+        /// </summary>
+        /// <param name="_login"></param>
+        /// <returns></returns>
         public Respuesta EvaluaFace (Login _login)
         {
             var respuesta = _conexion.evaluaFace(_login);
@@ -407,6 +454,11 @@ namespace SSO_BusinessLogic
         }
 
         #region "Metodos privados"
+        /// <summary>
+        /// Validar autenticacion de usuario y de estar ok devolver datos de usuario
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         private UsuarioAD Auth_Azure(Login login)
         {
             var UsuarioAD = new UsuarioAD();
@@ -422,6 +474,11 @@ namespace SSO_BusinessLogic
             }
             return UsuarioAD;
         }
+        /// <summary>
+        /// Validar autenticacion de usuario y devolver estado de respuesta
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         private Respuesta Api_Auth_A(Login login)
         {
             var rpta = new Respuesta();
@@ -469,6 +526,11 @@ namespace SSO_BusinessLogic
             return rpta;
 
         }
+        /// <summary>
+        /// Validar autenticacion de usuario y devolver datos de usuario
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         private UsuarioAD Api_Datos_Usuario_A(Login login)
         {
             var usuarioAD = new UsuarioAD();
@@ -531,6 +593,11 @@ namespace SSO_BusinessLogic
             return usuarioAD;
 
         }
+        /// <summary>
+        /// Validar autenticacion de usuario (On Premise) y devolver datos de usuario
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         private UsuarioAD Auth_OnPremises(Login login)
         {
             var UsuarioAD = new UsuarioAD();
@@ -546,6 +613,11 @@ namespace SSO_BusinessLogic
             }
             return UsuarioAD;
         }
+        /// <summary>
+        /// Validar autenticacion de usuario (On Premise) y devolver estado de respuesta
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         private Respuesta Api_Auth_O(Login login)
         {
             var rpta = new Respuesta();
@@ -593,6 +665,11 @@ namespace SSO_BusinessLogic
             return rpta;
 
         }
+        /// <summary>
+        /// Validar autenticacion de usuario (On Premise) y devolver datos de usuario
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         private UsuarioAD Api_Datos_Usuario_O(Login login)
         {
             var usuarioAD = new UsuarioAD();
@@ -654,6 +731,11 @@ namespace SSO_BusinessLogic
             }
             return usuarioAD;
         }
+        /// <summary>
+        /// Devolver datos de usuario
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
         private UsuarioAD Api_Usuarios(Login login)
         {
             var usuarioAD = new UsuarioAD();
@@ -734,6 +816,11 @@ namespace SSO_BusinessLogic
             }
             return usuarioAD;
         }
+        /// <summary>
+        /// Devolver estado de respuesta
+        /// </summary>
+        /// <param name="CodPersona"></param>
+        /// <returns></returns>
         private Respuesta DataCRM(string CodPersona)
         {
 
@@ -779,6 +866,12 @@ namespace SSO_BusinessLogic
             return _respuesta;
 
         }
+        /// <summary>
+        /// Mapear datos de usuario
+        /// </summary>
+        /// <param name="destinationDto"></param>
+        /// <param name="originDto"></param>
+        /// <param name="loginUser"></param>
         private void MappingUserAD(UsuarioAD destinationDto, GetUserInfoResponseDto originDto, string loginUser)
         {
             destinationDto.usuario_login = loginUser;
@@ -792,6 +885,11 @@ namespace SSO_BusinessLogic
             destinationDto.usuario_msg = MensajesAD(0);
             destinationDto.CodPersona = originDto.ListaDTOUsuarios[0].DetalleDTOUsuario[0].CodPersona;
         }
+        /// <summary>
+        /// Invocacion a API para cambio de contraseña
+        /// </summary>
+        /// <param name="_login"></param>
+        /// <returns></returns>
         private Respuesta ChangePasswordAD_API(Login _login)
         {
             var _respuesta = new Respuesta() { code = 0 };
@@ -842,6 +940,11 @@ namespace SSO_BusinessLogic
             }
             return _respuesta;
         }
+        /// <summary>
+        /// Validar datos de usuario con mock de BD
+        /// </summary>
+        /// <param name="_login"></param>
+        /// <returns></returns>
         private UsuarioAD ConsultaAD_Debug(Login _login)
         {
             var _Lista = new List<UsuarioAD>()
@@ -853,6 +956,11 @@ namespace SSO_BusinessLogic
 
             return _usuarioAD;
         }
+        /// <summary>
+        /// Devolver tipo de usuario
+        /// </summary>
+        /// <param name="_user"></param>
+        /// <returns></returns>
         private string Api_Usuarios_Tipo(string _user)
         {
             string usuarioTipo = "";
@@ -938,6 +1046,11 @@ namespace SSO_BusinessLogic
             }
             return usuarioTipo;
         }
+        /// <summary>
+        /// Devolver mensaje segun codigo
+        /// </summary>
+        /// <param name="_code"></param>
+        /// <returns></returns>
         private string MensajesAD(int _code)
         {
             string Observa;
