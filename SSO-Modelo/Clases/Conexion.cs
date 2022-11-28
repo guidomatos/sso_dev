@@ -11,6 +11,9 @@ using SSO_SecurityServerF.Clases;
 
 namespace SSO_Modelo.Clases
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Conexion : IConexion
     {
         private readonly IEncriptador _encriptador;
@@ -25,6 +28,11 @@ namespace SSO_Modelo.Clases
             BD = _BD;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_login"></param>
+        /// <returns></returns>
         public bool RegistraUltActDatos(Login _login)
         {
             var _result = false;
@@ -33,6 +41,11 @@ namespace SSO_Modelo.Clases
             _result = BD.SaveChanges() > 0;
             return _result;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_login"></param>
+        /// <returns></returns>
         public bool RegistraUsuarioTipo(Login _login) // Solo para el proceso de carga del campo usuario_tipo
         {
             var _result = false;
@@ -41,6 +54,10 @@ namespace SSO_Modelo.Clases
             _result = BD.SaveChanges() > 0;
             return _result;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<SSO_usuario> ListaDeUsuarios()       // Solo para el proceso de carga del campo usuario_tipo
         {
             //var Listado = BD.SSO_usuario.ToList();
