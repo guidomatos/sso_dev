@@ -252,7 +252,8 @@
                 {
                     //UsuarioAD UsuarioAD  = consultaAD(_login);
 
-                    var UsuarioAD = Api_Usuarios(_login);
+                    //var UsuarioAD = Api_Usuarios(_login);
+                    var UsuarioAD = MockGetUser();
 
                     if (UsuarioAD.usuario_code != 0)
                     {
@@ -1083,6 +1084,29 @@
             }
             return Observa;
         }
+        #endregion
+
+        #region "Mock"
+
+        private UsuarioAD MockGetUser()
+        {
+            var user = new UsuarioAD
+            {
+                usuario_login = "eguillen",
+                usuario_nombre = "Eduardo",
+                usuario_apPaterno = "Guillén",
+                usuario_apMaterno = "",
+                Usuario_correoPersonal = "eguillen@pruebas.com",
+                usuario_correoUPC = "eguillen@upc.edu.pe",
+                usuario_telefono = "9556865832",
+                usuario_code = 0,
+                usuario_msg = MensajesAD(0),
+                CodPersona = ""
+            };
+
+            return user;
+        }
+
         #endregion
     }
 }
