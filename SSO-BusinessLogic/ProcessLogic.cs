@@ -230,10 +230,9 @@
                     Respuesta.flagRecPas = _conexion.ConsultaFlag(_login);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Respuesta.ok = false;
-                Respuesta.mensaje = ex.Message;
+                throw;
             }
 
             return Respuesta;
@@ -252,8 +251,8 @@
                 {
                     //UsuarioAD UsuarioAD  = consultaAD(_login);
 
-                    //var UsuarioAD = Api_Usuarios(_login);
-                    var UsuarioAD = MockGetUser();
+                    var UsuarioAD = Api_Usuarios(_login);
+                    //var UsuarioAD = MockGetUser();
 
                     if (UsuarioAD.usuario_code != 0)
                     {
@@ -276,10 +275,9 @@
                     Respuesta = _conexion.RegistrarValidaCredenciales(Respuesta);
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Respuesta.ok = false;
-                Respuesta.mensaje = ex.Message;
+                throw;
             }
 
             return Respuesta;
@@ -814,6 +812,7 @@
             {
                 usuarioAD.usuario_code = 7;
                 usuarioAD.usuario_msg = MensajesAD(7);
+                throw;
             }
             return usuarioAD;
         }

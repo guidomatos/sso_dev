@@ -7,6 +7,7 @@ using SSO_BusinessLogic.Interfaces;
 using SSO_IdentityServerF;
 using SSO_Modelo.Interfaces;
 using System.Configuration;
+using SSO_UPCI.Utilities;
 
 namespace SSO_UPCI.Areas.Seguridad.Controllers
 {
@@ -34,75 +35,100 @@ namespace SSO_UPCI.Areas.Seguridad.Controllers
         [HttpPost]
         public ActionResult ValidaCredenciales(Login _login)
         {
-            _login.user = _encriptador.DecodeBase64(_login.user);      //decodifica
-            _login.password = _encriptador.DecodeBase64(_login.password);  //decodifica
-
-            _login.user = ClsComun.QuitaTilde(_login.user);
-            _login.CodFederada = string.IsNullOrEmpty((string)Session["federada"]) ? "Default" : (string)Session["federada"];
-            var _pwdSSO = ConfigurationManager.AppSettings["_passwordSSO"].ToString();
 
             var _respuesta = new Respuesta();
-            if (!string.IsNullOrEmpty(_login.user) && _login.password == _pwdSSO)
+
+            try
             {
-                _login.password = "";
-                _respuesta = _processLogic.ValidaSoloUsuario(_login);
+
+
+                _login.user = _encriptador.DecodeBase64(_login.user);      //decodifica
+                _login.password = _encriptador.DecodeBase64(_login.password);  //decodifica
+
+                _login.user = ClsComun.QuitaTilde(_login.user);
+                _login.CodFederada = string.IsNullOrEmpty((string)Session["federada"]) ? "Default" : (string)Session["federada"];
+                var _pwdSSO = ConfigurationManager.AppSettings["_passwordSSO"].ToString();
+
+
+                if (!string.IsNullOrEmpty(_login.user) && _login.password == _pwdSSO)
+                {
+                    _login.password = "";
+                    _respuesta = _processLogic.ValidaSoloUsuario(_login);
+
+                }
+                else
+                {
+                    _respuesta = _processLogic.ValidaCredenciales(_login);
+                }
+
+                if (_respuesta.ok)
+                {
+                    var duracion = TimeSpan.FromDays(2000);
+                    var usuarioData = _respuesta.obj;
+                    var token = _tokenGenerator.generateToken(usuarioData.usuario_login, usuarioData.usuario_nombre, usuarioData.usuario_apPaterno, usuarioData.usuario_correoUPC, duracion, string.Empty, false);
+                    ////Encripta tripleDES
+                    //string _stKey = System.Configuration.ConfigurationManager.AppSettings["stKey"].ToString();
+                    //token = _encriptador.Encripta3DES(token, _stKey); 
+                    ////Fin TripleDES
+                    _verifyToken.SetTokenCookie(token);
+
+                    var _federada = (string)Session["federada"];
+                    _respuesta.federada = UrlFederada(_federada) + "?_tk=" + token;
+
+                    //respuesta envia los atributos "_respuesta.federada", "_respuesta.flagRecPas" sin codificar
+                    _respuesta.obj.usuario_login = _encriptador.EncodeBase64(_respuesta.obj.usuario_login); //codifica
+                                                                                                            //Blanquea data 
+                    _respuesta.obj.usuario_nombre = "";
+                    _respuesta.obj.usuario_apPaterno = "";
+                    _respuesta.obj.usuario_apMaterno = "";
+                    _respuesta.obj.Usuario_correoPersonal = "";
+                    _respuesta.obj.usuario_correoUPC = "";
+                    _respuesta.obj.usuario_telefono = "";
+                    _respuesta.obj.usuarioTipo = "";
+                    _respuesta.CodFederada = "";
+                    _respuesta.obj.CodPersona = "";
+
+                }
 
             }
-            else
+            catch (Exception ex)
             {
-                _respuesta = _processLogic.ValidaCredenciales(_login);
-            }
-
-            if (_respuesta.ok)
-            {
-                var duracion = TimeSpan.FromDays(2000);
-                var usuarioData = _respuesta.obj;
-                var token = _tokenGenerator.generateToken(usuarioData.usuario_login, usuarioData.usuario_nombre, usuarioData.usuario_apPaterno, usuarioData.usuario_correoUPC, duracion, string.Empty, false);
-                ////Encripta tripleDES
-                //string _stKey = System.Configuration.ConfigurationManager.AppSettings["stKey"].ToString();
-                //token = _encriptador.Encripta3DES(token, _stKey); 
-                ////Fin TripleDES
-                _verifyToken.SetTokenCookie(token);
-
-                var _federada = (string)Session["federada"];
-                _respuesta.federada = UrlFederada(_federada) + "?_tk=" + token;
-
-                //respuesta envia los atributos "_respuesta.federada", "_respuesta.flagRecPas" sin codificar
-                _respuesta.obj.usuario_login = _encriptador.EncodeBase64(_respuesta.obj.usuario_login); //codifica
-                //Blanquea data 
-                _respuesta.obj.usuario_nombre = "";
-                _respuesta.obj.usuario_apPaterno = "";
-                _respuesta.obj.usuario_apMaterno = "";
-                _respuesta.obj.Usuario_correoPersonal = "";
-                _respuesta.obj.usuario_correoUPC = "";
-                _respuesta.obj.usuario_telefono = "";
-                _respuesta.obj.usuarioTipo = "";
-                _respuesta.CodFederada = "";
-                _respuesta.obj.CodPersona = "";
+                _respuesta.ok = false;
+                _respuesta.mensaje = ex.Message;
+                Log.Error(ex.Message, ex);
             }
 
             return Json(_respuesta);
         }
         public JsonResult ValidaSoloUsuario(Login _login)
         {
-            _login.user = _encriptador.DecodeBase64(_login.user);   //decodifica
-
-            _login.user = ClsComun.QuitaTilde(_login.user);
-            _login.CodFederada = string.IsNullOrEmpty((string)Session["federada"]) ? "Default" : (string)Session["federada"];
-            var _respuesta = _processLogic.ValidaSoloUsuario(_login);
-
-            if (_respuesta.ok)
+            var _respuesta = new Respuesta() { ok = false, mensaje = "!! Error: Usuario incorrecto !!" };
+            try
             {
-                //codifica
-                _respuesta.obj.usuario_login = _encriptador.EncodeBase64(_respuesta.obj.usuario_login);
-                _respuesta.obj.usuario_nombre = _encriptador.EncodeBase64(_respuesta.obj.usuario_nombre);
-                _respuesta.obj.Usuario_correoPersonal = _encriptador.EncodeBase64(_respuesta.obj.Usuario_correoPersonal);
-                _respuesta.obj.usuario_telefono = _encriptador.EncodeBase64(_respuesta.obj.usuario_telefono);
-                _respuesta.obj.usuario_apPaterno = _encriptador.EncodeBase64(_respuesta.obj.usuario_apPaterno);
-                _respuesta.obj.usuario_apMaterno = _encriptador.EncodeBase64(_respuesta.obj.usuario_apMaterno);
-                //Blanquea
-                _respuesta.obj.usuario_correoUPC = "";
-                _respuesta.obj.CodPersona = "";
+                _login.user = _encriptador.DecodeBase64(_login.user);   //decodifica
+
+                _login.user = ClsComun.QuitaTilde(_login.user);
+                _login.CodFederada = string.IsNullOrEmpty((string)Session["federada"]) ? "Default" : (string)Session["federada"];
+                _respuesta = _processLogic.ValidaSoloUsuario(_login);
+
+                if (_respuesta.ok)
+                {
+                    //codifica
+                    _respuesta.obj.usuario_login = _encriptador.EncodeBase64(_respuesta.obj.usuario_login);
+                    _respuesta.obj.usuario_nombre = _encriptador.EncodeBase64(_respuesta.obj.usuario_nombre);
+                    _respuesta.obj.Usuario_correoPersonal = _encriptador.EncodeBase64(_respuesta.obj.Usuario_correoPersonal);
+                    _respuesta.obj.usuario_telefono = _encriptador.EncodeBase64(_respuesta.obj.usuario_telefono);
+                    _respuesta.obj.usuario_apPaterno = _encriptador.EncodeBase64(_respuesta.obj.usuario_apPaterno);
+                    _respuesta.obj.usuario_apMaterno = _encriptador.EncodeBase64(_respuesta.obj.usuario_apMaterno);
+                    //Blanquea
+                    _respuesta.obj.usuario_correoUPC = "";
+                    _respuesta.obj.CodPersona = "";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Log.Error(ex.Message, ex);
             }
 
             return Json(_respuesta);

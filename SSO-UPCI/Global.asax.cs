@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,6 +23,12 @@ namespace SSO_UPCI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());
+
+            #region "Logger"
+            string logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config", "Log4Net.config");
+            FileInfo finfo = new FileInfo(logFilePath);
+            log4net.Config.XmlConfigurator.ConfigureAndWatch(finfo);
+            #endregion
         }
     }
 }

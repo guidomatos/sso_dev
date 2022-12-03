@@ -54,6 +54,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.15\lib\net45\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.5.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.6.5.1\lib\net461\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
@@ -179,6 +182,8 @@
     <Compile Include="Models\ViewModel\VLogin.cs" />
     <Compile Include="Models\ViewModel\VUsuarioAD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Log.cs" />
+    <Compile Include="Utilities\Logger.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -253,6 +258,7 @@
     <Content Include="Areas\Seguridad\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Seguridad\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Seguridad\Views\Home\Index.cshtml" />
+    <Content Include="Config\Log4Net.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\CheckPassword.js" />
     <Content Include="Scripts\constants.js" />
@@ -323,6 +329,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Proceso\Data\" />
     <Folder Include="Areas\Seguridad\Data\" />
+    <Folder Include="logs\" />
     <Folder Include="mod\" />
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Views\Saml\" />

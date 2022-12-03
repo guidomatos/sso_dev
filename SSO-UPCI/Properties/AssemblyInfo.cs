@@ -13,6 +13,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+[assembly: log4net.Config.XmlConfigurator(ConfigFile = "Log4Net.config", Watch = true)]
 
 // Si configura ComVisible como falso, los tipos de este ensamblado no se hacen visibles
 // para componentes COM.  Si necesita acceder a un tipo de este ensamblado desde
